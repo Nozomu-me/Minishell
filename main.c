@@ -79,7 +79,7 @@ int main(int argc,  char **argv)
 		execute_ctrld(buf, ret, &builtins);
 		check_command(buf,environ, argv, &builtins);
 		free(buf);
-		free_builtins(&builtins);
+		// free_builtins(&builtins);
 	}
 	return (0);
 }
