@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
+#    By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:19:58 by amouassi          #+#    #+#              #
-#    Updated: 2021/03/02 16:42:35 by amouassi         ###   ########.fr        #
+#    Updated: 2021/03/09 12:15:23 by abdel-ke         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ all: $(NAME)
 $(NAME): $(OBJ) $(OBJLIB)
 	$(AR) $(NAME) $(OBJ) $(OBJLIB)
 	$(CC) $(FLAG) $(MAIN) $(NAME) -o $(EXE)
-
+	@./minishell
 %.o : %.c
 	$(CC) $(FLAGS) -c $< -o $@
 
@@ -83,6 +83,6 @@ clean:
 	rm -f main.o
 fclean: clean
 	rm -f $(NAME)
-	rm -f $(LIBFT)/$(NAMELIBFT)
+	rm -f $(LIBFT)/$(NAMELIBFT) $(EXE)
 
 re: fclean all
