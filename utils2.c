@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:23 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/18 12:55:57 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:36:07 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,6 @@ void    print_list(t_list *list)
             tmp = tmp->next;
         }
     }
-    
 }
 
 t_list      *init_list()

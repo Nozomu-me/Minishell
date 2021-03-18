@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 20:46:17 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/18 12:54:40 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:27:39 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void    mod_oldpwd(t_list *env)
     
     getcwd(cwd, PATH_MAX);
     oldpwd = ft_strjoin("OLDPWD=", cwd);
-    if (check_in_env(env) == 0)
+    if (check_in_env(env, "OLDPWD") == 0)
         ft_lstadd_back(&env, ft_lstnew(oldpwd));
     else
         mod_env(env, "OLDPWD", oldpwd);

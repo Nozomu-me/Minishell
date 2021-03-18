@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/18 12:49:33 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:25:22 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,16 @@ t_list          *init_list();
 */
 void          	sig_handler(int sig);
 char            **init_cmd(char *cmd);
-void			execute_cmd(char **cmd, t_list *env, t_list	*my_env);
+void			execute_cmd(char **cmd, t_list *env, t_list	*export_env);
 /*
 ** execute builtins
 */
-void			execute_builtins(char **cmd, t_list *env, t_list *my_env);
+void			execute_builtins(char **cmd, t_list *env, t_list *export_env);
 int				check_isbuiltin(char *cmd);
 void    		execute_pwd();
 void			execute_cd(char **cmd, t_list *env);
 void            execute_env(char **cmd, t_list *env);
-void            execute_export(char **cmd, t_list *env, t_list *my_env);
+void            execute_export(char **cmd, t_list *env, t_list *export_env);
 /*
 ** error functions
 */
@@ -116,8 +116,9 @@ void            error_cd(char *path, int err);
 ** environ functions
 */
 void            mod_env(t_list *env, char *name,char *var);
-int             check_in_env(t_list *env);
+int             check_in_env(t_list *env, char *str);
 t_list          *init_environ(char **environ);
 char			**ft_getenv(char *name, t_list *env);
+
 
 #endif

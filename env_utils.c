@@ -6,32 +6,11 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:51:40 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/16 22:16:08 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/18 20:35:40 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// char **set_environ(char **environ)
-// {
-//     int     i;
-//     int j;
-//     char **env;
-    
-//     i = 0;
-//     j = 0;
-//     while (environ[i] != NULL)
-//         i++;
-//     env =malloc(i*sizeof(char*));
-//     while(environ[j] != '\0')
-//     {
-//         if (ft_strncmp(environ[j], "OLDPWD", 6) != 0)
-//             env[j] = strdup(environ[j]);
-//         j++;
-//     }
-//     env[j] = NULL;
-//     return (env);
-// }
 
 t_list   *init_environ(char **environ)
 {
@@ -70,34 +49,6 @@ char **ft_getenv(char *name, t_list *env)
     return (NULL);
 }
 
-// void modify_env(char **environ, char *name,char *var)
-// {
-//     int     i;
-//     char **find;
-//     char *env;
-//     char *tmp;
-
-//     env = ft_strjoin(name,var);
-//     i = 0;
-//     while(environ[i] != NULL)
-//     {
-//         find = ft_split(environ[i],'=');
-//         if(strcmp(find[0], name) == 0)
-//         {
-//             tmp = env;
-//             env = ft_strjoin(name,"=");
-//             free(tmp);
-//             tmp = env;
-//             env = ft_strjoin(env,var);
-//             free(tmp);
-//             strcpy(environ[i],env);
-//             free(env);
-//         }
-//         i++;
-//         free_tab(find);
-//     }
-// }
-
 void    mod_env(t_list *env, char *name,char *var)
 {
     t_list  *tmp;
@@ -114,17 +65,16 @@ void    mod_env(t_list *env, char *name,char *var)
     }
 }
 
-int    check_in_env(t_list *env)
+int    check_in_env(t_list *env, char *str)
 {
     t_list     *tmp;
 
     tmp = env;
     while (tmp != NULL)
     {
-        if (ft_strncmp(tmp->content, "OLDPWD", 6) == 0)
+        if (ft_strncmp(tmp->content, str, ft_strlen(str)) == 0)
             return (1);
         tmp = tmp->next;
     }
     return (0);
-    
 }
