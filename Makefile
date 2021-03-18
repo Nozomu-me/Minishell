@@ -6,7 +6,7 @@
 #    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:19:58 by amouassi          #+#    #+#              #
-#    Updated: 2021/03/16 19:48:40 by amouassi         ###   ########.fr        #
+#    Updated: 2021/03/18 11:53:52 by amouassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,8 @@ SRC = utils.c \
 	  gnl/get_next_line_utils.c \
 	  builtins/execute_pwd.c \
 	  builtins/execute_cd.c \
+	  builtins/execute_env.c \
+	  builtins/execute_export.c \
 	  errors/errors.c \
 	  execute_cmd.c \
 	  init_cmd.c \

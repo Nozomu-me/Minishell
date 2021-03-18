@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 22:34:56 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/16 19:37:39 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/18 12:29:52 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		check_isbuiltin(char *cmd)
 	return (0);
 }
 
-void	execute_builtins(char **cmd, t_list *env)
+void	execute_builtins(char **cmd, t_list *env, t_list *my_env)
 {
 	if (ft_strcmp(cmd[0], "pwd") == 0)
 		execute_pwd();
@@ -37,10 +37,10 @@ void	execute_builtins(char **cmd, t_list *env)
 		execute_cd(cmd, env);
 	// else if (ft_strcmp(cmd[0], "echo") == 0)
 	// 	execute_echo(cmd);
-	// else if (ft_strcmp(cmd[0], "export") == 0)
-	// 	execute_export(cmd);
+	else if (ft_strcmp(cmd[0], "export") == 0)
+		execute_export(cmd, env, my_env);
 	// else if (ft_strcmp(cmd[0], "unset") == 0)
 	// 	execute_unset(cmd);
-	// else if (ft_strcmp(cmd[0], "env") == 0)
-		// execute_env(cmd);
+	else if (ft_strcmp(cmd[0], "env") == 0)
+		execute_env(cmd, env);
 }

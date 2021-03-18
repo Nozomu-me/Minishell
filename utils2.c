@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:23 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/10 21:29:24 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/18 12:55:57 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,4 +124,30 @@ void sort_list(t_list *list)
             tmp = tmp->next;  
         }
     }  
+}
+
+void    print_list(t_list *list)
+{
+    t_list  *tmp;
+
+    tmp = list;
+    if (list == NULL)
+        return ;
+    else
+    {
+        while (tmp != NULL)
+        {
+            ft_putendl_fd(tmp->content, 1);
+            tmp = tmp->next;
+        }
+    }
+    
+}
+
+t_list      *init_list()
+{
+    t_list *list;
+
+    list = malloc(sizeof(t_list));
+    return (list);
 }
