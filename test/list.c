@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 09:34:24 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/19 11:31:00 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/19 15:48:05 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,44 @@ void        delete_node(t_list *list, char *name)
     temp->next = next; 
 }
 
+char    **list_to_tab(t_list *list)
+{
+    t_list      *tmp;
+    char        **tab;
+    int         i;
+
+    tmp = list;
+    i = 0;
+    tab = malloc(ft_lstsize(tmp)*sizeof(char*));
+    while (tmp != NULL)
+    {
+        tab[i] = strndup(tmp->content, ft_strlen(tmp->content) - 1);
+        tmp = tmp->next;
+        i++;
+    }
+    return (tab);
+}
+
 int main()
 {
     extern char **environ;
     t_list *env;
+    char **tab;
     int pos;
+    int size;
     
     env = init_env(environ);
+    size = ft_lstsize(env);
+    tab = list_to_tab(env);
+    pos = 0;
+    while(pos< size)
+    {
+        printf("%s\n",tab[pos]);
+        pos++;
+    }
     // print_list(env);
     // delete_node(env, "amal");
     // remove_node(env);
     // deleteNode(env,pos);
-    print_list(env);
+    // print_list(env);
 }

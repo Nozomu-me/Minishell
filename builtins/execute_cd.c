@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 20:46:17 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/19 11:59:11 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/19 17:06:53 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void    mod_oldpwd(t_list *env)
     else
         mod_env(env, "OLDPWD", oldpwd);
 }
+
 char    *get_path(t_list *env, int b)
 {
     char    **path;

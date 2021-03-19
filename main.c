@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:28:51 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/19 12:27:56 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/19 16:39:48 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ int main(int argc,  char **argv)
 	int ret;
 	extern char **environ;
 	t_minishell		mini;
-	// t_list	*env;
-	// t_list	*export_env;
-	// t_list	*unset;
-	// char	**cmd;
 
 	mini.env = init_environ(environ);
 	mini.export_env = init_environ(environ);
