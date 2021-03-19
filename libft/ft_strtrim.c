@@ -3,76 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 15:42:06 by amouassi          #+#    #+#             */
-/*   Updated: 2019/11/01 11:28:12 by amouassi         ###   ########.fr       */
+/*   Created: 2019/10/25 18:50:40 by abdel-ke          #+#    #+#             */
+/*   Updated: 2019/11/13 18:13:16 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-static int		ft_is_char(char c, const char *set)
+static int		check(char c, char *set)
 {
-	int		i;
+	int i;
 
 	i = 0;
-	while (set[i] != '\0')
+	while (set[i])
 	{
-		if (set[i] == c)
+		if (c == set[i])
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-static int		ft_find_deb(char const *s, char const *set)
-{
-	int		i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (!ft_is_char(s[i], set))
-			break ;
-		i++;
-	}
-	return (i);
-}
-
-static int		ft_find_fin(char const *s, char const *set)
-{
-	int		slen;
-	int		fin;
-
-	slen = ft_strlen(s) - 1;
-	fin = slen;
-	while (slen)
-	{
-		if (!ft_is_char(s[slen], set))
-		{
-			fin = slen;
-			break ;
-		}
-		slen--;
-	}
-	return (fin);
-}
-
-char			*ft_strtrim(char const *s, char const *set)
+char			*ft_strtrim(char const *s1, char const *set)
 {
 	char	*str;
-	int		start;
+	int		j;
 	int		len;
 
-	if (s == NULL)
+	if (!s1 || !set)
 		return (NULL);
-	start = ft_find_deb(s, set);
-	len = ft_find_fin(s, set) - ft_find_deb(s, set) + 1;
-	str = ft_substr(s, start, len);
-	if (str == NULL || set == NULL)
+	str = ft_strdup(s1);
+	if (!str)
 		return (NULL);
-	if (len < 0)
-		return (ft_strdup(""));
-	return (str);
+	j = 0;
+	while (check(str[0], (char *)set) == 1)
+		str++;
+	len = ft_strlen(str) - 1;
+	while (len > 0 && check(str[len], (char *)set))
+		len--;
+	return (ft_substr(str, 0, len + 1));
 }

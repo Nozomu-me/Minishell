@@ -3,83 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/27 14:50:29 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/04 17:44:14 by amouassi         ###   ########.fr       */
+/*   Created: 2021/03/18 13:41:51 by abdel-ke          #+#    #+#             */
+/*   Updated: 2021/03/19 01:58:09 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "lexer.h"
 
-#include "minishell.h"
-
-void ft_sig_handler(int sig)
+void	get_line(t_token *token)
 {
-	if(sig == SIGINT)
-		ft_putstr("\b\b  \b\b\n\033[33mminishell\033[0m\033[32m~$\033[0m ");
-	if (sig == SIGQUIT)
-		ft_putstr("\b\b  \b\b");
-}
+	int		r;
+	char	*line;
 
-void execute_ctrld(char *line, int ret, t_builtins *builtins)
-{
-	if((strcmp(line, "") == 0 && ret == 0) || strcmp(line, "exit") == 0)
+	line = NULL;
+	ft_putstr("\e[1;32m$minishel\033[1;34m=>\033[0m");
+	while((r = get_next_line(&line)) > 0)
 	{
-		ft_putstr("exit\n");
-		free(line);
-		exit(EXIT_SUCCESS);
-	}
-}
-
-void check_command(char *line, char **env, char **argv, t_builtins *built)
-{
-	int pid;
-	char* arg[] = {argv[0], NULL};
-
-	init_builtins (built, env);
-	if (strcmp(line, "minishell") == 0)
-	{
-		pid = fork();
-		if(pid == 0)
+		token = lexer_line(line);
+		while (token)
 		{
-			execve(argv[0], arg, built->env);
+			printf("|%d|\t|%d|\t[%s]\n", token->index, token->type, token->value);
+			token = token->next;
 		}
-		else if (pid < 0)
-			printf("%s\n",strerror(errno));
-		else 
-			wait(&pid);
+		ft_putstr("\n\e[1;32m$minishel\033[1;34m=>\033[0m");
+		free(line);
+		line = NULL;
 	}
-	if (strncmp(line, "export", 6) == 0 || strncmp(line, "unset", 5) == 0)
-	    parse_export_unset(line, built);
-	if (ft_strncmp(line, "pwd",3) == 0)
-		execute_pwd();
-	// if (strncmp(line, "unset", 5) == 0)
-	//     execute_unset(line, built);
-	if (strncmp(line, "env", 3) == 0)
-	    parse_env(line, built);
-	if (ft_strncmp(line,"cd",2) == 0)
-		parse_cd(line, built);
 }
 
-int main(int argc,  char **argv)
+int main(void)
 {
-	char *buf;
-	int ret;
-	t_builtins builtins;
-	extern char **environ;
+	t_token *token;
 
-	signal(SIGINT,ft_sig_handler);
-	signal(SIGQUIT,ft_sig_handler);
-	ret = 2;
-	while(1)
+	token = NULL;
+	get_line(token);
+	while (token)
 	{
-		if (ret != 0)
-			ft_putstr("\033[33mminishell\033[0m\033[32m~$\033[0m ");
-		ret = get_next_line(1, &buf);
-		execute_ctrld(buf, ret, &builtins);
-		check_command(buf,environ, argv, &builtins);
-		free(buf);
-		// free_builtins(&builtins);
+		printf("|%d|\t|%d|\t[%s]\n", token->index, token->type, token->value);
+		token = token->next;
 	}
-	return (0);
 }

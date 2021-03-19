@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/20 19:53:48 by amouassi          #+#    #+#             */
-/*   Updated: 2019/11/03 15:10:34 by amouassi         ###   ########.fr       */
+/*   Created: 2019/10/19 11:51:40 by abdel-ke          #+#    #+#             */
+/*   Updated: 2019/11/02 11:03:13 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	unsigned char	*dest;
-	unsigned char	*srce;
 	size_t			i;
+	unsigned char	*dstt;
+	unsigned char	*srcc;
 
-	dest = (unsigned char *)dst;
-	srce = (unsigned char *)src;
+	srcc = (unsigned char *)src;
+	dstt = (unsigned char *)dst;
 	i = 0;
 	while (i < n)
 	{
-		dest[i] = srce[i];
-		if (srce[i] == (unsigned char)c)
-			return ((dest + i + 1));
+		dstt[i] = srcc[i];
+		if (srcc[i] == (unsigned char)c)
+			return (dstt + ++i);
 		i++;
 	}
-	return (NULL);
+	return (0);
 }

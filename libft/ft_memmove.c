@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/19 16:34:11 by amouassi          #+#    #+#             */
-/*   Updated: 2019/11/07 14:50:07 by amouassi         ###   ########.fr       */
+/*   Created: 2019/10/19 18:23:31 by abdel-ke          #+#    #+#             */
+/*   Updated: 2019/11/11 17:23:37 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,26 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*dest;
-	unsigned char	*srce;
-	size_t			i;
+	size_t	i;
+	char	*srcc;
+	char	*dstt;
 
-	i = 0;
-	dest = (unsigned char *)dst;
-	srce = (unsigned char *)src;
-	if (!dest && !srce)
+	srcc = (char *)src;
+	dstt = (char *)dst;
+	if (dst == src)
 		return (NULL);
-	if (dst > src)
-	{
-		while (len--)
+	i = 0;
+	if (src > dst)
+		while (len > i)
 		{
-			*(unsigned char*)(dst + len) = *(unsigned char*)(src + len);
+			dstt[i] = srcc[i];
+			i++;
 		}
-		return (dst);
-	}
-	ft_memcpy(dest, srce, len);
-	return (dest);
+	else
+		while (len)
+		{
+			dstt[len - 1] = srcc[len - 1];
+			len--;
+		}
+	return (dst);
 }

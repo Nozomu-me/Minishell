@@ -3,103 +3,94 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 16:03:10 by amouassi          #+#    #+#             */
-/*   Updated: 2019/11/06 16:02:33 by amouassi         ###   ########.fr       */
+/*   Created: 2019/10/27 17:34:46 by abdel-ke          #+#    #+#             */
+/*   Updated: 2019/11/13 18:12:49 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int			ft_count_words(const char *s, char c)
+static	void		ft_free(char **tab, int i)
 {
-	int		i;
-	int		count;
+	while (i)
+	{
+		free(tab[i]);
+		i--;
+	}
+	free(tab);
+}
+
+static int			count_word(char const *s, char c)
+{
+	int i;
+	int pos;
+	int count;
 
 	i = 0;
+	pos = 0;
 	count = 0;
-	while (s[i] != '\0')
+	while (s[i])
 	{
-		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
-			count++;
+		if (s[i] == c)
+			pos = 0;
+		else
+		{
+			if (pos == 0)
+				count++;
+			pos = 1;
+		}
 		i++;
 	}
 	return (count);
 }
 
-static char			*ft_print_tab(const char *s, int deb, int fin)
+static	char		*put_word(char const *s, char c, int *n)
 {
 	int		i;
-	char	*tab;
+	int		first;
+	int		last;
+	char	*word;
 
-	i = deb;
-	tab = malloc((fin - deb + 2) * sizeof(char));
-	if (tab == NULL)
+	i = *n;
+	while (s[i] == c)
+		i++;
+	first = i;
+	while (s[i] != c && s[i])
+		i++;
+	last = i;
+	word = (char *)malloc(sizeof(char) * (last - first + 1));
+	if (!word)
 		return (NULL);
-	while (i <= fin)
-	{
-		tab[i - deb] = s[i];
-		i++;
-	}
-	tab[i - deb] = '\0';
-	return (tab);
-}
-
-static int			ft_check_allocation(char **str, int j)
-{
-	int		k;
-
-	k = 0;
-	if (str[j] == NULL)
-	{
-		while (k < j)
-		{
-			free(str[k]);
-			k++;
-		}
-		free(str);
-		return (0);
-	}
-	return (1);
-}
-
-static char			**ft_fit_tab(const char *s, char c, char **str)
-{
-	int		i;
-	int		deb;
-	int		fin;
-	int		j;
-
+	*n = i;
 	i = 0;
-	j = 0;
-	while (s[i] != '\0')
-	{
-		if ((i == 0 && s[0] != c) || (s[i] != c && s[i - 1] == c))
-			deb = i;
-		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
-		{
-			fin = i;
-			str[j] = ft_print_tab(s, deb, fin);
-			if (!ft_check_allocation(str, j))
-				return (NULL);
-			j++;
-		}
-		i++;
-	}
-	str[j] = NULL;
-	return (str);
+	while (first < last)
+		word[i++] = s[first++];
+	word[i] = '\0';
+	return (word);
 }
 
 char				**ft_split(char const *s, char c)
 {
-	char **str;
+	char		**rslt;
+	int			i;
+	int			count;
+	int			count_w;
 
-	if (s == NULL)
+	if (!s)
+		return (0);
+	if (!(rslt = (char **)malloc(sizeof(char*) * (count_word(s, c) + 1))))
 		return (NULL);
-	str = (char **)malloc((ft_count_words(s, c) + 1) * sizeof(char*));
-	if (str == NULL)
-		return (NULL);
-	str = ft_fit_tab(s, c, str);
-	return (str);
+	count = 0;
+	i = 0;
+	count_w = count_word(s, c);
+	while (count < count_w)
+		if (!(rslt[count++] = put_word(s, c, &i)))
+		{
+			ft_free(rslt, i);
+			return (NULL);
+		}
+	rslt[count] = NULL;
+	return (rslt);
 }

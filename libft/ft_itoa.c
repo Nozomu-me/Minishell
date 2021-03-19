@@ -3,59 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 13:17:20 by amouassi          #+#    #+#             */
-/*   Updated: 2019/10/29 12:30:34 by amouassi         ###   ########.fr       */
+/*   Created: 2019/10/26 20:06:12 by abdel-ke          #+#    #+#             */
+/*   Updated: 2019/11/13 18:12:16 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_count(int n)
+static	char	*rslt(long nb, int j, int div, char *rst)
 {
-	int		count;
-
-	count = 0;
-	if (n < 0)
+	if (j)
+		rst[0] = '-';
+	while (div != 1)
 	{
-		count++;
-		n = n * -1;
+		rst[j++] = (nb / div) + '0';
+		nb %= div;
+		div /= 10;
 	}
-	if (n == 0)
-		count = 1;
-	while (n != 0)
-	{
-		count++;
-		n = n / 10;
-	}
-	return (count);
+	rst[j++] = nb + '0';
+	rst[j] = '\0';
+	return (rst);
 }
 
 char			*ft_itoa(int n)
 {
-	char		*str;
-	int			i;
-	int long	nb;
+	int				cp;
+	int				div;
+	int				j;
+	long			nb;
+	char			*rst;
 
+	cp = 1;
+	div = 1;
 	nb = n;
-	if (nb == 0)
-		return (ft_strdup("0"));
-	str = (char*)malloc((ft_count(n) + 1) * sizeof(char));
-	if (str == NULL)
+	nb = n > 0 ? nb : -nb;
+	while (nb / div > 9)
+	{
+		div *= 10;
+		cp++;
+	}
+	if (!(rst = (char *)malloc(sizeof(char) * cp + 1 + (n < 0))))
 		return (NULL);
-	i = ft_count(n) - 1;
-	if (nb < 0)
-	{
-		str[0] = '-';
-		nb = nb * -1;
-	}
-	while (nb != 0)
-	{
-		str[i] = nb % 10 + '0';
-		nb = nb / 10;
-		i--;
-	}
-	str[ft_count(n)] = '\0';
-	return (str);
+	j = n < 0;
+	return (rslt(nb, j, div, rst));
 }
