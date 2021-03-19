@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:50:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/19 17:06:09 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/19 21:15:31 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,13 @@ void    print_export(t_list *export)
         ft_putstr(split[0]);
         if (split[1] != NULL)
         {
-            ft_putstr("=\"");
+            ft_putstr("=");
+            if (split[1][0] != '\"')
+                ft_putstr("\"");
             ft_putstr(split[1]);
-            ft_putstr("\"\n");
+            if (split[1][0] != '\"')
+                ft_putstr("\"");
+            ft_putstr("\n");
         }
         else
         {

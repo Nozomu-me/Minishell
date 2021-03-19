@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/19 12:18:19 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/19 21:36:54 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void			execute_cd(t_minishell *mini);
 void            execute_env(t_minishell *mini);
 void            execute_export(t_minishell *mini);
 void            execute_unset(t_minishell *mini);
+void			execute_echo(char **cmd);
 /*
 ** error functions
 */

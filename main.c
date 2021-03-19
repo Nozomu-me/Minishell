@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:28:51 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/19 16:39:48 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/19 20:54:17 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ int main(int argc,  char **argv)
 	ret = 2;
 	while(1)
 	{
-		if (ret != 0)
-			ft_putstr("\033[33mminishell\033[0m\033[32m~$\033[0m ");
+		// if (ret != 0)
+		ft_putstr("\033[33mminishell\033[0m\033[32m~$\033[0m ");
 		ret = get_next_line(1, &buf);
 		mini.cmd = init_cmd(buf);
 		execute_cmd(&mini);
+		// printf("here\n");
 		free(buf);
 		free_tab(mini.cmd);
 	}
