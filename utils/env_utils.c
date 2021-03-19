@@ -6,11 +6,11 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:51:40 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/18 20:35:40 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/19 12:00:22 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 t_list   *init_environ(char **environ)
 {

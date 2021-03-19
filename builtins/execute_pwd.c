@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 19:29:17 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/13 19:35:58 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/19 09:23:23 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    execute_pwd()
 	{
 		error_pwd("pwd: ",errno);
 		exit_status = errno;
-		exit(EXIT_FAILURE);
+		// exit(EXIT_FAILURE);
 	}
 	else
 	{

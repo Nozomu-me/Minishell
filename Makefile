@@ -6,7 +6,7 @@
 #    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:19:58 by amouassi          #+#    #+#              #
-#    Updated: 2021/03/18 11:53:52 by amouassi         ###   ########.fr        #
+#    Updated: 2021/03/19 12:16:24 by amouassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,10 +62,11 @@ SRCLIB =  ft_atoi.c \
 		  ft_lstiter.c \
 		  ft_lstmap.c \
 
-SRC = utils.c \
+SRC = utils/utils.c \
+	  utils/env_utils.c \
+	  utils/utils2.c \
+	  utils/list_utils.c \
 	  sig_handler.c \
-	  env_utils.c \
-	  utils2.c \
 	  free.c \
 	  gnl/get_next_line.c \
 	  gnl/get_next_line_utils.c \
@@ -73,6 +74,7 @@ SRC = utils.c \
 	  builtins/execute_cd.c \
 	  builtins/execute_env.c \
 	  builtins/execute_export.c \
+	  builtins/execute_unset.c \
 	  errors/errors.c \
 	  execute_cmd.c \
 	  init_cmd.c \

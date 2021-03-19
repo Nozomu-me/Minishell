@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 22:34:56 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/18 15:18:20 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/19 12:15:26 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,18 @@ int		check_isbuiltin(char *cmd)
 	return (0);
 }
 
-void	execute_builtins(char **cmd, t_list *env, t_list *export_env)
+void	execute_builtins(t_minishell *mini)
 {
-	if (ft_strcmp(cmd[0], "pwd") == 0)
+	if (ft_strcmp(mini->cmd[0], "pwd") == 0)
 		execute_pwd();
-	else if (ft_strcmp(cmd[0], "cd") == 0)
-		execute_cd(cmd, env);
-	// else if (ft_strcmp(cmd[0], "echo") == 0)
+	else if (ft_strcmp(mini->cmd[0], "cd") == 0)
+		execute_cd(mini);
+	// else if (ft_strcmp(mini->cmd[0], "echo") == 0)
 	// 	execute_echo(cmd);
-	else if (ft_strcmp(cmd[0], "export") == 0)
-		execute_export(cmd, env, export_env);
-	// else if (ft_strcmp(cmd[0], "unset") == 0)
-	// 	execute_unset(cmd);
-	else if (ft_strcmp(cmd[0], "env") == 0)
-		execute_env(cmd, env);
+	else if (ft_strcmp(mini->cmd[0], "export") == 0)
+		execute_export(mini);
+	else if (ft_strcmp(mini->cmd[0], "unset") == 0)
+		execute_unset(mini);
+	else if (ft_strcmp(mini->cmd[0], "env") == 0)
+		execute_env(mini);
 }

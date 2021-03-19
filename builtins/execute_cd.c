@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 20:46:17 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/18 15:27:39 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/19 11:59:11 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,23 @@ char    *get_path(t_list *env, int b)
     return (path[1]);
 }
 
-void    execute_cd(char **cmd, t_list *env)
+void    execute_cd(t_minishell *mini)
 {
     char    *path;
     char    *tmp_path;
     int     check_dir;
 	char	cwd[PATH_MAX];
 
-    if (cmd[1] == NULL)
+    if (mini->cmd[1] == NULL)
     {
-        path = get_path(env, 0);
+        path = get_path(mini->env, 0);
         check_dir = chdir(path);
     }
-    else if (ft_strcmp(cmd[1], "~") == 0)
+    else if (ft_strcmp(mini->cmd[1], "~") == 0)
     {
-        path = get_path(env, 0);
-        mod_oldpwd(env);
-        tmp_path = search_replace(cmd[1], "~", path);
+        path = get_path(mini->env, 0);
+        mod_oldpwd(mini->env);
+        tmp_path = search_replace(mini->cmd[1], "~", path);
         check_dir = chdir(tmp_path);
 		if (check_dir == -1)
         {
@@ -81,9 +81,9 @@ void    execute_cd(char **cmd, t_list *env)
             exit_status = errno;
         }
     }
-    else if (ft_strcmp(cmd[1], "-") == 0)
+    else if (ft_strcmp(mini->cmd[1], "-") == 0)
     {
-        path = get_path(env, 1);
+        path = get_path(mini->env, 1);
         if (path != NULL)
         {
             check_dir = chdir(path);
@@ -96,13 +96,13 @@ void    execute_cd(char **cmd, t_list *env)
     }
     else
     {
-        mod_oldpwd(env);
-        check_dir = chdir(cmd[1]);
+        mod_oldpwd(mini->env);
+        check_dir = chdir(mini->cmd[1]);
 		if (check_dir == -1)
         {
-			error_cd(cmd[1], errno);
+			error_cd(mini->cmd[1], errno);
             exit_status = errno;
         }
     }
-    free(path);
+    // free(path);
 }

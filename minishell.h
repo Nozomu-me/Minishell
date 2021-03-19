@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/18 15:25:22 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/19 12:18:19 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,47 +32,13 @@
 #include "gnl/get_next_line.h"
 
 int exit_status;
-// typedef struct			s_builtins
-// {
-// 	char		*cd_path;
-// 	char		**env;
-// 	t_list      *list;
-// }						t_builtins;
-// typedef struct s_env
-// {
-// 	char	*value;
-//     struct s_env    *next;
-// }t_env;
-// typedef enum e_type
-// {
-//     WRITE,
-//     READ,
-//     APPEND,
-//     PIPE,
-//     END
-// }t_type;
-
-// typedef struct s_info
-// {
-//     char *oldpwd;
-//     int error_return;
-//     char *latest_command;
-// }t_info;
-
-// typedef struct s_file
-// {
-//     char *name;
-//     t_type type;
-//     struct s_file *next;
-// }t_file;
-
-// typedef struct s_cmd
-// {
-//     t_list *args;
-//     t_file  *files;
-//     t_type type;
-// }t_cmd;
-
+typedef struct      s_minishell
+{
+    t_list	*env;
+	t_list	*export_env;
+	t_list	*unset;
+	char	**cmd;
+}                   t_minishell;
 /*
 ** utils
 */
@@ -84,29 +50,31 @@ void			free_tab(char **s);
 int				ft_strcmp(char *s1, char *s2);
 void			ft_sort_tab(char **tab);
 char			*search_replace(char *str, char *org, char *rep);
-// char			**set_environ(char **environ);
-// char			**ft_getenv(char *name, char **env);
-// void			modify_env(char **environ, char *name,char *var);
-void			sort_list(t_list *list);
 int				ft_sort_str(char *s1, char *s2);
 void			free_tab(char **s);
+/*
+** list utils
+*/
+void			sort_list(t_list *list);
 void            print_list(t_list *list);
 t_list          *init_list();
+void            delete_node(t_list *list, char *name);
 /*
 ** execute cmd
 */
 void          	sig_handler(int sig);
 char            **init_cmd(char *cmd);
-void			execute_cmd(char **cmd, t_list *env, t_list	*export_env);
+void			execute_cmd(t_minishell *mini);
 /*
 ** execute builtins
 */
-void			execute_builtins(char **cmd, t_list *env, t_list *export_env);
+void			execute_builtins(t_minishell *mini);
 int				check_isbuiltin(char *cmd);
 void    		execute_pwd();
-void			execute_cd(char **cmd, t_list *env);
-void            execute_env(char **cmd, t_list *env);
-void            execute_export(char **cmd, t_list *env, t_list *export_env);
+void			execute_cd(t_minishell *mini);
+void            execute_env(t_minishell *mini);
+void            execute_export(t_minishell *mini);
+void            execute_unset(t_minishell *mini);
 /*
 ** error functions
 */
@@ -119,6 +87,4 @@ void            mod_env(t_list *env, char *name,char *var);
 int             check_in_env(t_list *env, char *str);
 t_list          *init_environ(char **environ);
 char			**ft_getenv(char *name, t_list *env);
-
-
 #endif
