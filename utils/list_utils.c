@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 11:11:33 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/19 11:15:39 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/20 15:18:48 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,25 @@ void    print_list(t_list *list)
             tmp = tmp->next;
         }
     }
+}
+
+char    **list_to_tab(t_list *list)
+{
+    t_list      *tmp;
+    char        **tab;
+    int         i;
+
+    tmp = list;
+    i = 0;
+    tab = malloc((ft_lstsize(tmp) + 1)*sizeof(char*));
+    while (tmp != NULL)
+    {
+        tab[i] = strndup(tmp->content, ft_strlen(tmp->content) - 1);
+        tmp = tmp->next;
+        i++;
+    }
+    tab[i] = NULL;
+    return (tab);
 }
 
 t_list      *init_list()

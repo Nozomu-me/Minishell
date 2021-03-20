@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:28:51 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/19 20:54:17 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/20 12:29:41 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int main(int argc,  char **argv)
 	mini.unset = ft_lstnew(NULL);
 	signal(SIGINT,sig_handler);
 	signal(SIGQUIT,sig_handler);
+	exit_status = 0;
 	ret = 2;
 	while(1)
 	{

@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/19 21:36:54 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/20 14:37:04 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 #define PATH_MAX = 1024
 #define BUFFER_SIZE 1024
-#define USERS "/Users"
 
 #include <signal.h>
 #include <unistd.h>
@@ -30,6 +29,7 @@
 #include <string.h>
 #include "libft/libft.h"
 #include "gnl/get_next_line.h"
+#include <sys/stat.h>
 
 int exit_status;
 typedef struct      s_minishell
@@ -59,12 +59,14 @@ void			sort_list(t_list *list);
 void            print_list(t_list *list);
 t_list          *init_list();
 void            delete_node(t_list *list, char *name);
+char    		**list_to_tab(t_list *list);
 /*
 ** execute cmd
 */
 void          	sig_handler(int sig);
 char            **init_cmd(char *cmd);
 void			execute_cmd(t_minishell *mini);
+void 		    execute_shell(t_minishell *mini);
 /*
 ** execute builtins
 */

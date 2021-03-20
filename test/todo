@@ -1,0 +1,7 @@
+keep oldpwd as a global var in case we unset it 
+rm -rf ../test
+cd ..
+cd -
+cd: /Users/amouassi/Desktop/minishell_/builtins/test: No such file or directory
+cd .
+cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory

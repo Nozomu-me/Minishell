@@ -6,27 +6,11 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:50:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/19 21:15:31 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/20 15:36:42 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-// int     check_if_unseted(t_list *unset, char *cmd)
-// {
-//     t_list      *tmp;
-
-//     tmp = unset;
-//     if (tmp == NULL)
-//         return (0);
-//     while (tmp != NULL)
-//     {
-//         if(tmp->content != NULL && ft_strncmp(tmp->content, cmd, ft_strlen(tmp->content)))
-//             return (1);
-//         tmp = tmp->next;
-//     }
-//     return (0);
-// }
 
 int     check_valid(char *str)
 {

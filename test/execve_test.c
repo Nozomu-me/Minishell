@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_cmd.c                                      :+:      :+:    :+:   */
+/*   execve_test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/13 19:11:18 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/20 14:08:33 by amouassi         ###   ########.fr       */
+/*   Created: 2021/03/20 10:27:46 by amouassi          #+#    #+#             */
+/*   Updated: 2021/03/20 18:28:17 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-void    execute_cmd(t_minishell *mini)
+int main(int argc, char *argv[])
 {
-    if (check_isbuiltin(mini->cmd[0]) == 1)
-        execute_builtins(mini);
-    else
-        execute_shell(mini);
+    extern char **environ;
+    char* file=argv[1];
+    // char *path;
+    // path = getenv("PATH");
+    // printf("%s\n",argv[1]);
+    char* arguments[] = {"ls", NULL };
+    execve("/Users/amouassi/Desktop/minishell_/ls", arguments,environ);
+    // execv("/bin", arguments);  
 }

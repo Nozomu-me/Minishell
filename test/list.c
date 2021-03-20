@@ -6,11 +6,11 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 09:34:24 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/19 15:48:05 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/20 14:35:37 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 
 // void printList(t_list *node) 
