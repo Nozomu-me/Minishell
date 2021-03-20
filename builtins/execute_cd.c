@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 20:46:17 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/19 17:06:53 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/21 00:14:01 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ char    *get_path(t_list *env, int b)
             exit_status = 1;
             return (NULL);
         }
-        printf("%s\n", path[1]);
         mod_oldpwd(env);
     }
     free(path[0]);
@@ -92,7 +91,19 @@ void    execute_cd(t_minishell *mini)
             {
                 error_cd(path, errno);
                 exit_status = errno;
+                return ;
             }
+        }
+        if (path != NULL)
+            printf("%s\n", path);
+    }
+    else if (ft_strcmp(mini->cmd[1], ".") == 0)
+    {
+        if (getcwd(cwd, PATH_MAX) == NULL)
+        {
+            ft_putstr_fd("cd: error retrieving current directory:", 1);
+            ft_putstr_fd(" getcwd: cannot access parent directories:", 1);
+            ft_putendl_fd(" No such file or directory", 1);
         }
     }
     else
