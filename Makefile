@@ -6,7 +6,7 @@
 #    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:19:58 by amouassi          #+#    #+#              #
-#    Updated: 2021/03/20 14:32:03 by amouassi         ###   ########.fr        #
+#    Updated: 2021/03/21 14:39:51 by amouassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ SRC = utils/utils.c \
 	  builtins/execute_export.c \
 	  builtins/execute_unset.c \
 	  builtins/execute_echo.c \
+	  builtins/execute_exit.c \
 	  errors/errors.c \
 	  execute_cmd.c \
 	  execute_shell.c \

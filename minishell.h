@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/20 14:37:04 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/21 15:00:11 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 #include <sys/stat.h>
 
 int exit_status;
+int mini_ret;
+int b_exit;
 typedef struct      s_minishell
 {
     t_list	*env;
@@ -46,6 +48,7 @@ char			*ft_strndup(char *s, size_t len);
 void			ft_putstr(char *s);
 char			*ft_strncpy(char *str, int n);
 int				ft_maxlen(char *s1, char *s2);
+int     		check_isnumeriq(char *str);
 void			free_tab(char **s);
 int				ft_strcmp(char *s1, char *s2);
 void			ft_sort_tab(char **tab);
@@ -78,6 +81,7 @@ void            execute_env(t_minishell *mini);
 void            execute_export(t_minishell *mini);
 void            execute_unset(t_minishell *mini);
 void			execute_echo(char **cmd);
+void    		execute_exit(t_minishell *mini);
 /*
 ** error functions
 */

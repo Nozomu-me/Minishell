@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:50:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/20 15:36:42 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/21 18:28:29 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void    execute_export(t_minishell *mini)
     while(mini->cmd[i] != NULL)
     {
         split = ft_split(mini->cmd[i], '=');
+        // printf("here\n");
         if (check_in_env(mini->export_env, split[0]) == 1 && check_valid(mini->cmd[i]) == 1)
             mod_env(mini->export_env, split[0], mini->cmd[i]);
         if (check_in_env(mini->env, split[0]) == 1 && check_valid(mini->cmd[i]) == 1)

@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 22:34:56 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/19 21:37:09 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/21 14:48:34 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int		check_isbuiltin(char *cmd)
 		return (1);
 	if (ft_strcmp(cmd, "unset") == 0)
 		return (1);
+	if (ft_strcmp(cmd, "exit") == 0)
+		return (1);
 	return (0);
 }
 
@@ -45,4 +47,6 @@ void	execute_builtins(t_minishell *mini)
 		execute_unset(mini);
 	else if (ft_strcmp(mini->cmd[0], "env") == 0)
 		execute_env(mini);
+	else if (ft_strcmp(mini->cmd[0], "exit") == 0)
+		execute_exit(mini);
 }

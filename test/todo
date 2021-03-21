@@ -1,7 +1,75 @@
 keep oldpwd as a global var in case we unset it 
+keep home as a global var
 rm -rf ../test
 cd ..
 cd -
 cd: /Users/amouassi/Desktop/minishell_/builtins/test: No such file or directory
 cd .
 cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+echo $_ latestcommand
+
+exit value > 255 ---->   value%256
+
+
+typedef struct s_file
+{
+    char *name;
+    char *filetype;
+    struct s_file *next
+}t_file;
+
+typedef struct s_cmds
+{
+    char **cmd;
+    char type;
+    t_file filename;
+    struct s_cmds *next;
+}t_cmds;
+
+echo $0 !!
+echo $1 !!
+echo "\$USER"
+echo $""
+echo $
+echo $''
+echo '$'
+echo "$"
+echo "$tttt"
+echo $ttt
+echo -n -n -n -n tes
+echo ---------n -n -n -n tes
+echo -n
+echo
+echo -nfgycgy
+echo amal >> dir/file
+echo $_
+
+
+unset $USER
+
+unset export exit cd doesn't work with pipe
+
+cat ctrl+C
+echo $? = 130
+cat ctrl+\
+echo $? = 131
+
+/*
+    boucle
+
+	int	fd[2];
+	
+	pipe(fd[2]);
+	
+	if (pid == 0)
+	{
+		close(fd[0]);
+		write(fd[1], dsfdsf, len);
+	}
+	else
+	{
+		close(fd[1]);
+		read()
+	}
+	
+*/
