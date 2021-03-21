@@ -4,8 +4,8 @@ NAME_LIB = minishell.a
 
 SRCS =	src/lexer.c\
 		src/struct.c\
-		src/libft/ft_strdup.c\
 		src/libft/ft_strjoin.c\
+		src/libft/ft_strdup.c\
 		src/libft/ft_strlen.c\
 		src/libft/ft_putendl_fd.c\
 		src/libft/ft_putstr_fd.c\

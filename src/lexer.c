@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:26:46 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/21 01:29:59 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/21 01:45:24 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ char	*get_symbole(t_token *token, int *index, char *line)
 
 char	*get_word(t_token *token, int *index, char *line)
 {
-	int i;
-	int j;
-	char *word;
+	int		i;
+	int		j;
+	char	*word;
 
 	i = 0;
 	j = -1;
