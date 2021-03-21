@@ -6,18 +6,18 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:57:29 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/19 02:00:03 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/21 01:29:09 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#ifndef LEXER_H
+# define LEXER_H
 
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-# include "libft/libft.h"
+# include "../src/libft/libft.h"
 
 typedef	enum	e_token_type
 {
@@ -58,6 +58,7 @@ char				**ft_split(char const *s, char c);
 
 
 t_token		*lexer_line(char *line);
+void		check_line(t_token *token);
 void		ft_lstadd_back(t_token **alst, t_token *new);
 t_token		*ft_lstnew(int index, t_token_type type, char *value);
 #endif

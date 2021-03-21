@@ -6,11 +6,11 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:26:46 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/19 01:55:29 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/21 01:29:59 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "../includes/lexer.h"
 
 t_bool	check_symbol(char c)
 {
@@ -109,5 +109,6 @@ t_token		*lexer_line(char *line)
 	token = NULL;
 	token = ft_lstnew(0, NONE, "(null)");
 	check_token(token, line);
+	check_line(token);
 	return (token);
 }

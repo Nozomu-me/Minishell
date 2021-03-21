@@ -6,11 +6,11 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:22:04 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/17 15:22:21 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/21 01:30:08 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "../includes/lexer.h"
 
 t_token		*ft_lstnew(int index, t_token_type type, char *value)
 {

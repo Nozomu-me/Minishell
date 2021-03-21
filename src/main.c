@@ -6,11 +6,11 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 13:41:51 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/19 01:58:09 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/21 01:30:03 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "../includes/lexer.h"
 
 void	get_line(t_token *token)
 {
