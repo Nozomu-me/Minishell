@@ -18,6 +18,11 @@ typedef struct s_file
     struct s_file *next
 }t_file;
 
+char *oldpwd;
+t_list *commands;
+int	exit_status;
+char *home;
+
 typedef struct s_cmds
 {
     char **cmd;
@@ -25,6 +30,7 @@ typedef struct s_cmds
     t_file filename;
     struct s_cmds *next;
 }t_cmds;
+
 
 echo $0 !!
 echo $1 !!

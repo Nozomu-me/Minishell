@@ -6,13 +6,13 @@
 #    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:19:58 by amouassi          #+#    #+#              #
-#    Updated: 2021/03/21 14:39:51 by amouassi         ###   ########.fr        #
+#    Updated: 2021/03/22 11:25:29 by amouassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell.a
 CC = gcc
-FLAGS = 
+FLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 LIBFT = libft
 NAMELIBFT = libft.a
@@ -63,8 +63,9 @@ SRCLIB =  ft_atoi.c \
 		  ft_lstmap.c \
 
 SRC = utils/utils.c \
-	  utils/env_utils.c \
 	  utils/utils2.c \
+	  utils/utils3.c \
+	  utils/env_utils.c \
 	  utils/list_utils.c \
 	  sig_handler.c \
 	  free.c \

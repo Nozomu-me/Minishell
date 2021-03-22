@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:50:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/21 18:28:29 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/22 16:01:57 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,34 @@ void    print_export(t_list *export)
             ft_putstr("\n");
         }
         else
-        {
             ft_putstr("\n");
-        }
         tmp = tmp->next;
         free_tab(split);
     }
 }
 
+void    help_execute_export(t_minishell *mini, char *cmd)
+{
+    char    **split;
+    
+    split = ft_split(cmd, '=');
+    if (check_in_env(mini->export_env, split[0]) == 1 &&
+    check_valid(cmd) == 1)
+        mod_env(mini->export_env, split[0], cmd);
+    if (check_in_env(mini->env, split[0]) == 1 &&
+    check_valid(cmd) == 1)
+        mod_env(mini->env, split[0], cmd);
+    else if (check_in_env(mini->export_env, split[0]) != 1)
+        ft_lstadd_back(&mini->export_env, ft_lstnew(ft_strdup(cmd)));
+    else if (check_in_env(mini->env, split[0]) != 1 &&
+    check_valid(cmd) == 1)
+        ft_lstadd_back(&mini->env, ft_lstnew(ft_strdup(cmd)));
+    free_tab(split);
+}
+
 void    execute_export(t_minishell *mini)
 {
     int     i;
-    char    **split;
 
     i = 1;
     if (mini->cmd[1] ==  NULL)
@@ -69,17 +85,10 @@ void    execute_export(t_minishell *mini)
     }
     while(mini->cmd[i] != NULL)
     {
-        split = ft_split(mini->cmd[i], '=');
-        // printf("here\n");
-        if (check_in_env(mini->export_env, split[0]) == 1 && check_valid(mini->cmd[i]) == 1)
-            mod_env(mini->export_env, split[0], mini->cmd[i]);
-        if (check_in_env(mini->env, split[0]) == 1 && check_valid(mini->cmd[i]) == 1)
-            mod_env(mini->env, split[0], mini->cmd[i]);
-        else if (check_in_env(mini->export_env, split[0]) != 1)
-            ft_lstadd_back(&mini->export_env, ft_lstnew(ft_strdup(mini->cmd[i])));
-        else if (check_in_env(mini->env, split[0]) != 1 && check_valid(mini->cmd[i]) == 1)
-            ft_lstadd_back(&mini->env, ft_lstnew(ft_strdup(mini->cmd[i])));
-        free_tab(split);
+        if (check_syntax_export(mini->cmd[i]) == 1)
+            error_export(mini->cmd[i]);
+        else
+            help_execute_export(mini, mini->cmd[i]);
         i++;
     }
 }

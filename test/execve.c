@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 11:56:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/20 14:48:03 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/22 14:57:29 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ int main(int argc, char **argv)
         {
             if (stat(split[i], buf) == 0)
             {
-                // printf("here\n");
                 if (call_execve(argv,split[i], environ) == 0)
                     break;
             }
@@ -126,7 +125,6 @@ int main(int argc, char **argv)
             // {
             //     printf("stat error %d", errno);
             // }
-            
             i++;
         }
 }

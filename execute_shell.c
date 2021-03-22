@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 14:09:05 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/21 18:21:47 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/22 15:27:21 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int     call_execve(t_minishell *mini,char *path, char **env)
 {
     int pid;
     int stat;
-    int ret = 0;
     char *realpath;
     char *tmppath;
 
     pid = fork();
+    stat = 0;
     tmppath = ft_strjoin(path,"/");
     realpath = ft_strjoin(tmppath, mini->cmd[0]);
     if (pid == -1)

@@ -6,10 +6,9 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:28:51 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/21 18:21:51 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/22 17:39:23 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 
@@ -25,6 +24,7 @@ int main(int argc,  char **argv)
 	mini.unset = ft_lstnew(NULL);
 	signal(SIGINT,sig_handler);
 	signal(SIGQUIT,sig_handler);
+	home = ft_getenv("HOME", mini.env);
 	exit_status = 0;
 	mini_ret = 0;
 	b_exit = 0;
@@ -41,5 +41,7 @@ int main(int argc,  char **argv)
 		free(buf);
 		free_tab(mini.cmd);
 	}
+	free_tab(home);
+	free(oldpwd);
 	return (mini_ret);
 }
