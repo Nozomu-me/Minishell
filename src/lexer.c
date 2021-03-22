@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:26:46 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/21 01:45:24 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/22 12:15:19 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,7 @@
 
 t_bool	check_symbol(char c)
 {
-	if (c == ';')
-		return (TRUE);
-	else if (c == '|')
-		return (TRUE);
-	else if (c == '>')
-		return (TRUE);
-	else if (c == '<')
+	if (c == ';' || c == '|' || c == '>' || c == '<')
 		return (TRUE);
 	return (FALSE);
 }
@@ -106,6 +100,7 @@ void	check_token(t_token *token, char *line)
 t_token		*lexer_line(char *line)
 {
 	t_token *token;
+
 	token = NULL;
 	token = ft_lstnew(0, NONE, "(null)");
 	check_token(token, line);
