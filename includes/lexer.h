@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:57:29 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/22 14:43:27 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/22 14:56:16 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int					fill_line(char **content, char **line);
 static	char		*put_word(char const *s, char c, int *n);
 char				*write_word(char *str, int *n);
 char				**ft_split(char const *s, char c);
-
 
 t_token		*lexer_line(char *line);
 void		check_line(t_token *token);
