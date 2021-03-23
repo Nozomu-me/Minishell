@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:57:29 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/22 14:56:16 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/22 16:52:23 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include <stdlib.h>
 # include <string.h>
 # include "../src/libft/libft.h"
+
+# define green	"\e[1;32m"
+# define red	"\e[0;31m"
+# define white	"\033[0m"
+
+char	**cmd;
 
 typedef	enum	e_token_type
 {

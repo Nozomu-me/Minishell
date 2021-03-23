@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 13:41:51 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/21 01:30:03 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/22 18:14:55 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	get_line(t_token *token)
 
 	line = NULL;
 	ft_putstr("\e[1;32m$minishel\033[1;34m=>\033[0m");
-	while((r = get_next_line(&line)) > 0)
+	while(1337)
 	{
+		get_next_line(&line);
 		token = lexer_line(line);
 		while (token)
 		{
