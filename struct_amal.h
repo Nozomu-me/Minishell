@@ -15,12 +15,12 @@ typedef struct	s_file
     struct s_file *next;
 }				t_file;
 
-typedef struct s_cmds
+typedef struct  s_cmds
 {
     char **cmd;
     char *type;
     t_file file;
     struct s_cmds *next;
-}t_cmds;
+}               t_cmds;
 
 # endif
