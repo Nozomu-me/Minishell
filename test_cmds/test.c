@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 18:15:05 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/24 00:53:03 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/24 00:55:49 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char    *check_backslash(char *line)
     new[j] == 0;
     return (new);
 }
- 
+  
 char	*double_single_quote(char *line, char c, char *type)
 {
 	int cp =0;
