@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:57:29 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/22 16:52:23 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/24 14:50:03 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <string.h>
 # include "../src/libft/libft.h"
 
-# define green	"\e[1;32m"
+# define GREEN	"\e[1;32m"
 # define red	"\e[0;31m"
 # define white	"\033[0m"
 
