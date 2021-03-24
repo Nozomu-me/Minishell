@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 11:45:09 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/24 17:56:02 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/24 18:18:28 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*double_quote(char *line, int *cp)
 		line++;
 	}
 	if (((*cp) = (*cp) % 2) != 0)
-		ft_error("ERROR DOULE QUOTE", RED, WHITE);
+		ft_error("ERROR DOUBLE QUOTE", RED, WHITE);
 	return (line);
 }
 
