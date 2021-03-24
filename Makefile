@@ -11,7 +11,8 @@ SRCS =	src/lexer.c\
 		src/libft/ft_putstr_fd.c\
 		src/libft/get_next_line.c\
 		src/main.c\
-		src/lets_parser.c
+		src/lets_parser.c\
+		src/error.c
 
 OBJ = $(SRCS:.c=.o)
 
@@ -23,6 +24,7 @@ $(NAME) : $(OBJ)
 	@ar rcs $(NAME_LIB) $(OBJ)
 	@gcc $(NAME_LIB) -o $(NAME)
 	@echo "\n\033[32m--------- successfully ---------\033[0m"
+	./minishell
 clean :
 	@rm -f $(OBJ) $(NAME)
 fclean: clean

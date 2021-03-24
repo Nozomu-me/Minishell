@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 18:15:05 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/24 15:33:50 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/24 16:46:47 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ char	*double_quote(char *line)
 		line++;
 	}
 	if (cp % 2 == 0)
-		puts("DOULE QUOTE WORK");
+		printf("%sDOULE QUOTE WORK%s\n", BLUE, WHITE);
 	else
-		puts("ERROR DOULE QUOTE");
+		printf("%sERROR DOULE QUOTE%s\n", RED, WHITE);
 	return (line);
 }
 
@@ -59,9 +59,9 @@ char	*single_quote(char *line)
 		line++;
 	}
 	if (cp % 2 == 0)
-		puts("SINGLE QUOTE WORK");
+		printf("%sSINGLE QUOTE WORK%s\n", BLUE, WHITE);
 	else
-		puts("ERROR SINGLE QUOTE");
+		printf("%sERROR SINGLE QUOTE%s\n", RED, WHITE);
 	return (line);
 }
 
@@ -71,20 +71,20 @@ void	check_quote(char *line)
 	{
 		if (*line == '"')
 			line = double_quote(line);
-		else if (*line == '\'')
+		else if (*line == '\'' && count_back(line - 1))
 			line = single_quote(line);
 		line++;
 	}
 }
 
-int main()
+int		main()
 {
 	char	*line;
-	char *minishel = "\n\e[1;32m$minishel\033[1;34m=> \033[0m";
+
 	line = NULL;
 	while(1337)
 	{
-		write(1, minishel,ft_strlen(minishel));
+		write(1, MINISHELL,ft_strlen(MINISHELL));
 		get_next_line(&line);
 		check_quote(line);
 		free(line);

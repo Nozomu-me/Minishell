@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:57:29 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/24 14:50:03 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/24 17:55:05 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 # include "../src/libft/libft.h"
 
 # define GREEN	"\e[1;32m"
-# define red	"\e[0;31m"
-# define white	"\033[0m"
+# define RED	"\e[0;31m"
+# define WHITE	"\033[0m"
+# define MINISHELL "\n\e[1;32m$minishel\033[1;34m=>\033[0m"
 
 char	**cmd;
 
@@ -65,4 +66,8 @@ t_token		*lexer_line(char *line);
 void		check_line(t_token *token);
 void		ft_lstadd_back(t_token **alst, t_token *new);
 t_token		*ft_lstnew(int index, t_token_type type, char *value);
+
+/*ERROR*/
+void	check_quote(char *line, int *check);
+void	ft_error(char *str, char *first_color, char *second_color);
 #endif

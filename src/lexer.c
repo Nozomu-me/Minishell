@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:26:46 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/22 12:15:19 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/24 16:54:33 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,10 @@ t_token		*lexer_line(char *line)
 	token = ft_lstnew(0, NONE, "(null)");
 	check_token(token, line);
 	check_line(token);
+	while (token)
+	{
+		printf("|%d|\t|%d|\t[%s]\n", token->index, token->type, token->value);
+		token = token->next;
+	}
 	return (token);
 }

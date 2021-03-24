@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 15:45:23 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/22 18:25:22 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/24 16:41:40 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+
+# define MINISHELL "\n\e[1;32m$minishel\033[1;34m=>\033[0m"
+# define BLUE "\e[0;34m"
+# define GREEN	"\e[1;32m"
+# define RED	"\e[0;31m"
+# define WHITE	"\033[0m"
 
 void	*ft_calloc(size_t count, size_t size);
 int		ft_atoi(const char *str);
