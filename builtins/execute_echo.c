@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:08:18 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/20 15:36:54 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/25 19:09:45 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,16 @@ static char  *check_valid(char *str)
         
 }
 
-void    execute_echo(char **cmd)
+void    execute_echo(char **cmd, t_minishell *mini)
 {
     int     i;
     int     b;
     char    *check;
+    char    *str;
 
     i = 1;
     b = 0;
-    while (cmd[i] != NULL && ft_strcmp(cmd[i], "-n") == 0)
+    while (cmd[i] != NULL && ft_strncmp(cmd[i], "-n", 2) == 0)
     {
         b = 1;
         i++;
@@ -50,10 +51,13 @@ void    execute_echo(char **cmd)
     {
         if (ft_strncmp(cmd[i], "$?",2) == 0)
         { 
-           ft_putstr(ft_itoa(exit_status));
+            str = ft_itoa(mini->glob.exit_status);
+           ft_putstr(str);
            check = check_valid(cmd[i]);
            if (check != NULL)
                 ft_putstr(check);
+            free(check);
+            free(str);
         }
         else
             ft_putstr(cmd[i]);
