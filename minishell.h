@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/22 17:40:03 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/23 16:39:26 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,25 @@
 #include "gnl/get_next_line.h"
 #include <sys/stat.h>
 
-int exit_status;
-int mini_ret;
-int b_exit;
-char **home;
-char *oldpwd;
-t_list *commands;
+typedef struct s_global
+{
+	int exit_status;
+	int mini_ret;
+	int b_exit;
+	char **home;
+	char *oldpwd;
+	t_list *commands;
+	int		oldpwd_env;
+	char	*pwd;
+}				t_global;
+
 typedef struct      s_minishell
 {
     t_list	*env;
 	t_list	*export_env;
 	t_list	*unset;
 	char	**cmd;
+	t_global glob;
 }                   t_minishell;
 /*
 ** utils
@@ -81,26 +88,27 @@ void 		    execute_shell(t_minishell *mini);
 */
 void			execute_builtins(t_minishell *mini);
 int				check_isbuiltin(char *cmd);
-void    		execute_pwd();
 void			execute_cd(t_minishell *mini);
+void    		execute_echo(char **cmd, t_minishell *mini);
 void            execute_env(t_minishell *mini);
-void            execute_export(t_minishell *mini);
-void            execute_unset(t_minishell *mini);
-void			execute_echo(char **cmd);
 void    		execute_exit(t_minishell *mini);
+void            execute_export(t_minishell *mini);
+void    		execute_pwd(t_minishell *mini);
+void            execute_unset(t_minishell *mini);
 /*
 ** error functions
 */
 void   			error_pwd(char  *str, int err);
-void			error_export(char *str);
+void			error_export(char *str, t_minishell *mini);
 void            error_cd(char *path, int err);
-void			error_unset(char *str);
+void			error_unset(char *str, t_minishell *mini);
 void			error_exit(char *str);
 /*
 ** environ functions
 */
 void            mod_env(t_list *env, char *name,char *var);
 int             check_in_env(t_list *env, char *str);
-t_list          *init_environ(char **environ);
+t_list          *init_env_environ(char **environ);
+t_list          *init_export_environ(char **environ);
 char			**ft_getenv(char *name, t_list *env);
 #endif

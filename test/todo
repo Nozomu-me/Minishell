@@ -28,7 +28,6 @@ typedef struct s_cmds
     char **cmd;
     char type;
     t_file filename;
-    struct s_cmds *next;
 }t_cmds;
 
 
@@ -79,3 +78,21 @@ echo $? = 131
 	}
 	
 */
+
+- echo -nnnnnnnn
+- export a==123
+- /bin/ls && ./minishell
+- latest argument
+- shell level
+
+syntax error 
+;
+;;
+|
+| cd ..
+>
+>>
+<
+; cd ..
+ttt >
+ttt >>

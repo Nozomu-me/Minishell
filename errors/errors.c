@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 19:36:50 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/22 17:45:34 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/25 11:27:06 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,16 @@ void    error_cd(char *path, int err)
 	ft_putstr("\n");
 }
 
-void	error_export(char *str)
+void	error_export(char *str, t_minishell *mini)
 {
     char    *cmd;
 
     ft_putstr("minishell: export: `");
 	if (ft_strcmp(str, "~") == 0 || ft_strncmp(str, "~/", 2) == 0)
     {
-        cmd = search_replace(str, "~", home[1]);
+        cmd = search_replace(str, "~", mini->glob.home[1]);
         ft_putstr(cmd);
+        free(cmd);
     }
 	else if (ft_strcmp(str, "=\"\"") == 0 || ft_strcmp(str, "=\'\'") == 0)
 		ft_putstr("=");
@@ -44,15 +45,16 @@ void	error_export(char *str)
     ft_putendl_fd("': not a valid identifier", 1);
 }
 
-void	error_unset(char *str)
+void	error_unset(char *str, t_minishell *mini)
 {
     char    *cmd;
 
     ft_putstr("minishell: unset: `");
 	if (ft_strcmp(str, "~") == 0 || ft_strncmp(str, "~/", 2) == 0)
     {
-        cmd = search_replace(str, "~", home[1]);
+        cmd = search_replace(str, "~", mini->glob.home[1]);
         ft_putstr(cmd);
+        free(cmd);
     }
 	else if (ft_strcmp(str, "=\"\"") == 0 || ft_strcmp(str, "=\'\'") == 0)
 		ft_putstr("=");

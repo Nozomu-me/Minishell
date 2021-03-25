@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 14:09:05 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/22 15:27:21 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/25 19:28:14 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,20 @@ int     call_execve(t_minishell *mini,char *path, char **env)
     realpath = ft_strjoin(tmppath, mini->cmd[0]);
     if (pid == -1)
     {
-        exit_status = errno;
+        mini->glob.exit_status = 1;
         ft_putstr(strerror(errno));
     }
     else if (pid == 0)
     {
-        execve(realpath, mini->cmd, env);
-        exit(2);
+        if (execve(realpath, mini->cmd, env) == -1)
+            mini->glob.exit_status = 1;
+        exit(mini->glob.exit_status);
     }
     else
-        wait(&stat);
+    {
+        // if (type == END)
+            wait(&stat);
+    }
     free(realpath);
     free(tmppath);
     return (stat);
@@ -68,6 +72,7 @@ void    execute_shell(t_minishell *mini)
         if (stat(split[i], buf) == 0)
         {
             check = call_execve(mini,split[i], tab);
+            // printf("%d\n", check);
             if (check == 0)
                 break ;
         }

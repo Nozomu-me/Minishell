@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:17:56 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/22 16:02:23 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/25 11:54:16 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,30 @@ int     check_spec_char_unset(char *str)
 
 int     check_syntax_export(char *cmd)
 {
-    if (ft_strcmp(cmd, "=") == 0)
-        return (1);
-    else if (cmd[0] == '=')
-        return (1);
-    else if (ft_isdigit(cmd[0]) == 1)
-        return (1);
-    else if (check_spec_char_export(cmd) == 1)
-        return (1);
+    char    **split;
+
+    split = ft_split(cmd, '=');
+    if (ft_strcmp(split[0], "=") == 0)
+    {
+            free_tab(split);
+            return (1);
+    }
+    else if (split[0][0] == '=')
+    {
+            free_tab(split);
+            return (1);
+    }
+    else if (ft_isdigit(split[0][0]) == 1)
+    {
+            free_tab(split);
+            return (1);
+    }
+    else if (check_spec_char_export(split[0]) == 1)
+    {
+            free_tab(split);
+            return (1);
+    }
+    free_tab(split);
     return (0);
 }
 

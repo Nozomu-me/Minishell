@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:28:51 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/22 17:39:23 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/24 14:50:21 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,18 @@ int main(int argc,  char **argv)
 	extern char **environ;
 	t_minishell		mini;
 
-	mini.env = init_environ(environ);
-	mini.export_env = init_environ(environ);
+	mini.env = init_env_environ(environ);
+	mini.export_env = init_export_environ(environ);
 	mini.unset = ft_lstnew(NULL);
 	signal(SIGINT,sig_handler);
 	signal(SIGQUIT,sig_handler);
-	home = ft_getenv("HOME", mini.env);
-	exit_status = 0;
-	mini_ret = 0;
-	b_exit = 0;
+	mini.glob.home = ft_getenv("HOME", mini.env);
+	mini.glob.exit_status = 0;
+	mini.glob.mini_ret = 0;
+	mini.glob.b_exit = 0;
+	mini.glob.oldpwd = NULL;
+	mini.glob.oldpwd_env = 0;
+	mini.glob.pwd = NULL;
 	ret = 2;
 	while(1)
 	{
@@ -36,12 +39,20 @@ int main(int argc,  char **argv)
 		ret = get_next_line(1, &buf);
 		mini.cmd = init_cmd(buf);
 		execute_cmd(&mini);
-		if (b_exit == 1)
+		if (mini.glob.b_exit == 1)
+		{
+			free(buf);
+			free_tab(mini.cmd);
         	break ;
+		}
 		free(buf);
 		free_tab(mini.cmd);
 	}
-	free_tab(home);
-	free(oldpwd);
-	return (mini_ret);
+	ft_lstclear(&mini.env, free);
+	ft_lstclear(&mini.export_env, free);
+	ft_lstclear(&mini.unset, free);
+	free_tab(mini.glob.home);
+	if (mini.glob.oldpwd != NULL)
+		free(mini.glob.oldpwd);
+	return (mini.glob.mini_ret);
 }

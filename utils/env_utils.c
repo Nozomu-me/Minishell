@@ -6,13 +6,13 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:51:40 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/22 11:05:42 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/23 14:45:48 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_list   *init_environ(char **environ)
+t_list   *init_env_environ(char **environ)
 {
     t_list   *env;
     int     i;
@@ -23,6 +23,24 @@ t_list   *init_environ(char **environ)
     {
         if (strncmp(environ[i], "OLDPWD", 6) != 0)
             ft_lstadd_back(&env, ft_lstnew(strdup(environ[i])));
+        i++;
+    }
+    return (env);
+}
+
+t_list   *init_export_environ(char **environ)
+{
+    t_list   *env;
+    int     i;
+
+    i = 1;
+    env = ft_lstnew(strdup(environ[0]));
+    while(environ[i] != NULL)
+    {
+        if (strncmp(environ[i], "OLDPWD", 6) != 0)
+            ft_lstadd_back(&env, ft_lstnew(strdup(environ[i])));
+        else
+            ft_lstadd_back(&env, ft_lstnew(strdup("OLDPWD")));
         i++;
     }
     return (env);
@@ -52,15 +70,18 @@ char **ft_getenv(char *name, t_list *env)
 void    mod_env(t_list *env, char *name,char *var)
 {
     t_list  *tmp;
+    char    **split;
 
     tmp = env;
     while (tmp != NULL)
     {
-        if (strncmp(tmp->content, name, ft_strlen(name)) == 0)
+        split = ft_split(tmp->content, '=');
+        if (strncmp(split[0], name, ft_strlen(split[0])) == 0)
         {
             free(tmp->content);
             tmp->content = ft_strdup(var);
         }
+        free_tab(split);
         tmp = tmp->next;
     }
 }

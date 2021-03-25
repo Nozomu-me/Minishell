@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 22:34:56 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/21 14:48:34 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/23 16:40:45 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int		check_isbuiltin(char *cmd)
 void	execute_builtins(t_minishell *mini)
 {
 	if (ft_strcmp(mini->cmd[0], "pwd") == 0)
-		execute_pwd();
+		execute_pwd(mini);
 	else if (ft_strcmp(mini->cmd[0], "cd") == 0)
 		execute_cd(mini);
 	else if (ft_strcmp(mini->cmd[0], "echo") == 0)
-		execute_echo(mini->cmd);
+		execute_echo(mini->cmd, mini);
 	else if (ft_strcmp(mini->cmd[0], "export") == 0)
 		execute_export(mini);
 	else if (ft_strcmp(mini->cmd[0], "unset") == 0)
