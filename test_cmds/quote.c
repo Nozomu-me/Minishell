@@ -21,6 +21,7 @@ char	*get_word(char *line)
 	// if (line[i] == '"' || line[i] == '\'')
 	// 	while (line[++i] != '\'' || line[i] != '"')
 	// 		i++;
+
 	if (i)
 	{
 		word = malloc(sizeof(char) * i + 1);
