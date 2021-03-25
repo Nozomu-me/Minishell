@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:26:46 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/25 19:23:20 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/26 00:08:47 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 t_bool	check_symbol(char c)
 {
 	if (c == ';' || c == '|' || c == '>' || c == '<' || c == ' ' || c == '\t')
+		return (TRUE);
+	return (FALSE);
+}
+
+t_bool	check_symbol2(char c)
+{
+	if (c == ';' || c == '|' || c == '>' || c == '<' || c == ' ' || c == '\t'
+	|| c == '"' || c == '\'')
 		return (TRUE);
 	return (FALSE);
 }
@@ -63,35 +71,34 @@ char	*get_symbole(t_token *token, int *index, char *line)
 	return (line);
 }
 
-// int		skip_double_quote(char *line, int i)
-// {
-// 	while (*line)
-// 	{
-// 		if (*line == '"' && count_back(line - 1))
-// 			i++;
-// 		if (i % 2 == 0)
-// 			break;
-// 		line++;
-// 	}
-// 	if ((i = i % 2) != 0)
-// 		ft_error("ERROR DOUBLE QUOTE", RED, WHITE);
-// 	return (line);
-// }
+void	skip_double_quote(char *line, int *i)
+{
+	// printf("	[%c]\n", line[*i]);
+	if (line[(*i)] == '"')
+		while (line[++(*i)] != '"')
+			;
+	else if (line[++(*i)] == '\'')
+		while (line[(*i)] != '\'')
+			;
+}
 
 char	*get_word(t_token *token, int *index, char *line)
 {
 	int		i;
 	int		j;
 	char	*word;
+	int		d;
 
 	i = 0;
 	j = -1;
-	while (line[i] && !check_symbol(line[i]) && line[i] != '"')
+	d = 0;
+	while (line[i] && !check_symbol2(line[i]))
 		i++;
-	if (line[i] == '"')
-		
+	skip_double_quote(line, &i);
 	if (i)
-	{	
+	{
+		if (line[i] == '"' || line[i] == '\'')
+			i++;
 		word = malloc(sizeof(char) * i + 1);
 		while (++j < i)
 			word[j] = line[j];
