@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:26:46 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/24 16:54:33 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/25 19:23:20 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_bool	check_symbol(char c)
 {
-	if (c == ';' || c == '|' || c == '>' || c == '<')
+	if (c == ';' || c == '|' || c == '>' || c == '<' || c == ' ' || c == '\t')
 		return (TRUE);
 	return (FALSE);
 }
@@ -63,6 +63,21 @@ char	*get_symbole(t_token *token, int *index, char *line)
 	return (line);
 }
 
+// int		skip_double_quote(char *line, int i)
+// {
+// 	while (*line)
+// 	{
+// 		if (*line == '"' && count_back(line - 1))
+// 			i++;
+// 		if (i % 2 == 0)
+// 			break;
+// 		line++;
+// 	}
+// 	if ((i = i % 2) != 0)
+// 		ft_error("ERROR DOUBLE QUOTE", RED, WHITE);
+// 	return (line);
+// }
+
 char	*get_word(t_token *token, int *index, char *line)
 {
 	int		i;
@@ -71,13 +86,19 @@ char	*get_word(t_token *token, int *index, char *line)
 
 	i = 0;
 	j = -1;
-	while (line[i] && !check_symbol(line[i]))
+	while (line[i] && !check_symbol(line[i]) && line[i] != '"')
 		i++;
-	word = malloc(sizeof(char) * i);
-	while (++j < i)
-		word[j] = line[j];
-	word[j] = '\0';
+	if (line[i] == '"')
+		
+	if (i)
+	{	
+		word = malloc(sizeof(char) * i + 1);
+		while (++j < i)
+			word[j] = line[j];
+		word[j] = '\0';
+	}
 	ft_lstadd_back(&token, ft_lstnew(++(*index), WORD, word));
+	/*to not skiping ; | > < */
 	return (line + --i);
 }
 
@@ -105,6 +126,7 @@ t_token		*lexer_line(char *line)
 	token = ft_lstnew(0, NONE, "(null)");
 	check_token(token, line);
 	check_line(token);
+	printf("%s|INDEX|\t|TYPES|\t[VALUES]%s\n", BLUE, WHITE);
 	while (token)
 	{
 		printf("|%d|\t|%d|\t[%s]\n", token->index, token->type, token->value);

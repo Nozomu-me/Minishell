@@ -12,7 +12,8 @@ SRCS =	src/lexer.c\
 		src/libft/get_next_line.c\
 		src/main.c\
 		src/lets_parser.c\
-		src/error.c
+		src/error.c\
+		src/line.c\
 
 OBJ = $(SRCS:.c=.o)
 
@@ -22,7 +23,7 @@ all: $(NAME)
 
 $(NAME) : $(OBJ)
 	@ar rcs $(NAME_LIB) $(OBJ)
-	@gcc $(NAME_LIB) -o $(NAME)
+	@gcc $(NAME_LIB) -o $(NAME) -g
 	@echo "\n\033[32m--------- successfully ---------\033[0m"
 	./minishell
 clean :

@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:57:29 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/24 17:55:05 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/25 16:20:32 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define GREEN	"\e[1;32m"
 # define RED	"\e[0;31m"
 # define WHITE	"\033[0m"
+# define BLUE "\e[0;34m"	
 # define MINISHELL "\n\e[1;32m$minishel\033[1;34m=>\033[0m"
 
 char	**cmd;
@@ -70,4 +71,5 @@ t_token		*ft_lstnew(int index, t_token_type type, char *value);
 /*ERROR*/
 void	check_quote(char *line, int *check);
 void	ft_error(char *str, char *first_color, char *second_color);
+char	*scape_space(char *line);
 #endif

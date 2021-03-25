@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 13:41:51 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/24 17:46:26 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/25 16:18:18 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	get_line(t_token *token)
 		ft_putstr(MINISHELL);
 		get_next_line(&line);
 		check_quote(line, &check);
-		
 		if (!check)
 			token = lexer_line(line);
 		check = 0;
@@ -42,7 +41,8 @@ int main(void)
 	get_line(token);
 	while (token)
 	{
-		printf("|%d|\t|%d|\t[%s]\n", token->index, token->type, token->value);
+		// printf("|INDEX|\t|TYPES|\t[VALUES]\n");
+		// printf("|%d|\t|%d|\t[%s]\n", token->index, token->type, token->value);
 		token = token->next;
 	}
 }
