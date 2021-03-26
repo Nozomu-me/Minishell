@@ -3,5 +3,20 @@
 	// Hover to view descriptions of existing attributes.
 	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
-	"configurations": []
-}
+	"tasks": [
+		{
+		  "type": "shell",
+		  "label": "g++ build active file",
+		  "command": "/usr/bin/g++",
+		  "args": ["-g", "${word.c}", "-o", "${word}/${fileBasenameNoExtension}"],
+		  "options": {
+			"cwd": "/usr/bin"
+		  },
+		  "problemMatcher": ["$gcc"],
+		  "group": {
+			"kind": "build",
+			"isDefault": true
+		  }
+		}
+	  ]
+	}

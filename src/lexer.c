@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:26:46 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/26 00:12:03 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/26 16:53:00 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ char	*get_symbole(t_token *token, int *index, char *line)
 
 void	skip_double_quote(char *line, int *i)
 {
-	// printf("	[%c]\n", line[*i]);
 	if (line[(*i)] == '"')
 		while (line[++(*i)] != '"')
 			;
@@ -124,7 +123,7 @@ void	check_token(t_token *token, char *line)
 	}
 	ft_lstadd_back(&token, ft_lstnew(-1, END, "END"));
 }
- 
+
 t_token		*lexer_line(char *line)
 {
 	t_token *token;
