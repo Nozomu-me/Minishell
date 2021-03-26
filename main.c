@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:28:51 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/24 14:50:21 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/26 12:41:06 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,19 @@ int main(int argc,  char **argv)
 	mini.env = init_env_environ(environ);
 	mini.export_env = init_export_environ(environ);
 	mini.unset = ft_lstnew(NULL);
+	mini.glob.exit_status = 0;
 	signal(SIGINT,sig_handler);
 	signal(SIGQUIT,sig_handler);
+	// mini.glob.exit_status = status;
+	// printf("status=%d\n",status);
 	mini.glob.home = ft_getenv("HOME", mini.env);
-	mini.glob.exit_status = 0;
 	mini.glob.mini_ret = 0;
 	mini.glob.b_exit = 0;
 	mini.glob.oldpwd = NULL;
 	mini.glob.oldpwd_env = 0;
 	mini.glob.pwd = NULL;
+	mini.glob.shlvl = 2;
+	shlvl(&mini);
 	ret = 2;
 	while(1)
 	{

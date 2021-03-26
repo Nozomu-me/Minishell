@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/23 16:39:26 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/26 12:35:11 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,27 @@
 #include "libft/libft.h"
 #include "gnl/get_next_line.h"
 #include <sys/stat.h>
-
-typedef struct s_global
+int status;
+typedef struct	s_global
 {
-	int exit_status;
-	int mini_ret;
-	int b_exit;
-	char **home;
-	char *oldpwd;
-	t_list *commands;
-	int		oldpwd_env;
-	char	*pwd;
+	int			exit_status;
+	int			mini_ret;
+	int			b_exit;
+	char		**home;
+	char		*oldpwd;
+	t_list		*commands;
+	int			oldpwd_env;
+	char		*pwd;
+	int			shlvl;
 }				t_global;
 
 typedef struct      s_minishell
 {
-    t_list	*env;
-	t_list	*export_env;
-	t_list	*unset;
-	char	**cmd;
-	t_global glob;
+    t_list			*env;
+	t_list			*export_env;
+	t_list			*unset;
+	char			**cmd;
+	t_global 		glob;
 }                   t_minishell;
 /*
 ** utils
@@ -83,6 +84,7 @@ void          	sig_handler(int sig);
 char            **init_cmd(char *cmd);
 void			execute_cmd(t_minishell *mini);
 void 		    execute_shell(t_minishell *mini);
+void    		shlvl(t_minishell *mini);
 /*
 ** execute builtins
 */

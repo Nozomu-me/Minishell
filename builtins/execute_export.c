@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:50:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/25 18:53:52 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/26 12:55:34 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,42 @@ int     check_valid(char *str)
     }
     return (0);
 }
-
+char    *get_export_value(char *name)
+{
+    int     i;
+    char    *value;
+    i = 0;
+    while (name[i] != '\0')
+    {
+        if (name[i] == '=')
+            break ;
+        i++;
+    }
+    value = ft_substr(name, i + 1, ft_strlen(name) - i);
+    return (value);
+}
 void    print_export(t_list *export)
 {
     t_list      *tmp;
     char        **split;
-    
+    char        *value;
+
     tmp = export;
     while(tmp != NULL)
     {
         split = ft_split(tmp->content, '=');
         ft_putstr("declare -x ");
         ft_putstr(split[0]);
-        if (split[1] != NULL)
+        if (check_valid(tmp->content) == 1)
         {
-            ft_putstr("=");
-            if (split[1][0] != '\"')
-                ft_putstr("\"");
-            ft_putstr(split[1]);
-            if (split[1][0] != '\"')
-                ft_putstr("\"");
-            ft_putstr("\n");
+            ft_putstr("=\"");
+            value = get_export_value(tmp->content);
+            ft_putstr(value);
+            ft_putstr("\"\n");
+            free(value);
         }
         else
-            ft_putstr("\n");
+            ft_putchar_fd('\n', 1);
         tmp = tmp->next;
         free_tab(split);
     }
@@ -57,9 +69,26 @@ void    print_export(t_list *export)
 void    help_execute_export(t_minishell *mini, char *cmd)
 {
     char    **split;
+    char    *lvl;
+    char    *join;
     
     split = ft_split(cmd, '=');
+    lvl = ft_itoa(mini->glob.shlvl);
+    join = ft_strjoin("SHLVL=",lvl);
     // printf("%s\n",mini->glob.oldpwd);
+    if (ft_strncmp(cmd, "SHLVL", 5) == 0)
+    {
+        if (check_in_env(mini->env, split[0]) == 0)
+        {
+            ft_lstadd_back(&mini->env, ft_lstnew(ft_strjoin("SHLVL=",lvl)));
+            ft_lstadd_back(&mini->export_env, ft_lstnew(ft_strjoin("SHLVL=",lvl)));
+        }
+        else
+        {
+            mod_env(mini->export_env, "SHLVL", join);
+            mod_env(mini->env, "SHLVL", join);
+        }
+    }
     if (ft_strncmp(cmd, "OLDPWD", 6) == 0)
     {
         // printf("here2\n");

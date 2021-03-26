@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 14:09:05 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/25 19:28:14 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/26 13:13:13 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,29 @@ int     call_execve(t_minishell *mini,char *path, char **env)
     free(tmppath);
     return (stat);
 }
+void    help_execve(t_minishell *mini, char **env)
+{
+    pid_t pid;
+    int stat;
+    
+    pid = fork();
+    if (pid == -1)
+    {
+        mini->glob.exit_status = 1;
+        ft_putstr(strerror(errno));
+    }
+    else if (pid == 0)
+    {
+        if (execve(mini->cmd[0], mini->cmd, env) == -1)
+            mini->glob.exit_status = 1;
+        exit(mini->glob.exit_status);
+    }
+    else
+    {
+        // if (type == END)
+            wait(&stat);
+    }
+}
 
 void    execute_shell(t_minishell *mini)
 {
@@ -64,6 +87,10 @@ void    execute_shell(t_minishell *mini)
         call_execve(mini, cwd, tab);
         free_tab(tab);
         return ;
+    }
+    if (mini->cmd[0][0] == '.' || mini->cmd[0][0] == '/')
+    {
+        help_execve(mini, tab);
     }
     split = ft_split(path[1], ':');
     buf = malloc(sizeof(struct stat));

@@ -79,11 +79,11 @@ echo $? = 131
 	
 */
 
-- echo -nnnnnnnn
-- export a==123
+- echo -nnnnnnnn ------- done
+- export a==123 ------- done
 - /bin/ls && ./minishell
 - latest argument
-- shell level
+- shell level ----------- half done still to increment it with ./minishell
 
 syntax error 
 ;

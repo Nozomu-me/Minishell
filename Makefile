@@ -6,7 +6,7 @@
 #    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:19:58 by amouassi          #+#    #+#              #
-#    Updated: 2021/03/23 16:12:31 by amouassi         ###   ########.fr        #
+#    Updated: 2021/03/26 12:37:07 by amouassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,7 @@ SRC = utils/utils.c \
 	  execute_shell.c \
 	  init_cmd.c \
 	  execute_builtins.c \
+	  shlvl.c \
 
 MAIN = main.c
 OBJ = $(SRC:.c=.o)

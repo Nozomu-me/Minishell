@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 11:16:31 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/23 16:40:02 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/26 12:24:08 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void    execute_unset(t_minishell *mini)
             mini->glob.oldpwd = NULL;
             mini->glob.oldpwd_env = 1;
         }
+        if (ft_strncmp(mini->cmd[i], "SHLVL", 5) == 0)
+            mini->glob.shlvl = 1;
         if (check_syntax_unset(mini->cmd[i]) == 1)
             error_unset(mini->cmd[i], mini);
         else
