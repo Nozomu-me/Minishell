@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:26:46 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/26 16:53:00 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/27 15:58:18 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,12 @@ void	skip_double_quote(char *line, int *i)
 			;
 }
 
-char	*get_word(t_token *token, int *index, char *line)
+
+/* char	*get_word(t_token *token, int *index, char *line)
 {
+	char	*word;
 	int		i;
 	int		j;
-	char	*word;
 	int		d;
 
 	i = 0;
@@ -96,16 +97,41 @@ char	*get_word(t_token *token, int *index, char *line)
 	skip_double_quote(line, &i);
 	if (i)
 	{
-		if (line[i] == '"' || line[i] == '\'')
+		 if (line[i] == '"' || line[i] == '\'')
 			i++;
 		word = malloc(sizeof(char) * i + 1);
 		while (++j < i)
 			word[j] = line[j];
-		word[j] = '\0';
+		word[j] = '\0'; 
 	}
 	ft_lstadd_back(&token, ft_lstnew(++(*index), WORD, word));
-	/*to not skiping ; | > < */
+	// to not skiping ; | > < 
 	return (line + --i);
+} */
+
+char	*skip_space(char *line)
+{
+	while (check_symbol2(*line))
+		line++;
+	return (line);
+}
+
+char	*get_word(char *line)
+{
+	char *word;
+	int i;
+	int j;
+
+	i = 0;
+	line = skip_space(line);
+	if (line[i] == '"' && count_back(line[i]))
+		line = skip_space(line);
+	j = i;
+	if (line[i] == '"')
+		while (line[++j] != '"' && count_back(line[j]));
+	line = ft_substr(word, i, j);
+	printf("|%s|\n", word);
+	return word;
 }
 
 void	check_token(t_token *token, char *line)

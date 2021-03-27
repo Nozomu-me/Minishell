@@ -1,6 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include "libft/libft.h"
 
 int 	count_back(char *line)
 {
@@ -20,12 +18,8 @@ int 	count_back(char *line)
 int		quote(char *line, char c)
 {
 	int i;
-	// int cp;
 
 	i = 0;
-	// cp = 0;
-	// while (line[i] != c)
-	// 	i++;
 	if (line[i] == c)
 		while (line[++i])
 			if (line[i] == c && line[i - 1] != '\\')
@@ -41,55 +35,34 @@ char    *get_word(char *line)
     int j;
     int k;
 
-    i = 0;
+    i = -1;
     j = 0;
     k = 0;
-    while (line[i] && line[i] != '\'' && line[i] != '"')
+	while (line[++i])
+		if (line[i] == '"' && line[i - 1] != '\\')
+			break ;
+    while (line[i] && line[i] != '\'' && line[i] != '"' && line[i - 1] != '\\')
         i++;
-    if (line[i] == '"');
-        j = quote(line, '"');
-    j -= i;
-    word = (char*)malloc(sizeof(char) * (j + 2));
+    if (line[i] == '"')
+        j = quote(line + i, '"');
+    word = (char*)malloc(sizeof(char) * (j + 1));
     while(k <= j)
         word[k++] = line[i++];
-	puts("ok");
     word[k] = 0;
     return word;
 }
 
-int main()
+int		main()
 {
-    char *str = strdup("hamid \"   khalid \\\" rachi \"");
-    printf("|%s|\n", get_word(str));
-}
+	char	*line;
 
-/* char	*get_word(char *line)
-{
-	int i;
-	int j;
-	int k;
-	char *word;
-
-	i = 0;
-	j = 0;
-	k = -1;
-	while (line[i] && line[i] != '\'' && line[i - 1] != '"')
-		i++;
-	if (line[i] == '"');
-		j = quote(line, '"');
-	word = malloc(sizeof(char) * (j - i + 2));
-	j -= i;
-	while(++k <= j)
-		word[k] = line[i++];
-	puts("ok");
-	puts(word);
-	word[k] = '\0';
-	return word;
+	line = NULL;
+	while(1337)
+	{
+		write(1, MINISHELL,ft_strlen(MINISHELL));
+		get_next_line(&line);
+		printf("|%s|\n", get_word(line));
+		free(line);
+		line = NULL;
+	}
 }
-
-int main()
-{
-	char *str = strdup("hamid \"   khalid \\\" rachi \"");
-	printf("|%s|\n", get_word(str));
-}
- */

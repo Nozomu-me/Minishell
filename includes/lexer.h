@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:57:29 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/25 16:20:32 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/27 15:43:19 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,6 @@ t_token		*ft_lstnew(int index, t_token_type type, char *value);
 void	check_quote(char *line, int *check);
 void	ft_error(char *str, char *first_color, char *second_color);
 char	*scape_space(char *line);
+
+int 	count_back(char *line);
 #endif
