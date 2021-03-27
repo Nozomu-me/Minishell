@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 22:34:56 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/27 13:40:26 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/27 14:28:51 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		check_isbuiltin(char *cmd)
 {
 	if (cmd == NULL)
-		return (0);
+		return (2);
 	if (ft_strcmp(cmd, "echo") == 0)
 		return (1);
 	if (ft_strcmp(cmd, "cd") == 0)

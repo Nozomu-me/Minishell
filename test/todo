@@ -81,9 +81,9 @@ echo $? = 131
 
 - echo -nnnnnnnn ------- done
 - export a==123 ------- done
-- /bin/ls && ./minishell
+- /bin/ls && ./minishell --------- done
 - latest argument
-- shell level ----------- half done still to increment it with ./minishell
+- shell level ----------- done
 
 syntax error 
 ;
@@ -96,3 +96,14 @@ syntax error
 ; cd ..
 ttt >
 ttt >>
+
+
+
+still to do :
+
+cat ctrl+C ----- echo $? = 130
+cat ctrl+\ ------ echo $? = 131
+ctrl+D
+pipes
+redirections
+clear does not work -----------  done

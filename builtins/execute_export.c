@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:50:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/27 13:39:09 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/27 17:15:54 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char    *get_export_value(char *name)
             break ;
         i++;
     }
-    value = ft_substr(name, i + 1, ft_strlen(name) - i);
+    value = ft_substr(name, i + 1, ft_strlen(name) - i + 2);
     return (value);
 }
 void    print_export(t_list *export)
@@ -80,8 +80,8 @@ void    help_execute_export(t_minishell *mini, char *cmd)
     {
         if (check_in_env(mini->env, split[0]) == 0)
         {
-            ft_lstadd_back(&mini->env, ft_lstnew(ft_strjoin("SHLVL=",lvl)));
-            ft_lstadd_back(&mini->export_env, ft_lstnew(ft_strjoin("SHLVL=",lvl)));
+            // ft_lstadd_back(&mini->env, ft_lstnew(ft_strdup("SHLVL=")));
+            ft_lstadd_back(&mini->export_env, ft_lstnew(ft_strdup("SHLVL")));
         }
         else
         {

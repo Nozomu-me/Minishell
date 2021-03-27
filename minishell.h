@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/27 13:34:42 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/27 17:11:51 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 #include "gnl/get_next_line.h"
 #include <sys/stat.h>
 int status;
+int	shell_level;
+
 typedef struct	s_global
 {
 	int			exit_status;
