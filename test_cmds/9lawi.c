@@ -86,7 +86,7 @@ int		main()
 }
 
 
-/* 
+/*
 #define opened 1
 #define closed 0
 
