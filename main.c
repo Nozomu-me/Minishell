@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:28:51 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/26 12:41:06 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/27 13:37:00 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ int main(int argc,  char **argv)
 		if (ret != 0)
 			ft_putstr("\033[33mminishell\033[0m\033[32m~$\033[0m ");
 		ret = get_next_line(1, &buf);
-		mini.cmd = init_cmd(buf);
+		mini.cmds->cmd = init_cmd(buf);
 		execute_cmd(&mini);
 		if (mini.glob.b_exit == 1)
 		{
 			free(buf);
-			free_tab(mini.cmd);
+			free_tab(mini.cmds->cmd);
         	break ;
 		}
 		free(buf);
-		free_tab(mini.cmd);
+		free_tab(mini.cmds->cmd);
 	}
 	ft_lstclear(&mini.env, free);
 	ft_lstclear(&mini.export_env, free);

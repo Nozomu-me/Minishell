@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/26 12:35:11 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/27 13:34:42 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,26 @@ typedef struct	s_global
 	int			shlvl;
 }				t_global;
 
+typedef struct s_file
+{
+    char		*name;
+    char		*filetype;
+    struct		s_file *next;
+}t_file;
+
+typedef struct s_cmds
+{
+    char		**cmd;
+    char		type;
+    t_file		filename;
+}t_cmds;
+
 typedef struct      s_minishell
 {
+	t_cmds			*cmds;
     t_list			*env;
 	t_list			*export_env;
 	t_list			*unset;
-	char			**cmd;
 	t_global 		glob;
 }                   t_minishell;
 /*

@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:41:28 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/25 14:12:23 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/27 13:37:42 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ void    execute_cd(t_minishell *mini)
 	char	cwd[PATH_MAX];
     
     tmp_path = NULL;
-    if (mini->cmd[1] == NULL)
+    if (mini->cmds->cmd[1] == NULL)
     {
         mod_oldpwd(mini);
         check_dir = chdir(mini->glob.home[1]);
     }
-    else if (ft_strncmp(mini->cmd[1], "~", 1) == 0)
+    else if (ft_strncmp(mini->cmds->cmd[1], "~", 1) == 0)
     {
         mod_oldpwd(mini);
-        tmp_path = search_replace(mini->cmd[1], "~", mini->glob.home[1]);
+        tmp_path = search_replace(mini->cmds->cmd[1], "~", mini->glob.home[1]);
         check_dir = chdir(tmp_path);
 		if (check_dir == -1)
         {
@@ -72,7 +72,7 @@ void    execute_cd(t_minishell *mini)
             mini->glob.exit_status = 1;
         }
     }
-    else if (ft_strcmp(mini->cmd[1], ".") == 0)
+    else if (ft_strcmp(mini->cmds->cmd[1], ".") == 0)
     {
         if (getcwd(cwd, PATH_MAX) == NULL)
             current_dir_err();
@@ -84,7 +84,7 @@ void    execute_cd(t_minishell *mini)
         }
         
     }
-    else if (ft_strcmp(mini->cmd[1], "-") == 0)
+    else if (ft_strcmp(mini->cmds->cmd[1], "-") == 0)
     {
         if (mini->glob.oldpwd == NULL)
         {
@@ -109,9 +109,9 @@ void    execute_cd(t_minishell *mini)
     else
     {
         mod_oldpwd(mini);
-		if (chdir(mini->cmd[1]) == -1)
+		if (chdir(mini->cmds->cmd[1]) == -1)
         {
-			error_cd(mini->cmd[1], errno);
+			error_cd(mini->cmds->cmd[1], errno);
             mini->glob.exit_status = 1;
         }
     }

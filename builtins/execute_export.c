@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:50:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/26 12:55:34 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/27 13:39:09 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,17 +131,17 @@ void    execute_export(t_minishell *mini)
     int     i;
 
     i = 1;
-    if (mini->cmd[1] ==  NULL)
+    if (mini->cmds->cmd[1] ==  NULL)
     {
         sort_list(mini->export_env);
         print_export(mini->export_env);
     }
-    while(mini->cmd[i] != NULL)
+    while(mini->cmds->cmd[i] != NULL)
     {
-        if (check_syntax_export(mini->cmd[i]) == 1)
-            error_export(mini->cmd[i], mini);
+        if (check_syntax_export(mini->cmds->cmd[i]) == 1)
+            error_export(mini->cmds->cmd[i], mini);
         else
-            help_execute_export(mini, mini->cmd[i]);
+            help_execute_export(mini, mini->cmds->cmd[i]);
         i++;
     }
 }

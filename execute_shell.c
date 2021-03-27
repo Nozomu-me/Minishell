@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 14:09:05 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/26 13:13:13 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/27 13:40:08 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int     call_execve(t_minishell *mini,char *path, char **env)
     pid = fork();
     stat = 0;
     tmppath = ft_strjoin(path,"/");
-    realpath = ft_strjoin(tmppath, mini->cmd[0]);
+    realpath = ft_strjoin(tmppath, mini->cmds->cmd[0]);
     if (pid == -1)
     {
         mini->glob.exit_status = 1;
@@ -30,7 +30,7 @@ int     call_execve(t_minishell *mini,char *path, char **env)
     }
     else if (pid == 0)
     {
-        if (execve(realpath, mini->cmd, env) == -1)
+        if (execve(realpath, mini->cmds->cmd, env) == -1)
             mini->glob.exit_status = 1;
         exit(mini->glob.exit_status);
     }
@@ -56,7 +56,7 @@ void    help_execve(t_minishell *mini, char **env)
     }
     else if (pid == 0)
     {
-        if (execve(mini->cmd[0], mini->cmd, env) == -1)
+        if (execve(mini->cmds->cmd[0], mini->cmds->cmd, env) == -1)
             mini->glob.exit_status = 1;
         exit(mini->glob.exit_status);
     }
@@ -88,7 +88,7 @@ void    execute_shell(t_minishell *mini)
         free_tab(tab);
         return ;
     }
-    if (mini->cmd[0][0] == '.' || mini->cmd[0][0] == '/')
+    if (mini->cmds->cmd[0][0] == '.' || mini->cmds->cmd[0][0] == '/')
     {
         help_execve(mini, tab);
     }
