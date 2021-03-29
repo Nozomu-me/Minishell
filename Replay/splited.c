@@ -6,19 +6,12 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/29 15:41:32 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/29 17:02:39 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#define SEMI 128
-#define PIPE 129
-#define LESS 130
-#define GREAT 131
-#define SPACE 132
-#define ERROR 1
-#define ON 1
-#define OFF 0
+
 
 int 	count_back(char *line)
 {
@@ -36,9 +29,30 @@ int 	count_back(char *line)
     return (0);
 }
 
+void	initial_symbol(t_symbol *sbl)
+{
+	sbl->semi = OFF;
+	sbl->pipe = OFF;
+	sbl->s_quote = OFF;
+	sbl->d_quote = OFF;
+	sbl->great = OFF;
+	sbl->less = OFF;
+}
 //  check " and ' if is closed or note     &	change ; | to non printable characters
 char	*partition_stage(char *line, int *error)
 {
+	t_symbol *smbl;
+	int i;
+
+	i = 0;
+	initial_symbol(smbl);
+	line = ft_strtrim(line, " ");
+	while (line[i])
+	{
+		if (line == '"');
+	}
+}
+/* {
 	int i;
 	int d_quote;
 	int s_quote;
@@ -76,22 +90,22 @@ char	*partition_stage(char *line, int *error)
 				break ;
 			}
 			if (line[i] == ';' && (d_quote == ON || s_quote == ON))
-				line[i] = (char)SEMI;
+				line[i] = ';';
 			if (line[i] == '|' && (d_quote == ON || s_quote == ON))
-				line[i] = (char)PIPE;
+				line[i] = '|';
 			if (line[i] == '>' && (d_quote == ON || s_quote == ON))
-				line[i] = (char)GREAT;
+				line[i] = '>';
 			if (line[i] == '<' && (d_quote == ON || s_quote == ON))
-				line[i] = (char)LESS;
+				line[i] = '<';
 			if (line[i] == ' ' && (d_quote == ON || s_quote == ON))
-				line[i] = (char)SPACE;
+				line[i] = ' ';
 			i++;
 		}
 	//print if ' " is not closed
 	if (d_quote == ON || s_quote == ON)
 		ft_error("Syntax Error", RED, WHITE, error);
 	return (line);
-}
+} */
 
 void	splitted(char *line)
 {
@@ -109,11 +123,6 @@ void	splitted(char *line)
 			splitted++;
 		}
 	}
-}
-
-void	check_splited(char *str)
-{
-
 }
 
 int main()

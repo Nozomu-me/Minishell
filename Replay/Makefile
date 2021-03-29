@@ -1,6 +1,7 @@
 NAME = minishell
 
 NAME_LIB = minishell.a
+OBJECT_FOLDER = ./obj
 
 SRCS:=$(wildcard */*.c *.c)
 # SRCS =	src/struct.c\
@@ -13,7 +14,7 @@ SRCS:=$(wildcard */*.c *.c)
 # 		src/libft/get_next_line.c\
 
 OBJ = $(SRCS:.c=.o)
-
+# OBJ :=  $(addprefix $(OBJECT_FOLDER)/, $(OBJ))
 CFLAGS = #-Wall -Wextra -Werror
 
 all: $(NAME)
