@@ -3,6 +3,12 @@
 
 # include "libft/libft.h"
 
+# define GREEN	"\e[1;32m"
+# define RED	"\e[0;31m"
+# define WHITE	"\033[0m"
+# define BLUE "\e[0;34m"	
+# define MINISHELL "\n\e[1;32m$minishel\033[1;34m=>\033[0m"
+
 typedef struct  s_global
 {
 	char    *oldpwd;
@@ -29,4 +35,10 @@ void		ft_lstadd_back(t_cmds **alst, t_cmds *new);
 t_cmds		*ft_lstnew(char **v_cmd, char *v_type, char *f_name, char *f_type);
 void		affichage(char *line, t_cmds *cmds);
 t_cmds		*parser(t_cmds *cmds, char *line);
+
+
+//error
+void	ft_error(char *str, char *first_color, char *second_color, int *error);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
 # endif
