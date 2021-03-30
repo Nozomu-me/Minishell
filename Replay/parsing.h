@@ -53,4 +53,7 @@ t_cmds		*parser(t_cmds *cmds, char *line);
 void	ft_error(char *str, char *first_color, char *second_color, int *error);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
+
+//syntax error
+int 	count_back(char *line);
 # endif

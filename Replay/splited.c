@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/29 17:02:39 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/29 18:22:42 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int 	count_back(char *line)
         cp++;
         line--;
 	}
-	/*	if returned 1 then \ isn't followed by ' or "	*/
+	/*	1	=>	doesnt followed by quotes
+		0	=>	followed by quotes
+	*/
 	if (cp % 2 == 0)
 		return (1);
     return (0);
