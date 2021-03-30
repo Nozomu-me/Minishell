@@ -8,7 +8,7 @@ SRCS =	src/lexer.c\
 		src/lets_parser.c\
 		src/libft/*.c\
 		src/error.c\
-		src/line.c 
+		src/line.c  
 		# src/libft/ft_strjoin.c\
 		# src/libft/ft_strdup.c\
 		# src/libft/ft_strlen.c\
