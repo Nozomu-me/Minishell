@@ -40,8 +40,10 @@ typedef	struct	s_symbol
 	int	pipe;
 	int	d_quote;
 	int	s_quote;
-	int	great;
 	int	less;
+	int	great;
+	int	d_great;
+	int error;
 }				t_symbol;
 
 void		ft_lstadd_back(t_cmds **alst, t_cmds *new);
@@ -49,11 +51,18 @@ t_cmds		*ft_lstnew(char **v_cmd, char *v_type, char *f_name, char *f_type);
 void		affichage(char *line, t_cmds *cmds);
 t_cmds		*parser(t_cmds *cmds, char *line);
 
-//error
-void	ft_error(char *str, char *first_color, char *second_color, int *error);
+//syntax error
+int 	count_back(char *line);
+void	ft_error(char *str, char *first_color, char *second_color);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 
-//syntax error
-int 	count_back(char *line);
+/* symbols */
+char	*check_d_quote(t_symbol *smbl, char *line, int i);
+char	*check_s_quote(t_symbol *smbl, char *line);
+char	*check_semicolone(t_symbol *smbl, char *line);
+char	*check_pipe(t_symbol *smbl, char *line);
+int		redirection(t_symbol *smbl);
+char	*check_redirection(t_symbol *smbl, char *line, int type);
+
 # endif

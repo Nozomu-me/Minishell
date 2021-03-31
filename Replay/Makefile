@@ -23,7 +23,7 @@ $(NAME) : $(OBJ)
 	@ar rcs $(NAME_LIB) $(OBJ)
 	@gcc $(NAME_LIB) -o $(NAME) -g
 	@echo "\n\033[32m--------- successfully ---------\033[0m"
-	./minishell
+	# ./minishell
 clean :
 	@rm -f $(OBJ) $(NAME)
 fclean: clean

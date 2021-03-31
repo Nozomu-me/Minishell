@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/29 18:22:42 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/03/31 16:13:24 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int 	count_back(char *line)
     int cp;
 
 	cp = 0;
-    while (*line == '\\')
+    while (*line && *line == '\\')
     {
         cp++;
         line--;
@@ -39,6 +39,7 @@ void	initial_symbol(t_symbol *sbl)
 	sbl->d_quote = OFF;
 	sbl->great = OFF;
 	sbl->less = OFF;
+	sbl->d_great = OFF;
 }
 //  check " and ' if is closed or note     &	change ; | to non printable characters
 char	*partition_stage(char *line, int *error)
@@ -49,10 +50,28 @@ char	*partition_stage(char *line, int *error)
 	i = 0;
 	initial_symbol(smbl);
 	line = ft_strtrim(line, " ");
+	if (line[0] == '|' || line[0] == ';')
+		ft_error("Syntax error", RED, WHITE);
 	while (line[i])
 	{
-		if (line == '"');
+		if (line[i] == '"')
+			line = check_d_quote(smbl, line, i);
+		if (line[i] == '\'')
+			line = check_s_quote(smbl, line + i);
+		if (line[i] == '|')
+			line = check_pipe(smbl, line + i);
+		if (line[i] == ';')
+			line = check_semicolone(smbl, line + i);
+		if (line[i] == '>')
+			line = check_redirection(smbl, line + i, smbl->great);
+		if (line[i] == '<')
+			line = check_redirection(smbl, line + i, smbl->less);
+		if (line[i] == '>' && line[i + 1] == '>')
+			line = check_redirection(smbl, line + i, smbl->d_great);
+		i++;
 	}
+	printf("%s\n", line);
+	return line;
 }
 /* {
 	int i;
@@ -116,15 +135,15 @@ void	splitted(char *line)
 
 	error = 0;
 	line = partition_stage(line, &error);
-	if (!error)
-	{
-		splitted = ft_split(line, ';');
-		while (*splitted)
-		{
-			printf("|%s|\n", *splitted);
-			splitted++;
-		}
-	}
+	// if (!error)
+	// {
+	// 	splitted = ft_split(line, ';');
+	// 	while (*splitted)
+	// 	{
+	// 		printf("|%s|\n", *splitted);
+	// 		splitted++;
+	// 	}
+	// }
 }
 
 int main()
