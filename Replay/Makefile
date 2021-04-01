@@ -1,32 +1,42 @@
 NAME = minishell
+LIBFT = libft/libft.a
 
-NAME_LIB = minishell.a
-OBJECT_FOLDER = ./obj
+# SRCS:=$(wildcard error/*.c *.c)
+SRCS =	struct.c \
+		main.c \
+		splited.c \
+		symbols.c \
+		error/error.c
 
-SRCS:=$(wildcard */*.c *.c)
-# SRCS =	src/struct.c\
-# 		src/main.c\
-# 		src/libft/ft_strjoin.c\
-# 		src/libft/ft_strdup.c\
-# 		src/libft/ft_strlen.c\
-# 		src/libft/ft_putendl_fd.c\
-# 		src/libft/ft_putstr_fd.c\
-# 		src/libft/get_next_line.c\
-
-OBJ = $(SRCS:.c=.o)
+# OBJ = $(SRCS:.c=.o)
+OBJ_DIR		=	./objs
+OBJ = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 # OBJ :=  $(addprefix $(OBJECT_FOLDER)/, $(OBJ))
 CFLAGS = #-Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME) : $(OBJ)
-	@ar rcs $(NAME_LIB) $(OBJ)
-	@gcc $(NAME_LIB) -o $(NAME) -g
+$(NAME) : $(OBJ) $(LIBFT)
+	@gcc $(OBJ) $(LIBFT) -o $(NAME)
 	@echo "\n\033[32m--------- successfully ---------\033[0m"
-	# ./minishell
+
+$(LIBFT): force
+	make -C libft/
+
+force:
+
+$(OBJ): $(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
+	gcc -c $< -o $@
+
 clean :
-	@rm -f $(OBJ) $(NAME)
+	make clean -C libft/
+	@rm -rf $(OBJ_DIR)
+
 fclean: clean
-	@rm -f $(NAME_LIB)
+	make fclean -C libft/
+	@rm -f $(NAME)
 
 re : fclean all
+
+.PHONY: all clean fclean force

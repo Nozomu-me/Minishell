@@ -6,12 +6,12 @@
 #    By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/22 14:54:25 by abdel-ke          #+#    #+#              #
-#    Updated: 2019/11/11 14:40:42 by abdel-ke         ###   ########.fr        #
+#    Updated: 2021/04/01 19:38:08 by abdel-ke         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-CC = gcc
+CC = ddd
 CFLAGS = -Wall -Wextra -Werror
 SRC =	ft_calloc.c		\
 		ft_atoi.c		\
@@ -46,16 +46,24 @@ SRC =	ft_calloc.c		\
 		ft_putstr_fd.c	\
 		ft_putnbr_fd.c	\
 		ft_putendl_fd.c	\
-		ft_strmapi.c
+		ft_strmapi.c \
+		get_next_line.c
 
-OBJ		= $(SRC:.c=.o)
+OBJ_DIR		=	./objs
+OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
 all		: $(NAME)
 $(NAME)	: $(OBJ)
 	ar rc $(NAME) $^
 	ranlib $(NAME)
+
+$(OBJ): $(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(OBJ_DIR)
+	gcc -c $< -o $@
+
 clean 	:
-	rm -f *.o
+	rm -f $(OBJ_DIR)/*.o
 fclean 	: clean
 	rm -f $(NAME)
+	rm -rf $(OBJ_DIR)
 re 		: fclean all

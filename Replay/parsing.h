@@ -59,10 +59,10 @@ void	ft_putendl_fd(char *s, int fd);
 
 /* symbols */
 char	*check_d_quote(t_symbol *smbl, char *line, int i);
-char	*check_s_quote(t_symbol *smbl, char *line);
-char	*check_semicolone(t_symbol *smbl, char *line);
-char	*check_pipe(t_symbol *smbl, char *line);
+char	*check_s_quote(t_symbol *smbl, char *line, int i);
+char	*check_semicolone(t_symbol *smbl, char *line, int i);
+char	*check_pipe(t_symbol *smbl, char *line, int i);
 int		redirection(t_symbol *smbl);
-char	*check_redirection(t_symbol *smbl, char *line, int type);
+char	*check_redirection(t_symbol *smbl, char *line, int i, int *type);
 
 # endif
