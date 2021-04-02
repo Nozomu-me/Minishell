@@ -12,6 +12,7 @@
 # define BLUE "\e[0;34m"
 # define MINISHELL "\n\e[1;32m$minishel\033[1;34m=>\033[0m"
 
+
 typedef struct  s_global
 {
 	char    *oldpwd;

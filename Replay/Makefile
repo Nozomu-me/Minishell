@@ -1,7 +1,6 @@
 NAME = minishell
 LIBFT = libft/libft.a
 
-# SRCS:=$(wildcard error/*.c *.c)
 SRCS =	struct.c \
 		main.c \
 		splited.c \
@@ -21,20 +20,21 @@ $(NAME) : $(OBJ) $(LIBFT)
 	@echo "\n\033[32m--------- successfully ---------\033[0m"
 
 $(LIBFT): force
-	make -C libft/
+	@make -C libft/
 
-force:
 
 $(OBJ): $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	gcc -c $< -o $@
+	@gcc -c $< -o $@
+
+force:
 
 clean :
-	make clean -C libft/
+	@make clean -C libft/
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	make fclean -C libft/
+	@make fclean -C libft/
 	@rm -f $(NAME)
 
 re : fclean all

@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 17:02:55 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/01 17:59:45 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/02 22:55:40 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,11 @@ char	*check_redirection(t_symbol *smbl, char *line, int i, int *type)
 {
 	if (smbl->d_quote == ON || smbl->s_quote == ON)
 		line[i] *= -1;
-	else if(redirection(smbl) == OFF)
-		*type = ON;
+	else
+	{
+		if(redirection(smbl) == OFF)
+			*type = ON;
+		else ft_error("SYntax error REDIRECTION", RED, WHITE);
+	}
 	return (line);
 }

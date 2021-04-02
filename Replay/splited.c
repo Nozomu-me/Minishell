@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/01 19:14:51 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/02 23:01:40 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ int 	count_back(char *line)
 
 void	initial_symbol(t_symbol *sbl)
 {
-	sbl->semi = OFF;
 	sbl->pipe = OFF;
+	// puts("t");
+	sbl->semi = OFF;
 	sbl->s_quote = OFF;
 	sbl->d_quote = OFF;
 	sbl->great = OFF;
@@ -48,9 +49,12 @@ void	initial_symbol(t_symbol *sbl)
 char	*partition_stage(char *line, int *error)
 {
 	t_symbol *smbl;
+	t_symbol smbl2;
 	int i;
 
 	i = 0;
+	smbl = &smbl2;
+	// puts("ok");
 	initial_symbol(smbl);
 	line = ft_strtrim(line, " ");
 	if (line[0] == '|' || line[0] == ';')
@@ -70,26 +74,26 @@ char	*partition_stage(char *line, int *error)
 		else if (line[i] == '>')
 			line = check_redirection(smbl, line, i, &smbl->great);
 		else if (line[i] == '<')
-			
 			line = check_redirection(smbl, line, i, &smbl->less);
 		else
 		{
-			if (smbl->d_great == ON)
-				smbl->d_great = OFF;
-			if (smbl->great == ON)
-				smbl->great = OFF;
-			if (smbl->less == ON)
-				smbl->less = OFF;
-			if (smbl->pipe == ON)
-				smbl->pipe = OFF;
-			if (smbl->semi == ON)
-				smbl->semi = OFF;
+			int sum = smbl->d_great + smbl->less + smbl->great + smbl->semi + smbl->pipe;
+			if (sum && line[i] != ' ')
+			{
+				smbl->d_great = 0;
+				smbl->less = 0;
+				smbl->great = 0;
+				smbl->semi = 0;
+				smbl->pipe = 0;
+			}
 		}
 		i++;
 	}
 	if (smbl->d_great || smbl->d_quote || smbl->s_quote || smbl->pipe || smbl->great || smbl->less)
 		ft_error("Syntax Error hhh", RED, WHITE);
-	printf("3=> |%s|\n", line);
+	printf("D_Q \t=> |%d|\nS_Q \t=> |%d|\nL \t=> |%d|\nG \t=> |%d|\nD_G \t=> |%d|\nP \t=> |%d|\nS \t=> |%d|\n\n",
+	smbl->d_quote, smbl->s_quote, smbl->less, smbl->great, smbl->d_great, smbl->pipe, smbl->semi);
+	printf("=> |%s|\n", line);
 	return line;
 }
 
@@ -172,7 +176,8 @@ int main()
 	line = NULL;
 
 	while (1337)
-	{	ft_putstr_fd("minishell > ", 1);
+	{
+		ft_putstr_fd(MINISHELL, 1);
 		get_next_line(&line);
 		splitted(line);
 		// partition_stage(line);
