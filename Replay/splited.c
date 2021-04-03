@@ -6,96 +6,11 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/02 23:01:40 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/03 16:49:48 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-
-int 	count_back(char *line)
-{
-    int cp;
-	cp = 0;
-
-    while (*line && *line == '\\')
-    {
-        cp++;
-        line--;
-	}
-	/*	1	=>	doesnt followed by quotes
-		0	=>	followed by quotes
-	*/
-	if (cp % 2 == 0)// && cp != 0)
-		return (0);
-	// if (cp == 0)
-	// 	return 2;
-    return (1);
-}
-
-void	initial_symbol(t_symbol *sbl)
-{
-	sbl->pipe = OFF;
-	// puts("t");
-	sbl->semi = OFF;
-	sbl->s_quote = OFF;
-	sbl->d_quote = OFF;
-	sbl->great = OFF;
-	sbl->less = OFF;
-	sbl->d_great = OFF;
-}
-
-//  check " and ' if is closed or note     &	change ; | to non printable characters
-char	*partition_stage(char *line, int *error)
-{
-	t_symbol *smbl;
-	t_symbol smbl2;
-	int i;
-
-	i = 0;
-	smbl = &smbl2;
-	// puts("ok");
-	initial_symbol(smbl);
-	line = ft_strtrim(line, " ");
-	if (line[0] == '|' || line[0] == ';')
-		ft_error("Syntax error", RED, WHITE);
-	while (line[i])
-	{
-		if (line[i] == '"')
-			line = check_d_quote(smbl, line, i);
-		else if (line[i] == '\'')
-			line = check_s_quote(smbl, line, i);
-		else if (line[i] == '|')
-			line = check_pipe(smbl, line, i);
-		else if (line[i] == ';')
-			line = check_semicolone(smbl, line, i);
-		else if (line[i] == '>' && line[i + 1] == '>')
-				line = check_redirection(smbl, line, i++, &smbl->d_great);
-		else if (line[i] == '>')
-			line = check_redirection(smbl, line, i, &smbl->great);
-		else if (line[i] == '<')
-			line = check_redirection(smbl, line, i, &smbl->less);
-		else
-		{
-			int sum = smbl->d_great + smbl->less + smbl->great + smbl->semi + smbl->pipe;
-			if (sum && line[i] != ' ')
-			{
-				smbl->d_great = 0;
-				smbl->less = 0;
-				smbl->great = 0;
-				smbl->semi = 0;
-				smbl->pipe = 0;
-			}
-		}
-		i++;
-	}
-	if (smbl->d_great || smbl->d_quote || smbl->s_quote || smbl->pipe || smbl->great || smbl->less)
-		ft_error("Syntax Error hhh", RED, WHITE);
-	printf("D_Q \t=> |%d|\nS_Q \t=> |%d|\nL \t=> |%d|\nG \t=> |%d|\nD_G \t=> |%d|\nP \t=> |%d|\nS \t=> |%d|\n\n",
-	smbl->d_quote, smbl->s_quote, smbl->less, smbl->great, smbl->d_great, smbl->pipe, smbl->semi);
-	printf("=> |%s|\n", line);
-	return line;
-}
 
 /* {
 	int i;

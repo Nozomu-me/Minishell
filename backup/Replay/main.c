@@ -18,7 +18,7 @@ t_cmds	*parser(t_cmds *cmds, char *line)
 	return cmds;
 }
 
-/* int main()
+int main()
 {
 	char *line = "echo hello \"word; next\" time";
 	t_cmds *cmds;
@@ -29,4 +29,4 @@ t_cmds	*parser(t_cmds *cmds, char *line)
 	// 	get_next_line(&line);
 	// 	free(line);
 	// }
-} */
+}

@@ -1,9 +1,7 @@
 NAME = minishell
 LIBFT = libft/libft.a
 
-SRCS =	struct.c \
-		main.c \
-		splited.c \
+SRCS =	splited.c \
 		symbols.c \
 		error/error.c
 

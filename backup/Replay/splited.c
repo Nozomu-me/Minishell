@@ -6,12 +6,11 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/01 19:14:51 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/03 11:45:12 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
 
 int 	count_back(char *line)
 {
@@ -93,61 +92,6 @@ char	*partition_stage(char *line, int *error)
 	return line;
 }
 
-/* {
-	int i;
-	int d_quote;
-	int s_quote;
-
-	i = 0;
-	d_quote = OFF;
-	s_quote = OFF;
-	//skip space and tab
-	line = ft_strtrim(line, " ");
-	if (line[0] == ';' || line[0] == '|')
-		ft_error("SYNTAX ERROR ; |", RED, WHITE, error);
-	//check if " or ' is closed
-	else
-		while (line[i])
-		{
-			if (line[i] == '\'')
-			{
-				if (s_quote == ON)
-					s_quote = OFF;
-				else if (s_quote == OFF && count_back(line + (i - 1)))
-					if (d_quote == OFF)
-						s_quote = ON;
-			}
-			else if (line[i] == '"' && count_back(line + (i - 1)))
-			{
-				if (d_quote == OFF && s_quote == OFF)
-					d_quote = ON;
-				else if (d_quote == ON && s_quote == OFF)
-					d_quote = OFF;
-			}
-			// Change ; | to NON PRINTABLE characters
-			if (line[i] == ';' && line[i + 1] == ';' && d_quote == OFF && s_quote == OFF)
-			{
-				ft_error("Syntax error ';", RED, WHITE, error);
-				break ;
-			}
-			if (line[i] == ';' && (d_quote == ON || s_quote == ON))
-				line[i] = ';';
-			if (line[i] == '|' && (d_quote == ON || s_quote == ON))
-				line[i] = '|';
-			if (line[i] == '>' && (d_quote == ON || s_quote == ON))
-				line[i] = '>';
-			if (line[i] == '<' && (d_quote == ON || s_quote == ON))
-				line[i] = '<';
-			if (line[i] == ' ' && (d_quote == ON || s_quote == ON))
-				line[i] = ' ';
-			i++;
-		}
-	//print if ' " is not closed
-	if (d_quote == ON || s_quote == ON)
-		ft_error("Syntax Error", RED, WHITE, error);
-	return (line);
-} */
-
 void	splitted(char *line)
 {
 	char	**splitted;
@@ -172,7 +116,8 @@ int main()
 	line = NULL;
 
 	while (1337)
-	{	ft_putstr_fd("minishell > ", 1);
+	{
+		ft_putstr_fd(MINISHELL, 1);
 		get_next_line(&line);
 		splitted(line);
 		// partition_stage(line);

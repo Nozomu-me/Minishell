@@ -20,9 +20,34 @@ typedef struct  s_global
 	int     exit_status;
 }               t_global;
 
+typedef enum e_type
+{
+    WRITE,
+    READ,
+    APPEND,
+    PIPE,
+    END
+}           t_type;
+
+typedef struct  s_file
+{
+    char        *filename;
+    t_type      filetype;
+    struct      s_file *next;
+}               t_file;
+
+typedef struct  s_cmds
+{
+    char        	**cmd;
+    t_type      	type;
+    t_file      	*file;
+	// struct s_cmd	*next;
+}               t_cmds;
+
+/*
 typedef struct	s_file
 {
-	char *name;
+	char *filename;
 	char *filetype;
 	struct s_file *next;
 }				t_file;
@@ -33,7 +58,7 @@ typedef struct  s_cmds
 	char *type;
 	t_file *file;
 	struct s_cmds *next;
-}               t_cmds;
+}               t_cmds;*/
 
 typedef	struct	s_symbol
 {
@@ -54,9 +79,10 @@ t_cmds		*parser(t_cmds *cmds, char *line);
 
 //syntax error
 int 	count_back(char *line);
-void	ft_error(char *str, char *first_color, char *second_color);
+void	ft_error(t_symbol *smbl, char *str, char *first_color, char *second_color);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
+char	*partition_stage(char *line, int *error);
 
 /* symbols */
 char	*check_d_quote(t_symbol *smbl, char *line, int i);
@@ -65,5 +91,5 @@ char	*check_semicolone(t_symbol *smbl, char *line, int i);
 char	*check_pipe(t_symbol *smbl, char *line, int i);
 int		redirection(t_symbol *smbl);
 char	*check_redirection(t_symbol *smbl, char *line, int i, int *type);
-
+void	off_flags(t_symbol *smbl);
 # endif
