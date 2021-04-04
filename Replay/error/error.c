@@ -57,18 +57,20 @@ int 	count_back(char *line)
 }
 
 //  check " and ' if is closed or note     &	change ; | to non printable characters
-char	*partition_stage(char *line, int *error)
+char	*partition_stage(t_symbol *smbl, char *line)
 {
-	t_symbol *smbl;
-	t_symbol smbl2;
+	// t_symbol *smbl;
+	// t_symbol smbl2;
 	int i;
 
 	i = 0;
-	smbl = &smbl2;
+	// smbl = &smbl2;
 	initial_symbol(smbl);
 	line = ft_strtrim(line, " ");
-	if (line[0] == '|' || line[0] == ';')
-		ft_error(smbl, "Syntax error", RED, WHITE);
+	if (line[0] == '|')
+		ft_error(smbl, "bash: syntax error near unexpected token `|'", RED, WHITE);
+	if (line[0] == ';')
+		ft_error(smbl, "bash: syntax error near unexpected token `;'", RED, WHITE);
 	while (line[i] && !smbl->error)
 	{
 		if (line[i] == '"')

@@ -88,7 +88,7 @@ int 	count_back(char *line);
 void	ft_error(t_symbol *smbl, char *str, char *first_color, char *second_color);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
-char	*partition_stage(char *line, int *error);
+char	*partition_stage(t_symbol *smbl, char *line);
 
 /* symbols */
 char	*check_d_quote(t_symbol *smbl, char *line, int i);

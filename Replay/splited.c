@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/04 18:03:32 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/04 21:15:13 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 void	splitted(t_command *cmds, char *line)
 {
+	t_symbol smbl;
 	char	**s_splited;
 	char	**p_splited;
 	int		i;
-	int		error;
 
 	i = 0;
-	error = 0;
-	line = partition_stage(line, &error);
-	if (!error)
+	line = partition_stage(&smbl, line);
+	if (!smbl.error)
 	{
 		s_splited = ft_split(line, ';');
 		while (*s_splited)
@@ -55,6 +54,7 @@ int main()
 	char *line;
 	line = NULL;
 	t_command *cmds;
+	t_symbol *smbl;
 
 	cmds = NULL;
 	while (1337)
@@ -62,7 +62,6 @@ int main()
 		ft_putstr_fd(MINISHELL, 1);
 		get_next_line(&line);
 		splitted(cmds, line);
-		// partition_stage(line);
 		free(line);
 	}
 }
