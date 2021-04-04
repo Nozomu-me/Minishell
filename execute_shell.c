@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 14:09:05 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/27 13:40:08 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/29 17:11:31 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ void    execute_shell(t_minishell *mini)
         {
             check = call_execve(mini,split[i], tab);
             // printf("%d\n", check);
-            if (check == 0)
-                break ;
+            // if (check == 0)
+            //     break ;
         }
         i++;
     }

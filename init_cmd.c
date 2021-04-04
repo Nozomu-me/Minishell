@@ -6,15 +6,16 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 19:07:47 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/13 22:14:48 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/29 10:54:46 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char **init_cmd(char *cmd)
+char    **init_cmd(char *buf)
 {
-    char **split;
-    split = ft_split(cmd, ' ');
+    char    **split;
+    
+    split = ft_split(buf, ' ');
     return (split);
 }

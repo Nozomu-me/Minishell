@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 12:09:18 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/27 17:09:45 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/30 18:36:57 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,20 @@ void    shlvl(t_minishell *mini)
     int     lvl;
     char    *join;
     char    **shlvl_env;
-    
+    char    *str;
     if (check_in_env(mini->env, "SHLVL") == 1 &&
     check_in_env(mini->export_env, "SHLVL") == 1)
     {
         lvl = 1;
         shlvl_env = ft_getenv("SHLVL", mini->export_env);
         lvl += ft_atoi(shlvl_env[1]);
-        join = ft_strjoin("SHLVL=", ft_itoa(lvl));
+        str =ft_itoa(lvl);
+        join = ft_strjoin("SHLVL=", str);
         mod_env(mini->env, "SHLVL", join);
         mod_env(mini->export_env, "SHLVL", join);
         free_tab(shlvl_env);
+        free(str);
+        free(join);
     }
     if (check_in_env(mini->export_env, "SHLVL") == 0)
     {

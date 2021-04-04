@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/27 17:11:51 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/03/28 16:17:46 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 #include "libft/libft.h"
 #include "gnl/get_next_line.h"
 #include <sys/stat.h>
+#include <fcntl.h>
+
 int status;
 int	shell_level;
 
@@ -56,7 +58,7 @@ typedef struct s_file
 typedef struct s_cmds
 {
     char		**cmd;
-    char		type;
+    char		*type;
     t_file		filename;
 }t_cmds;
 
@@ -129,4 +131,7 @@ int             check_in_env(t_list *env, char *str);
 t_list          *init_env_environ(char **environ);
 t_list          *init_export_environ(char **environ);
 char			**ft_getenv(char *name, t_list *env);
+
+
+void    init_cmds(t_cmds *cmds, char *buf);
 #endif
