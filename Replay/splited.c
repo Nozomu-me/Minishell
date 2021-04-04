@@ -6,95 +6,62 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/03 16:49:48 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/04 18:03:32 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-/* {
-	int i;
-	int d_quote;
-	int s_quote;
-
-	i = 0;
-	d_quote = OFF;
-	s_quote = OFF;
-	//skip space and tab
-	line = ft_strtrim(line, " ");
-	if (line[0] == ';' || line[0] == '|')
-		ft_error("SYNTAX ERROR ; |", RED, WHITE, error);
-	//check if " or ' is closed
-	else
-		while (line[i])
-		{
-			if (line[i] == '\'')
-			{
-				if (s_quote == ON)
-					s_quote = OFF;
-				else if (s_quote == OFF && count_back(line + (i - 1)))
-					if (d_quote == OFF)
-						s_quote = ON;
-			}
-			else if (line[i] == '"' && count_back(line + (i - 1)))
-			{
-				if (d_quote == OFF && s_quote == OFF)
-					d_quote = ON;
-				else if (d_quote == ON && s_quote == OFF)
-					d_quote = OFF;
-			}
-			// Change ; | to NON PRINTABLE characters
-			if (line[i] == ';' && line[i + 1] == ';' && d_quote == OFF && s_quote == OFF)
-			{
-				ft_error("Syntax error ';", RED, WHITE, error);
-				break ;
-			}
-			if (line[i] == ';' && (d_quote == ON || s_quote == ON))
-				line[i] = ';';
-			if (line[i] == '|' && (d_quote == ON || s_quote == ON))
-				line[i] = '|';
-			if (line[i] == '>' && (d_quote == ON || s_quote == ON))
-				line[i] = '>';
-			if (line[i] == '<' && (d_quote == ON || s_quote == ON))
-				line[i] = '<';
-			if (line[i] == ' ' && (d_quote == ON || s_quote == ON))
-				line[i] = ' ';
-			i++;
-		}
-	//print if ' " is not closed
-	if (d_quote == ON || s_quote == ON)
-		ft_error("Syntax Error", RED, WHITE, error);
-	return (line);
-} */
-
-void	splitted(char *line)
+void	splitted(t_command *cmds, char *line)
 {
-	char	**splitted;
+	char	**s_splited;
+	char	**p_splited;
+	int		i;
 	int		error;
 
+	i = 0;
 	error = 0;
 	line = partition_stage(line, &error);
-	// if (!error)
-	// {
-	// 	splitted = ft_split(line, ';');
-	// 	while (*splitted)
-	// 	{
-	// 		printf("|%s|\n", *splitted);
-	// 		splitted++;
-	// 	}
-	// }
+	if (!error)
+	{
+		s_splited = ft_split(line, ';');
+		while (*s_splited)
+		{
+			*s_splited = ft_strtrim(*s_splited, " ");
+			p_splited = ft_split(*s_splited, '|');
+			while (p_splited[i])
+				i++;
+			while (*p_splited)
+			{
+				*p_splited = ft_strtrim(*p_splited, " ");
+				if (--i)
+					ft_lstadd_back_cmd(&cmds, ft_lstnew_cmd(*p_splited, PIPE));
+				else
+					ft_lstadd_back_cmd(&cmds, ft_lstnew_cmd(*p_splited, END));
+				p_splited++;
+			}
+			s_splited++;
+		}
+	}
+	while (cmds)
+	{
+		printf("CMD  => |%s|\nTYPE => |%s|\n\n", cmds->command, cmds->type == 3 ? "PIPE" : "END");
+		cmds = cmds->next;
+	}
 }
 
 int main()
 {
 	char *line;
 	line = NULL;
+	t_command *cmds;
 
+	cmds = NULL;
 	while (1337)
 	{
 		ft_putstr_fd(MINISHELL, 1);
 		get_next_line(&line);
-		splitted(line);
+		splitted(cmds, line);
 		// partition_stage(line);
 		free(line);
 	}

@@ -3,6 +3,7 @@ LIBFT = libft/libft.a
 
 SRCS =	splited.c \
 		symbols.c \
+		struct.c \
 		error/error.c
 
 # OBJ = $(SRCS:.c=.o)

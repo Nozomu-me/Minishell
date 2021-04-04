@@ -98,6 +98,6 @@ char	*partition_stage(char *line, int *error)
 		//syntax error near unexpected token `newline'
 	// printf("D_Q \t=> |%d|\nS_Q \t=> |%d|\nL \t=> |%d|\nG \t=> |%d|\nD_G \t=> |%d|\nP \t=> |%d|\nS \t=> |%d|\n\n",
 	// smbl->d_quote, smbl->s_quote, smbl->less, smbl->great, smbl->d_great, smbl->pipe, smbl->semi);
-	printf("=> |%s|\n", line);
+	printf("=> |%s|\n\n\n", line);
 	return line;
 }

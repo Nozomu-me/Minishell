@@ -40,9 +40,15 @@ typedef struct  s_cmds
 {
     char        	**cmd;
     t_type      	type;
-    t_file      	*file;
-	// struct s_cmd	*next;
+    t_file      	file;
 }               t_cmds;
+
+typedef	struct	s_command
+{
+	char				*command;
+	t_type				type;
+	struct s_command	*next;
+}				t_command;
 
 /*
 typedef struct	s_file
@@ -92,4 +98,9 @@ char	*check_pipe(t_symbol *smbl, char *line, int i);
 int		redirection(t_symbol *smbl);
 char	*check_redirection(t_symbol *smbl, char *line, int i, int *type);
 void	off_flags(t_symbol *smbl);
+
+
+/*struct*/
+t_command	*ft_lstnew_cmd(char *v_cmd, int type);
+void		ft_lstadd_back_cmd(t_command **alst, t_command *new);
 # endif
