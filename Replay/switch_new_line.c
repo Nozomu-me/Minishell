@@ -1,38 +1,75 @@
 #include "parsing.h"
 
-char	*check_slash(char *line, int *ii)
+int 	count_back2(char *line)
 {
-	int i = *ii;
-	int j = 0;
-	int slash;
-	char *new = malloc(sizeof(char) * 20);
+    int cp;
 
-	slash = 0;
-	while (line[i])
-	{
-		if (line[i] == '\\')
-		{
-			if (slash % 2 == 1)
-				new[j] = '\\';
-			slash++;
-		}
-		else
-		{
-			slash = 0;
-			new[j] = line[i];
-		}
-		j++;
-		i++;
+	cp = 0;
+    while (*line && *line == '\\')
+    {
+        cp++;
+        line--;
 	}
-	new[j] = 0;
+    return (cp);
+}
+
+int retu(char c)
+{
+	if (c == '"' || c == '\\' || c == '\'')
+		return (1);
+	return (0);
+}
+char	*check_slash(char *line)
+{
+	int i = -1;
+	int p = 0;
+	int quote = 0;
+	while (line[++i])
+	{
+		if (line[i] == '\\' && line[i + 1] == '\\')
+			line[i + 1] *= -1;
+		else if (line[i] == '\\' && retu(line[i + 1]))// line[i + 1] == '"')
+			line[i] *= -1;
+		else if (line[i] == '"' && line[i - 1] == '\\' * -1)
+			line[i] *= -1;
+		// else if (line[i] == '\'' && );
+	}
+	i = -1;
+	while (line[++i])
+	{
+		if (line[i] != '\\' * -1 && line[i] != '"' && line[i - 1] != '\\')
+			p++;
+	}
+	printf("|%d|\n", p);
+	char *new = malloc(sizeof(char) * p + 1);
+	p = 0;
+	i = -1;
+	while (line[++i])
+	{
+		if (line[i] == '\\' && line[i + 1] > 0)
+			i++;
+		if (line[i] != '\\' * - 1 && line[i] != '"')
+		{
+			if (line[i] < 0)
+				new[p++] = line[i] * -1;
+			else
+				new[p++] = line[i];
+		}
+	}
+	new[p] = 0;
 	return (new);
 }
 
 int main()
 {
-	char *line = "hamid\"kamal\\khalid";
+	char *line;
 	int i = 0;
 
-	line = check_slash(line, &i);
-	puts(line);
+	while (1337)
+	{
+		get_next_line(&line);
+		line = check_slash(line);
+		puts(line);
+		free(line);
+	}
 }

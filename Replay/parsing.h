@@ -78,6 +78,15 @@ typedef	struct	s_symbol
 	int error;
 }				t_symbol;
 
+typedef	struct	s_parse
+{
+	char		**s_semi;
+	char		**s_pipe;
+	t_cmds		*cmds;
+	t_symbol	*smbl;
+	t_command	*command;
+}				t_parse;
+
 void		ft_lstadd_back(t_cmds **alst, t_cmds *new);
 t_cmds		*ft_lstnew(char **v_cmd, char *v_type, char *f_name, char *f_type);
 void		affichage(char *line, t_cmds *cmds);
