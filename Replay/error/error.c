@@ -48,8 +48,8 @@ int 	count_back(char *line)
         cp++;
         line--;
 	}
-	/*	0	=>	doesnt followed by quotes
-		1	=>	followed by quotes
+	/*	1	=>	doesnt followed by quotes
+		0	=>	followed by quotes
 	*/
 	if (cp % 2 == 0)
 		return (0);
