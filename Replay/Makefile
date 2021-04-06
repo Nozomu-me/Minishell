@@ -18,7 +18,7 @@ all: $(NAME)
 $(NAME) : $(OBJ) $(LIBFT)
 	@gcc $(OBJ) $(LIBFT) -o $(NAME)
 	@echo "\n\033[32m--------- successfully ---------\033[0m"
-	./minishell
+
 $(LIBFT): force
 	@make -C libft/
 

@@ -1,6 +1,6 @@
 #include "parsing.h"
 
-char	*check_command(char *line)
+char	*check_command(t_parse *parse, char *line)
 {
 	char *new;
 	int i = 0;
@@ -43,19 +43,21 @@ char	*check_command(char *line)
 			}
 			else if (single == ON)
 			{
-				if (*new == '\'')
-					new++;
+				// printf("|%c|\t|%d|\t|%d|\n", *new, quote, single);
+				// if (*new == '\'')
+				// 	new++;
 				while (*new != '\'')
 					line[i++] = *new++;
 				single = OFF;
 			}
 		}
+		printf("|%d|\n", single);
 		new++;
 	}
 	line[i] = 0;
-	i = -1;
-	while (line[++i])
-		if (line[i] < 0)
-			line[i] *= -1;
+	// i = -1;
+	// while (line[++i])
+	// 	if (line[i] < 0)
+	// 		line[i] *= -1;
 	return line;
 }

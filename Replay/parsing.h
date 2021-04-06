@@ -109,7 +109,7 @@ char	*check_redirection(t_symbol *smbl, char *line, int i, int *type);
 void	off_flags(t_symbol *smbl);
 
 /* command */
-char	*check_command(char *line);
+char	*check_command(t_parse *parse, char *line);
 
 /*struct*/
 t_command	*ft_lstnew_cmd(char *v_cmd, int type);

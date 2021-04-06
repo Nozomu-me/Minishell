@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/06 15:39:20 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/06 17:55:01 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ void	splitted(t_parse *parse, char *line)
 		while (*parse->s_semi)
 		{
 			*parse->s_semi = ft_strtrim(*parse->s_semi, " ");
+			*parse->s_semi = ft_strtrim(*parse->s_semi, "\t");
 			parse->s_pipe = ft_split(*parse->s_semi, '|');
-			while (parse->s_semi[i])
+			while (parse->s_pipe[i])
 				i++;
 			while (*parse->s_pipe)
 			{
 				*parse->s_pipe = ft_strtrim(*parse->s_pipe, " ");
+				*parse->s_pipe = ft_strtrim(*parse->s_pipe, "\t");
 				if (--i)
 					ft_lstadd_back_cmd(&parse->command, ft_lstnew_cmd(*parse->s_pipe, PIPE));
 				else
@@ -52,7 +54,7 @@ void	splitted(t_parse *parse, char *line)
 	}
 	while (parse->command)
 	{
-		parse->command->command = check_command(parse->command->command);
+		parse->command->command = check_command(parse, parse->command->command);
 		printf("CMD  => |%s|\nTYPE => |%s|\n\n", parse->command->command, parse->command->type == 3 ? "PIPE" : "END");
 		parse->command = parse->command->next;
 	}
