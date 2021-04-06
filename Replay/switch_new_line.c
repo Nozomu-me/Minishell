@@ -1,75 +1,61 @@
 #include "parsing.h"
 
-int 	count_back2(char *line)
+char	*check_command(char *line)
 {
-    int cp;
-
-	cp = 0;
-    while (*line && *line == '\\')
-    {
-        cp++;
-        line--;
-	}
-    return (cp);
-}
-
-int retu(char c)
-{
-	if (c == '"' || c == '\\' || c == '\'')
-		return (1);
-	return (0);
-}
-char	*check_slash(char *line)
-{
-	int i = -1;
-	int p = 0;
-	int quote = 0;
-	while (line[++i])
-	{
-		if (line[i] == '\\' && line[i + 1] == '\\')
-			line[i + 1] *= -1;
-		else if (line[i] == '\\' && retu(line[i + 1]))// line[i + 1] == '"')
-			line[i] *= -1;
-		else if (line[i] == '"' && line[i - 1] == '\\' * -1)
-			line[i] *= -1;
-		// else if (line[i] == '\'' && );
-	}
-	i = -1;
-	while (line[++i])
-	{
-		if (line[i] != '\\' * -1 && line[i] != '"' && line[i - 1] != '\\')
-			p++;
-	}
-	printf("|%d|\n", p);
-	char *new = malloc(sizeof(char) * p + 1);
-	p = 0;
-	i = -1;
-	while (line[++i])
-	{
-		if (line[i] == '\\' && line[i + 1] > 0)
-			i++;
-		if (line[i] != '\\' * - 1 && line[i] != '"')
-		{
-			if (line[i] < 0)
-				new[p++] = line[i] * -1;
-			else
-				new[p++] = line[i];
-		}
-	}
-	new[p] = 0;
-	return (new);
-}
-
-int main()
-{
-	char *line;
+	char *new;
 	int i = 0;
-
-	while (1337)
+	int cp = 0;
+	new = ft_strdup(line);
+	int quote = OFF;
+	int single = OFF;
+	while (*new)
 	{
-		get_next_line(&line);
-		line = check_slash(line);
-		puts(line);
-		free(line);
+		if (quote == OFF && single == OFF)
+		{
+			if (*new == '\\')
+			{
+				cp++;
+				line[i++] = *(++new);
+			}
+			else
+			{
+				if (*new == '"' && cp % 2 == 0)
+					quote = 1;
+				else if (*new == '\'' && cp % 2 == 0)
+					single = 1;
+				else
+					line[i++] = *new;
+				cp = 0;
+			}
+		}
+		else
+		{
+			if (quote == ON)
+			{
+				if (*new == '"')
+					quote = OFF;
+				else if (*new == '\\' && new[1] == '\\')
+					line[i] = *(++new);
+				else if (*new == '\\' && new[1] < 0)
+					line[i++] = *(++new);
+				else
+					line[i++] = *new;
+			}
+			else if (single == ON)
+			{
+				if (*new == '\'')
+					new++;
+				while (*new != '\'')
+					line[i++] = *new++;
+				single = OFF;
+			}
+		}
+		new++;
 	}
+	line[i] = 0;
+	i = -1;
+	while (line[++i])
+		if (line[i] < 0)
+			line[i] *= -1;
+	return line;
 }

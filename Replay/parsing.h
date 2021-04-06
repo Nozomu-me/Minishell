@@ -87,7 +87,6 @@ typedef	struct	s_parse
 	t_command	*command;
 }				t_parse;
 
-
 void		ft_lstadd_back(t_cmds **alst, t_cmds *new);
 t_cmds		*ft_lstnew(char **v_cmd, char *v_type, char *f_name, char *f_type);
 void		affichage(char *line, t_cmds *cmds);
@@ -109,6 +108,8 @@ int		redirection(t_symbol *smbl);
 char	*check_redirection(t_symbol *smbl, char *line, int i, int *type);
 void	off_flags(t_symbol *smbl);
 
+/* command */
+char	*check_command(char *line);
 
 /*struct*/
 t_command	*ft_lstnew_cmd(char *v_cmd, int type);

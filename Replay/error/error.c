@@ -59,12 +59,9 @@ int 	count_back(char *line)
 //  check " and ' if is closed or note     &	change ; | to non printable characters
 char	*partition_stage(t_symbol *smbl, char *line)
 {
-	// t_symbol *smbl;
-	// t_symbol smbl2;
 	int i;
 
 	i = 0;
-	// smbl = &smbl2;
 	initial_symbol(smbl);
 	line = ft_strtrim(line, " ");
 	if (line[0] == '|')
@@ -87,11 +84,8 @@ char	*partition_stage(t_symbol *smbl, char *line)
 			line = check_redirection(smbl, line, i, &smbl->great);
 		else if (line[i] == '<')
 			line = check_redirection(smbl, line, i, &smbl->less);
-		else
-		{
-			if (check_flags(smbl) && line[i] != ' ')
+		else if (check_flags(smbl) && line[i] != ' ')
 				off_flags(smbl);
-		}
 		i++;
 	}
 	if (!smbl->error && (smbl->d_great || smbl->d_quote || smbl->s_quote || smbl->pipe || smbl->great || smbl->less))

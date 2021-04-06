@@ -6,85 +6,68 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/05 19:37:00 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/06 15:39:20 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	splitted(t_command *cmds, char *line)
+t_parse		*initail_struct(t_parse *parse)
 {
-	t_symbol smbl;
-	char	**s_splited;
-	char	**p_splited;
+	parse = (t_parse*)malloc(sizeof(t_parse));
+	parse->cmds = (t_cmds*)malloc(sizeof(t_cmds));
+	parse->command = (t_command*)malloc(sizeof(t_command));
+	parse->smbl = (t_symbol*)malloc(sizeof(t_symbol));
+	parse->cmds = NULL;
+	parse->command = NULL;
+	return parse;
+}
+
+void	splitted(t_parse *parse, char *line)
+{
 	int		i;
 
 	i = 0;
-	line = partition_stage(&smbl, line);
-	if (!smbl.error)
+	line = partition_stage(parse->smbl, line);
+	if (!parse->smbl->error)
 	{
-		s_splited = ft_split(line, ';');
-		while (*s_splited)
+		parse->s_semi = ft_split(line, ';');
+		while (*parse->s_semi)
 		{
-			*s_splited = ft_strtrim(*s_splited, " ");
-			p_splited = ft_split(*s_splited, '|');
-			while (p_splited[i])
+			*parse->s_semi = ft_strtrim(*parse->s_semi, " ");
+			parse->s_pipe = ft_split(*parse->s_semi, '|');
+			while (parse->s_semi[i])
 				i++;
-			while (*p_splited)
+			while (*parse->s_pipe)
 			{
-				*p_splited = ft_strtrim(*p_splited, " ");
+				*parse->s_pipe = ft_strtrim(*parse->s_pipe, " ");
 				if (--i)
-					ft_lstadd_back_cmd(&cmds, ft_lstnew_cmd(*p_splited, PIPE));
+					ft_lstadd_back_cmd(&parse->command, ft_lstnew_cmd(*parse->s_pipe, PIPE));
 				else
-					ft_lstadd_back_cmd(&cmds, ft_lstnew_cmd(*p_splited, END));
-				p_splited++;
+					ft_lstadd_back_cmd(&parse->command, ft_lstnew_cmd(*parse->s_pipe, END));
+				parse->s_pipe++;
 			}
-			s_splited++;
+			parse->s_semi++;
 		}
 	}
-	while (cmds)
+	while (parse->command)
 	{
-		printf("CMD  => |%s|\nTYPE => |%s|\n\n", cmds->command, cmds->type == 3 ? "PIPE" : "END");
-		cmds = cmds->next;
+		parse->command->command = check_command(parse->command->command);
+		printf("CMD  => |%s|\nTYPE => |%s|\n\n", parse->command->command, parse->command->type == 3 ? "PIPE" : "END");
+		parse->command = parse->command->next;
 	}
 }
 
 int main()
 {
 	char *line;
-	line = NULL;
-	t_command *cmds;
-	t_symbol *smbl;
-
-	cmds = NULL;
+	t_parse *parse;
+	parse = initail_struct(parse);
 	while (1337)
 	{
 		ft_putstr_fd(MINISHELL, 1);
 		get_next_line(&line);
-		splitted(cmds, line);
+		splitted(parse, line);
 		free(line);
 	}
 }
-
-/* int main(int argc, char const *argv[])
-{
-	char *str = ft_strdup(";;;;;;;\"kamlid;hamid\";rachid\"helo;\"");
-	char **splited;
-	puts(str);
-	splited = ft_split(str, ';');
-	while (*splited)
-	{
-		printf("|%s|\n", *splited);
-		splited++;
-	}
-	puts("\n");
-	str = change(str, ';', SEMI);
-	puts(str);
-	splited = ft_split(str, ';');
-	while (*splited)
-	{
-		printf("|%s|\n", *splited);
-		splited++;
-	}
- 	return 0;
-} */

@@ -4,7 +4,8 @@ LIBFT = libft/libft.a
 SRCS =	splited.c \
 		symbols.c \
 		struct.c \
-		error/error.c
+		error/error.c\
+		switch_new_line.c
 
 # OBJ = $(SRCS:.c=.o)
 OBJ_DIR		=	./objs
@@ -17,7 +18,7 @@ all: $(NAME)
 $(NAME) : $(OBJ) $(LIBFT)
 	@gcc $(OBJ) $(LIBFT) -o $(NAME)
 	@echo "\n\033[32m--------- successfully ---------\033[0m"
-
+	./minishell
 $(LIBFT): force
 	@make -C libft/
 
