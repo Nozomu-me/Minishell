@@ -5,7 +5,7 @@ char	*check_command(t_parse *parse, char *line)
 	char 	*new;
 	int		i;
 	int 	cp;
-
+ 
 	new = line;
 	i = 0;
 	cp = 0;
