@@ -82,6 +82,7 @@ typedef	struct	s_parse
 {
 	char		**s_semi;
 	char		**s_pipe;
+	char		**env;
 	t_cmds		*cmds;
 	t_symbol	*smbl;
 	t_command	*command;

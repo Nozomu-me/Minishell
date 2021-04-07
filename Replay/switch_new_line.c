@@ -2,15 +2,20 @@
 
 char	*check_command(t_parse *parse, char *line)
 {
-	char *new;
-	int i = 0;
-	int cp = 0;
-	new = ft_strdup(line);
-	int quote = OFF;
-	int single = OFF;
+	char 	*new;
+	int		i;
+	int 	cp;
+
+	new = line;
+	i = 0;
+	cp = 0;
 	while (*new)
 	{
-		if (quote == OFF && single == OFF)
+		// if (*new == '$' && count_back(new[-1]))
+		// {
+
+		// }
+		if (parse->smbl->d_quote == OFF && parse->smbl->s_quote == OFF)
 		{
 			if (*new == '\\')
 			{
@@ -20,9 +25,9 @@ char	*check_command(t_parse *parse, char *line)
 			else
 			{
 				if (*new == '"' && cp % 2 == 0)
-					quote = 1;
+					parse->smbl->d_quote = 1;
 				else if (*new == '\'' && cp % 2 == 0)
-					single = 1;
+					parse->smbl->s_quote = 1;
 				else
 					line[i++] = *new;
 				cp = 0;
@@ -30,10 +35,10 @@ char	*check_command(t_parse *parse, char *line)
 		}
 		else
 		{
-			if (quote == ON)
+			if (parse->smbl->d_quote == ON)
 			{
 				if (*new == '"')
-					quote = OFF;
+					parse->smbl->d_quote = OFF;
 				else if (*new == '\\' && new[1] == '\\')
 					line[i] = *(++new);
 				else if (*new == '\\' && new[1] < 0)
@@ -41,23 +46,21 @@ char	*check_command(t_parse *parse, char *line)
 				else
 					line[i++] = *new;
 			}
-			else if (single == ON)
+			else if (parse->smbl->s_quote == ON)
 			{
-				// printf("|%c|\t|%d|\t|%d|\n", *new, quote, single);
-				// if (*new == '\'')
-				// 	new++;
 				while (*new != '\'')
 					line[i++] = *new++;
-				single = OFF;
+				parse->smbl->s_quote = OFF;
 			}
 		}
-		printf("|%d|\n", single);
+		if (*new != '\\')
+			cp = 0;
 		new++;
 	}
 	line[i] = 0;
-	// i = -1;
-	// while (line[++i])
-	// 	if (line[i] < 0)
-	// 		line[i] *= -1;
+	i = -1;
+	while (line[++i])
+		if (line[i] < 0)
+			line[i] *= -1;
 	return line;
 }
