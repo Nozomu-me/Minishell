@@ -5,16 +5,20 @@ char	*check_command(t_parse *parse, char *line)
 	char 	*new;
 	int		i;
 	int 	cp;
+	int		count_dollar;
  
 	new = line;
 	i = 0;
 	cp = 0;
 	while (*new)
 	{
-		// if (*new == '$' && count_back(new[-1]))
-		// {
+		if (*new == '$' && count_back(new[-1]))
+		{
+			count_dollar = -1;
+			while (line[++count_dollar] != '$' && !count_back(line + (i - 1)))
+				;
 
-		// }
+		}
 		if (parse->smbl->d_quote == OFF && parse->smbl->s_quote == OFF)
 		{
 			if (*new == '\\')

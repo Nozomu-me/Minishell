@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/06 17:55:01 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/07 17:24:19 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_parse		*initail_struct(t_parse *parse)
 	parse->smbl = (t_symbol*)malloc(sizeof(t_symbol));
 	parse->cmds = NULL;
 	parse->command = NULL;
+	parse->env = "=~\\/%#$*+-.:?@[]^ ";
 	return parse;
 }
 
