@@ -1,23 +1,36 @@
 #include "parsing.h"
 
+// char	*ret(char *line, int i)
+// {
+// 	char *new;
+// 	int j;
+
+// 	j = -1;
+// 	new = malloc(sizeof(char) * i + 1);
+// 	while (++j < i)
+// 		new[j] = line[j]
+// }
 char	*check_command(t_parse *parse, char *line)
 {
 	char 	*new;
+	char 	*under_dollar;
 	int		i;
 	int 	cp;
-	int		count_dollar;
+	char	*count_dollar;
+	int		ret;
  
 	new = line;
+	ret = -1;
+	under_dollar = line;
 	i = 0;
 	cp = 0;
 	while (*new)
 	{
-		if (*new == '$' && count_back(new[-1]))
+		if (*new == '$' && !count_back(new + (i - 1)))
 		{
-			count_dollar = -1;
-			while (line[++count_dollar] != '$' && !count_back(line + (i - 1)))
-				;
-
+			printf("DOLLAR = |%s|\n", new);
+			// ret = 1;
+			// line = dollar(parse, line + i);
 		}
 		if (parse->smbl->d_quote == OFF && parse->smbl->s_quote == OFF)
 		{

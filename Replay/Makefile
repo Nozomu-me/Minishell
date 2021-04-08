@@ -4,19 +4,19 @@ LIBFT = libft/libft.a
 SRCS =	splited.c \
 		symbols.c \
 		struct.c \
+		dollar.c \
 		error/error.c\
 		switch_new_line.c
 
 # OBJ = $(SRCS:.c=.o)
 OBJ_DIR		=	./objs
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
-# OBJ :=  $(addprefix $(OBJECT_FOLDER)/, $(OBJ))
 CFLAGS = #-Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME) : $(OBJ) $(LIBFT)
-	@gcc $(OBJ) $(LIBFT) -o $(NAME)
+	@gcc -g $(OBJ) $(LIBFT) -o $(NAME)
 	@echo "\n\033[32m--------- successfully ---------\033[0m"
 
 $(LIBFT): force
@@ -25,7 +25,7 @@ $(LIBFT): force
 
 $(OBJ): $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	@gcc -c $< -o $@
+	@gcc -g -c $< -o $@
 
 force:
 

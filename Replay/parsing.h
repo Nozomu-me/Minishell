@@ -83,6 +83,7 @@ typedef	struct	s_parse
 	char		**s_semi;
 	char		**s_pipe;
 	char		**env;
+	char		*check_env;
 	t_cmds		*cmds;
 	t_symbol	*smbl;
 	t_command	*command;
@@ -115,4 +116,7 @@ char	*check_command(t_parse *parse, char *line);
 /*struct*/
 t_command	*ft_lstnew_cmd(char *v_cmd, int type);
 void		ft_lstadd_back_cmd(t_command **alst, t_command *new);
+
+/* dollar */
+char	*dollar(t_parse *parse, char *line);
 # endif

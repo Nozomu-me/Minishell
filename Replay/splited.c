@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/07 17:24:19 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/08 18:09:56 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_parse		*initail_struct(t_parse *parse)
 	parse->smbl = (t_symbol*)malloc(sizeof(t_symbol));
 	parse->cmds = NULL;
 	parse->command = NULL;
-	parse->env = "=~\\/%#$*+-.:?@[]^ ";
+	parse->check_env = "=~\\/%#$*+-.:?@[]^ ";
 	return parse;
 }
 
@@ -61,16 +61,21 @@ void	splitted(t_parse *parse, char *line)
 	}
 }
 
-int main()
+int main(int ac, char **av, char **env)
 {
 	char *line;
+	int r;
+
+
 	t_parse *parse;
 	parse = initail_struct(parse);
+	parse->env = env;
 	while (1337)
 	{
 		ft_putstr_fd(MINISHELL, 1);
-		get_next_line(&line);
+		r = get_next_line(&line);
 		splitted(parse, line);
 		free(line);
 	}
+	return (0);
 }
