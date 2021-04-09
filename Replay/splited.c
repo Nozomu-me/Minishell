@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/09 19:37:02 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/09 22:03:24 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_parse		*initail_struct(t_parse *parse)
 	parse->smbl = (t_symbol*)malloc(sizeof(t_symbol));
 	parse->cmds = NULL;
 	parse->command = NULL;
-	parse->check_env = "=~\\/%#{}$*+-.:?@[]^ ";
+	parse->check_env = "=~\\/%#{}$*+-.:?@[]^ '\"";
 	return parse;
 }
 
@@ -55,10 +55,11 @@ void	splitted(t_parse *parse, char *line)
 	}
 	while (parse->command)
 	{
-		printf("FIRST  => |%s|\n", parse->command->command);
-		parse->command->command = check_command(parse, parse->command->command);
-		printf("BEFORE => |%s|\n", parse->command->command);
+		// printf("FIRST  => |%s|\n", parse->command->command);
 		parse->command->command = check_dollr(parse, parse->command->command);
+		// printf("BEFORE => |%s|\n", parse->command->command);
+		parse->command->command = check_command(parse, parse->command->command);
+		parse->command->command = sort_redirection(parse, parse->command->command);
 		printf("AFTER  => |%s|\nTYPE => |%s|\n\n", parse->command->command, parse->command->type == 3 ? "PIPE" : "END");
 		parse->command = parse->command->next;
 	}

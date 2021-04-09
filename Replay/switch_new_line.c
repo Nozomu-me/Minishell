@@ -28,7 +28,7 @@ char	*check_command(t_parse *parse, char *line)
 	{
 		if (parse->smbl->d_quote == OFF && parse->smbl->s_quote == OFF)
 		{
-			if (*new == '\\')// && new[1] != '$' && !count_back(new))
+			if (*new == '\\')
 			{
 				cp++;
 				line[i++] = *(++new);
@@ -54,8 +54,6 @@ char	*check_command(t_parse *parse, char *line)
 					line[i++] = *(++new);
 				else if (*new == '\\' && new[1] < 0)
 					line[i++] = *(++new);
-				// else if (*new == '\\' && new[1] == '$')
-				// 	line[i++] = *new;
 				else
 					line[i++] = *new;
 			}
