@@ -43,6 +43,7 @@ int 	count_back(char *line)
     int cp;
 
 	cp = 0;
+	// line--;
     while (*line && *line == '\\')
     {
         cp++;

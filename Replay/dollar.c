@@ -1,5 +1,23 @@
 #include "parsing.h"
 
+// int 	count_back(char *line)
+// {
+//     int cp;
+
+// 	cp = 0;
+//     while (*line && *line == '\\')
+//     {
+//         cp++;
+//         line--;
+// 	}
+// 	/*	1	=>	doesnt followed by quotes
+// 		0	=>	followed by quotes
+// 	*/
+// 	if (cp % 2 == 0)
+// 		return (0);
+//     return (1);
+// }
+
 int		compare(char *str, char *str2)
 {
 	while (*str || *str2)
@@ -31,10 +49,40 @@ char	*dollar(t_parse *parse, char *line)
 		split = ft_split(parse->env[i], '=');
 		// printf("ENV   =  |%s|\tLINE   = |%s|\tPATH = |%s|\n", parse->check_env, line + j, path);
 		if (compare(split[0], path))
+		{
+			// puts("ok");
 			return (ft_strjoin(split[1], line + j));
+		}
 		i++;
 	}
 	return (line + j);
+}
+
+
+char	*check_dollr(t_parse *parse, char *line)
+{
+	int i;
+	// int j;
+	char *new;
+	int j = 0;
+
+	i = 0;
+	while (line[i])
+	{
+		j = !count_back(line + (i - 1));
+		// printf("[%d]\t|%d|\t|%d|\n", i, !count_back(line + (i - 1)), j);
+		if (line[i] == '$' && !count_back(line + (i - 1)))
+		{
+			// j =  i + 1;
+			new = dollar(parse, line + i + 1);
+			// printf("NEW = |%s|\n", new);
+			line[i] = 0;
+			line = ft_strjoin(line, new);
+			i = 0;
+		}
+		i++;
+	}
+	return line;
 }
 
 /* int main(int ac, char **av, char **env)
@@ -44,12 +92,12 @@ char	*dollar(t_parse *parse, char *line)
 	int i = -1;
 	parse = (t_parse*)malloc(sizeof(t_parse));
 	parse->env = env;
-	parse->check_env = "=~\\/%#$*+-.:?@[]^ ";
+	parse->check_env = "=~\\/%{}#$*+-.:?@[]^ ";
 	char *ret;
 	while (42)
 	{
 		get_next_line(&line);
-		ret = dollar(parse, line + 1);
+		ret = check_dollr(parse, line);
 		printf("RETURN = |%s|\n", ret);
 	}
 	return (0);

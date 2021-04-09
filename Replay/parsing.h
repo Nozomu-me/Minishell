@@ -119,4 +119,5 @@ void		ft_lstadd_back_cmd(t_command **alst, t_command *new);
 
 /* dollar */
 char	*dollar(t_parse *parse, char *line);
+char	*check_dollr(t_parse *parse, char *line);
 # endif
