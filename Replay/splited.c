@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/09 22:03:24 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/10 18:48:54 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,20 @@ t_parse		*initail_struct(t_parse *parse)
 	parse->check_env = "=~\\/%#{}$*+-.:?@[]^ '\"";
 	return parse;
 }
+void	push_to_struct(t_parse *parse, char *line)
+{
+	int i;
+	int start;
+	int end;
 
+	i = 0;
+	start = i;
+	end = start;
+	while (line[i])
+	{
+		;
+	}
+}
 void	splitted(t_parse *parse, char *line)
 {
 	int		i;
@@ -55,14 +68,13 @@ void	splitted(t_parse *parse, char *line)
 	}
 	while (parse->command)
 	{
-		// printf("FIRST  => |%s|\n", parse->command->command);
 		parse->command->command = check_dollr(parse, parse->command->command);
-		// printf("BEFORE => |%s|\n", parse->command->command);
-		parse->command->command = check_command(parse, parse->command->command);
-		parse->command->command = sort_redirection(parse, parse->command->command);
+		// push_to_struct(parse, parse->command->command);
+		// parse->command->command = sort_redirection(parse->command->command);
 		printf("AFTER  => |%s|\nTYPE => |%s|\n\n", parse->command->command, parse->command->type == 3 ? "PIPE" : "END");
 		parse->command = parse->command->next;
 	}
+	// parse->command->command = check_command(parse, parse->command->command);
 }
 
 int main(int ac, char **av, char **env)

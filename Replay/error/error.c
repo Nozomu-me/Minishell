@@ -38,13 +38,13 @@ int		check_flags(t_symbol *smbl)
 	return (sum);
 }
 
-int 	count_back(char *line)
+int 	count_back(char *line /*, int l */)
 {
     int cp;
 
 	cp = 0;
 	// line--;
-    while (*line && *line == '\\')
+    while (*line == '\\' /* && l-- */)
     {
         cp++;
         line--;

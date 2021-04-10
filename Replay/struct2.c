@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:22:04 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/04 11:59:43 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/10 15:02:39 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct  s_cmds
     t_type      type;
     t_file      *filename;
 }               t_cmds;
+
 /*
 t_file		*ft_lstnew_file(char *f_name, int f_type)
 {
@@ -121,26 +122,26 @@ t_cmds		*ft_lstnew(char **v_cmd, int v_type, char *f_name, int f_type)
 	return (new);
 }
 
-int main(int argc, char const *argv[])
-{
-	t_cmds *cmd;
-
-	char *str = "FUTURE IS LOADING";
-	char **splited = ft_split(str, ' ');
-	cmd = NULL;
-	cmd = ft_lstnew(splited, WRITE, "hello", READ);
-	
-	printf("CMDS => ");
-	while (*cmd->cmd)
-	{
-		printf("|%s|\t", *cmd->cmd);
-		cmd->cmd++;
-	}
-	printf("\nTYPE => |%d|\n", cmd->type);
-	while (cmd->filename)
-	{
-		printf("FILE ==>  |%s|\t|%d|\n", cmd->filename->filename, cmd->filename->filetype);
-		cmd->filename = cmd->filename->next;
-	}
-	return 0;
-}
+//int main(int argc, char const *argv[])
+//{
+//	t_cmds *cmd;
+//
+//	char *str = "FUTURE IS LOADING";
+//	char **splited = ft_split(str, ' ');
+//	cmd = NULL;
+//	cmd = ft_lstnew(splited, WRITE, "hello", READ);
+//
+//	printf("CMDS => ");
+//	while (*cmd->cmd)
+//	{
+//		printf("|%s|\t", *cmd->cmd);
+//		cmd->cmd++;
+//	}
+//	printf("\nTYPE => |%d|\n", cmd->type);
+//	while (cmd->filename)
+//	{
+//		printf("FILE ==>  |%s|\t|%d|\n", cmd->filename->filename, cmd->filename->filetype);
+//		cmd->filename = cmd->filename->next;
+//	}
+//	return 0;
+//}

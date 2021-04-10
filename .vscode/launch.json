@@ -8,7 +8,7 @@
 			"name": "clang - Build and debug active file",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "/Users/abdel-ke/Desktop/minishell_/Replay/minishell",
+			"program": "/Users/abdel-ke/Desktop/minishell_/test/minishell",
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",

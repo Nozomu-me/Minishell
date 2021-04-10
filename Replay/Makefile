@@ -6,7 +6,9 @@ SRCS =	splited.c \
 		struct.c \
 		dollar.c \
 		error/error.c\
-		switch_new_line.c
+		switch_new_line.c\
+		redirection.c\
+		change_to_sp.c
 
 # OBJ = $(SRCS:.c=.o)
 OBJ_DIR		=	./objs

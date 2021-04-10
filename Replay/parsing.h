@@ -120,4 +120,9 @@ void		ft_lstadd_back_cmd(t_command **alst, t_command *new);
 /* dollar */
 char	*dollar(t_parse *parse, char *line);
 char	*check_dollr(t_parse *parse, char *line);
+
+/*redirection */
+char	*sort_redirection(char *line);
+
+char    *search_replace(char *str, char *org, char *rep);
 # endif
