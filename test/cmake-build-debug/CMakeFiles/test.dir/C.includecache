@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/abdel-ke/Desktop/minishell_/test/libft.h
+stdlib.h
+-
+unistd.h
+-
+stdio.h
+-
+
+/Users/abdel-ke/Desktop/minishell_/test/parsing.h
+libft.h
+/Users/abdel-ke/Desktop/minishell_/test/libft.h
+
+/Users/abdel-ke/Desktop/minishell_/test/test.c
+parsing.h
+/Users/abdel-ke/Desktop/minishell_/test/parsing.h
+

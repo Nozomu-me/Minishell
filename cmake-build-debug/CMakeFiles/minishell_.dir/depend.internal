@@ -114,14 +114,18 @@ CMakeFiles/minishell_.dir/Replay/libft/ft_toupper.c.o
 CMakeFiles/minishell_.dir/Replay/libft/get_next_line.c.o
  /Users/abdel-ke/Desktop/minishell_/Replay/libft/get_next_line.c
  /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
+CMakeFiles/minishell_.dir/Replay/parsing.c.o
+ /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
+ /Users/abdel-ke/Desktop/minishell_/Replay/parsing.c
+ /Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
+CMakeFiles/minishell_.dir/Replay/push_to_struct.c.o
+ /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
+ /Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
+ /Users/abdel-ke/Desktop/minishell_/Replay/push_to_struct.c
 CMakeFiles/minishell_.dir/Replay/redirection.c.o
  /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
  /Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
  /Users/abdel-ke/Desktop/minishell_/Replay/redirection.c
-CMakeFiles/minishell_.dir/Replay/splited.c.o
- /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
- /Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
- /Users/abdel-ke/Desktop/minishell_/Replay/splited.c
 CMakeFiles/minishell_.dir/Replay/struct.c.o
  /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
  /Users/abdel-ke/Desktop/minishell_/Replay/parsing.h

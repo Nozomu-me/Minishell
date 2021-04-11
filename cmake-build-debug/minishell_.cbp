@@ -198,16 +198,19 @@
 		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h">
 			<Option target="minishell_"/>
 		</Unit>
+		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/parsing.c">
+			<Option target="minishell_"/>
+		</Unit>
 		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/parsing.h">
+			<Option target="minishell_"/>
+		</Unit>
+		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/push_to_struct.c">
 			<Option target="minishell_"/>
 		</Unit>
 		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/redirection.c">
 			<Option target="minishell_"/>
 		</Unit>
 		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/sh_dollar.sh">
-			<Option target="minishell_"/>
-		</Unit>
-		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/splited.c">
 			<Option target="minishell_"/>
 		</Unit>
 		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/struct.c">

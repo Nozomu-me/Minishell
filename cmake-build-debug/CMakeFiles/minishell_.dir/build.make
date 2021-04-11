@@ -551,18 +551,18 @@ CMakeFiles/minishell_.dir/Replay/redirection.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/minishell_.dir/Replay/redirection.c.s"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/abdel-ke/Desktop/minishell_/Replay/redirection.c -o CMakeFiles/minishell_.dir/Replay/redirection.c.s
 
-CMakeFiles/minishell_.dir/Replay/splited.c.o: CMakeFiles/minishell_.dir/flags.make
-CMakeFiles/minishell_.dir/Replay/splited.c.o: ../Replay/splited.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building C object CMakeFiles/minishell_.dir/Replay/splited.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/minishell_.dir/Replay/splited.c.o   -c /Users/abdel-ke/Desktop/minishell_/Replay/splited.c
+CMakeFiles/minishell_.dir/Replay/parsing.c.o: CMakeFiles/minishell_.dir/flags.make
+CMakeFiles/minishell_.dir/Replay/parsing.c.o: ../Replay/parsing.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building C object CMakeFiles/minishell_.dir/Replay/parsing.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/minishell_.dir/Replay/parsing.c.o   -c /Users/abdel-ke/Desktop/minishell_/Replay/parsing.c
 
-CMakeFiles/minishell_.dir/Replay/splited.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/minishell_.dir/Replay/splited.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/abdel-ke/Desktop/minishell_/Replay/splited.c > CMakeFiles/minishell_.dir/Replay/splited.c.i
+CMakeFiles/minishell_.dir/Replay/parsing.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/minishell_.dir/Replay/parsing.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/abdel-ke/Desktop/minishell_/Replay/parsing.c > CMakeFiles/minishell_.dir/Replay/parsing.c.i
 
-CMakeFiles/minishell_.dir/Replay/splited.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/minishell_.dir/Replay/splited.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/abdel-ke/Desktop/minishell_/Replay/splited.c -o CMakeFiles/minishell_.dir/Replay/splited.c.s
+CMakeFiles/minishell_.dir/Replay/parsing.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/minishell_.dir/Replay/parsing.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/abdel-ke/Desktop/minishell_/Replay/parsing.c -o CMakeFiles/minishell_.dir/Replay/parsing.c.s
 
 CMakeFiles/minishell_.dir/Replay/struct.c.o: CMakeFiles/minishell_.dir/flags.make
 CMakeFiles/minishell_.dir/Replay/struct.c.o: ../Replay/struct.c
@@ -603,9 +603,22 @@ CMakeFiles/minishell_.dir/Replay/switch_new_line.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/minishell_.dir/Replay/switch_new_line.c.s"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/abdel-ke/Desktop/minishell_/Replay/switch_new_line.c -o CMakeFiles/minishell_.dir/Replay/switch_new_line.c.s
 
+CMakeFiles/minishell_.dir/Replay/push_to_struct.c.o: CMakeFiles/minishell_.dir/flags.make
+CMakeFiles/minishell_.dir/Replay/push_to_struct.c.o: ../Replay/push_to_struct.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building C object CMakeFiles/minishell_.dir/Replay/push_to_struct.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/minishell_.dir/Replay/push_to_struct.c.o   -c /Users/abdel-ke/Desktop/minishell_/Replay/push_to_struct.c
+
+CMakeFiles/minishell_.dir/Replay/push_to_struct.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/minishell_.dir/Replay/push_to_struct.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/abdel-ke/Desktop/minishell_/Replay/push_to_struct.c > CMakeFiles/minishell_.dir/Replay/push_to_struct.c.i
+
+CMakeFiles/minishell_.dir/Replay/push_to_struct.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/minishell_.dir/Replay/push_to_struct.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/abdel-ke/Desktop/minishell_/Replay/push_to_struct.c -o CMakeFiles/minishell_.dir/Replay/push_to_struct.c.s
+
 CMakeFiles/minishell_.dir/Replay/symbols.c.o: CMakeFiles/minishell_.dir/flags.make
 CMakeFiles/minishell_.dir/Replay/symbols.c.o: ../Replay/symbols.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building C object CMakeFiles/minishell_.dir/Replay/symbols.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building C object CMakeFiles/minishell_.dir/Replay/symbols.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/minishell_.dir/Replay/symbols.c.o   -c /Users/abdel-ke/Desktop/minishell_/Replay/symbols.c
 
 CMakeFiles/minishell_.dir/Replay/symbols.c.i: cmake_force
@@ -656,10 +669,11 @@ minishell__OBJECTS = \
 "CMakeFiles/minishell_.dir/Replay/libft/get_next_line.c.o" \
 "CMakeFiles/minishell_.dir/Replay/dollar.c.o" \
 "CMakeFiles/minishell_.dir/Replay/redirection.c.o" \
-"CMakeFiles/minishell_.dir/Replay/splited.c.o" \
+"CMakeFiles/minishell_.dir/Replay/parsing.c.o" \
 "CMakeFiles/minishell_.dir/Replay/struct.c.o" \
 "CMakeFiles/minishell_.dir/Replay/struct2.c.o" \
 "CMakeFiles/minishell_.dir/Replay/switch_new_line.c.o" \
+"CMakeFiles/minishell_.dir/Replay/push_to_struct.c.o" \
 "CMakeFiles/minishell_.dir/Replay/symbols.c.o"
 
 # External object files for target minishell_
@@ -703,14 +717,15 @@ minishell_: CMakeFiles/minishell_.dir/Replay/libft/ft_toupper.c.o
 minishell_: CMakeFiles/minishell_.dir/Replay/libft/get_next_line.c.o
 minishell_: CMakeFiles/minishell_.dir/Replay/dollar.c.o
 minishell_: CMakeFiles/minishell_.dir/Replay/redirection.c.o
-minishell_: CMakeFiles/minishell_.dir/Replay/splited.c.o
+minishell_: CMakeFiles/minishell_.dir/Replay/parsing.c.o
 minishell_: CMakeFiles/minishell_.dir/Replay/struct.c.o
 minishell_: CMakeFiles/minishell_.dir/Replay/struct2.c.o
 minishell_: CMakeFiles/minishell_.dir/Replay/switch_new_line.c.o
+minishell_: CMakeFiles/minishell_.dir/Replay/push_to_struct.c.o
 minishell_: CMakeFiles/minishell_.dir/Replay/symbols.c.o
 minishell_: CMakeFiles/minishell_.dir/build.make
 minishell_: CMakeFiles/minishell_.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Linking C executable minishell_"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Linking C executable minishell_"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/minishell_.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

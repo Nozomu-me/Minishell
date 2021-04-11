@@ -1122,6 +1122,60 @@ Replay/libft/get_next_line.c.s:
 	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/libft/get_next_line.c.s
 .PHONY : Replay/libft/get_next_line.c.s
 
+Replay/parsing.o: Replay/parsing.c.o
+
+.PHONY : Replay/parsing.o
+
+# target to build an object file
+Replay/parsing.c.o:
+	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/parsing.c.o
+.PHONY : Replay/parsing.c.o
+
+Replay/parsing.i: Replay/parsing.c.i
+
+.PHONY : Replay/parsing.i
+
+# target to preprocess a source file
+Replay/parsing.c.i:
+	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/parsing.c.i
+.PHONY : Replay/parsing.c.i
+
+Replay/parsing.s: Replay/parsing.c.s
+
+.PHONY : Replay/parsing.s
+
+# target to generate assembly for a file
+Replay/parsing.c.s:
+	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/parsing.c.s
+.PHONY : Replay/parsing.c.s
+
+Replay/push_to_struct.o: Replay/push_to_struct.c.o
+
+.PHONY : Replay/push_to_struct.o
+
+# target to build an object file
+Replay/push_to_struct.c.o:
+	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/push_to_struct.c.o
+.PHONY : Replay/push_to_struct.c.o
+
+Replay/push_to_struct.i: Replay/push_to_struct.c.i
+
+.PHONY : Replay/push_to_struct.i
+
+# target to preprocess a source file
+Replay/push_to_struct.c.i:
+	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/push_to_struct.c.i
+.PHONY : Replay/push_to_struct.c.i
+
+Replay/push_to_struct.s: Replay/push_to_struct.c.s
+
+.PHONY : Replay/push_to_struct.s
+
+# target to generate assembly for a file
+Replay/push_to_struct.c.s:
+	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/push_to_struct.c.s
+.PHONY : Replay/push_to_struct.c.s
+
 Replay/redirection.o: Replay/redirection.c.o
 
 .PHONY : Replay/redirection.o
@@ -1148,33 +1202,6 @@ Replay/redirection.s: Replay/redirection.c.s
 Replay/redirection.c.s:
 	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/redirection.c.s
 .PHONY : Replay/redirection.c.s
-
-Replay/splited.o: Replay/splited.c.o
-
-.PHONY : Replay/splited.o
-
-# target to build an object file
-Replay/splited.c.o:
-	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/splited.c.o
-.PHONY : Replay/splited.c.o
-
-Replay/splited.i: Replay/splited.c.i
-
-.PHONY : Replay/splited.i
-
-# target to preprocess a source file
-Replay/splited.c.i:
-	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/splited.c.i
-.PHONY : Replay/splited.c.i
-
-Replay/splited.s: Replay/splited.c.s
-
-.PHONY : Replay/splited.s
-
-# target to generate assembly for a file
-Replay/splited.c.s:
-	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/splited.c.s
-.PHONY : Replay/splited.c.s
 
 Replay/struct.o: Replay/struct.c.o
 
@@ -1404,12 +1431,15 @@ help:
 	@echo "... Replay/libft/get_next_line.o"
 	@echo "... Replay/libft/get_next_line.i"
 	@echo "... Replay/libft/get_next_line.s"
+	@echo "... Replay/parsing.o"
+	@echo "... Replay/parsing.i"
+	@echo "... Replay/parsing.s"
+	@echo "... Replay/push_to_struct.o"
+	@echo "... Replay/push_to_struct.i"
+	@echo "... Replay/push_to_struct.s"
 	@echo "... Replay/redirection.o"
 	@echo "... Replay/redirection.i"
 	@echo "... Replay/redirection.s"
-	@echo "... Replay/splited.o"
-	@echo "... Replay/splited.i"
-	@echo "... Replay/splited.s"
 	@echo "... Replay/struct.o"
 	@echo "... Replay/struct.i"
 	@echo "... Replay/struct.s"

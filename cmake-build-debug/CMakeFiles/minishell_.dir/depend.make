@@ -114,13 +114,17 @@ CMakeFiles/minishell_.dir/Replay/libft/ft_toupper.c.o: ../Replay/libft/libft.h
 CMakeFiles/minishell_.dir/Replay/libft/get_next_line.c.o: ../Replay/libft/get_next_line.c
 CMakeFiles/minishell_.dir/Replay/libft/get_next_line.c.o: ../Replay/libft/libft.h
 
+CMakeFiles/minishell_.dir/Replay/parsing.c.o: ../Replay/libft/libft.h
+CMakeFiles/minishell_.dir/Replay/parsing.c.o: ../Replay/parsing.c
+CMakeFiles/minishell_.dir/Replay/parsing.c.o: ../Replay/parsing.h
+
+CMakeFiles/minishell_.dir/Replay/push_to_struct.c.o: ../Replay/libft/libft.h
+CMakeFiles/minishell_.dir/Replay/push_to_struct.c.o: ../Replay/parsing.h
+CMakeFiles/minishell_.dir/Replay/push_to_struct.c.o: ../Replay/push_to_struct.c
+
 CMakeFiles/minishell_.dir/Replay/redirection.c.o: ../Replay/libft/libft.h
 CMakeFiles/minishell_.dir/Replay/redirection.c.o: ../Replay/parsing.h
 CMakeFiles/minishell_.dir/Replay/redirection.c.o: ../Replay/redirection.c
-
-CMakeFiles/minishell_.dir/Replay/splited.c.o: ../Replay/libft/libft.h
-CMakeFiles/minishell_.dir/Replay/splited.c.o: ../Replay/parsing.h
-CMakeFiles/minishell_.dir/Replay/splited.c.o: ../Replay/splited.c
 
 CMakeFiles/minishell_.dir/Replay/struct.c.o: ../Replay/libft/libft.h
 CMakeFiles/minishell_.dir/Replay/struct.c.o: ../Replay/parsing.h

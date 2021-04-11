@@ -1,0 +1,3 @@
+/Users/abdel-ke/Desktop/minishell_/test/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/abdel-ke/Desktop/minishell_/test/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/abdel-ke/Desktop/minishell_/test/cmake-build-debug/CMakeFiles/test.dir
