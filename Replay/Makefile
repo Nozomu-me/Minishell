@@ -1,14 +1,16 @@
 NAME = minishell
 LIBFT = libft/libft.a
 
-SRCS =	splited.c \
+SRCS =	parsing.c \
 		symbols.c \
 		struct.c \
+		struct2.c \
 		dollar.c \
 		error/error.c\
 		switch_new_line.c\
 		redirection.c\
-		change_to_sp.c
+		change_to_sp.c\
+		push_to_struct.c
 
 # OBJ = $(SRCS:.c=.o)
 OBJ_DIR		=	./objs

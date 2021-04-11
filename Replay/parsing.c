@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   splited.c                                          :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/10 18:48:54 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/11 18:33:17 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,19 @@
 t_parse		*initail_struct(t_parse *parse)
 {
 	parse = (t_parse*)malloc(sizeof(t_parse));
-	parse->cmds = (t_cmds*)malloc(sizeof(t_cmds));
-	parse->command = (t_command*)malloc(sizeof(t_command));
+	// parse->cmds = (t_cmds*)malloc(sizeof(t_cmds));
+	// parse->cmds->file = (t_file*)malloc(sizeof(t_file));
+	// parse->command = (t_command*)malloc(sizeof(t_command));
 	parse->smbl = (t_symbol*)malloc(sizeof(t_symbol));
+	parse->ready_p = NULL;//(t_ready_to_push*)malloc(sizeof(t_ready_to_push));
 	parse->cmds = NULL;
 	parse->command = NULL;
-	parse->check_env = "=~\\/%#{}$*+-.:?@[]^ '\"";
+	// parse->cmds->file = NULL;
+	parse->check_env = ft_strdup("=~\\/%#{}$*+-.:?@[]^ '\"");
 	return parse;
 }
-void	push_to_struct(t_parse *parse, char *line)
-{
-	int i;
-	int start;
-	int end;
 
-	i = 0;
-	start = i;
-	end = start;
-	while (line[i])
-	{
-		;
-	}
-}
-void	splitted(t_parse *parse, char *line)
+void	parsing(t_parse *parse, char *line)
 {
 	int		i;
 
@@ -66,12 +56,14 @@ void	splitted(t_parse *parse, char *line)
 			parse->s_semi++;
 		}
 	}
+	// puts("ok");
 	while (parse->command)
 	{
+	// puts("ok1");
 		parse->command->command = check_dollr(parse, parse->command->command);
-		// push_to_struct(parse, parse->command->command);
+		push_to_struct(parse, parse->command->command);
 		// parse->command->command = sort_redirection(parse->command->command);
-		printf("AFTER  => |%s|\nTYPE => |%s|\n\n", parse->command->command, parse->command->type == 3 ? "PIPE" : "END");
+		// printf("AFTER  => |%s|\nTYPE => |%s|\n\n", parse->command->command, parse->command->type == 3 ? "PIPE" : "END");
 		parse->command = parse->command->next;
 	}
 	// parse->command->command = check_command(parse, parse->command->command);
@@ -90,7 +82,7 @@ int main(int ac, char **av, char **env)
 	{
 		ft_putstr_fd(MINISHELL, 1);
 		r = get_next_line(&line);
-		splitted(parse, line);
+		parsing(parse, line);
 		free(line);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 17:02:55 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/09 18:16:58 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/11 11:50:21 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,20 @@ char	*check_semicolone(t_symbol *smbl, char *line, int i)
 	return (line);
 }
 
+char	*check_space(t_symbol *smbl, char *line, int i)
+{
+	if (smbl->d_quote == ON || smbl->s_quote == ON)
+		line[i] *= -1;
+	return (line);
+}
+
 char	*check_pipe(t_symbol *smbl, char *line, int i)
 {
 	if (smbl->d_quote == OFF && smbl->s_quote == OFF)
 	{
 		if (count_back(line + (i - 1)))
 			line[i] *= -1;
-		else 
+		else 	
 		if (redirection(smbl))// && smbl->pipe == ON)
 		{
 			ft_error(smbl, "1=>syntax error near unexpected token `|'", RED, WHITE);

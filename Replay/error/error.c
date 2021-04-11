@@ -85,6 +85,8 @@ char	*partition_stage(t_symbol *smbl, char *line)
 			line = check_redirection(smbl, line, i, &smbl->great);
 		else if (line[i] == '<')
 			line = check_redirection(smbl, line, i, &smbl->less);
+		else if (line[i] == ' ')
+			line = check_space(smbl, line, i);
 		else if (check_flags(smbl) && line[i] != ' ')
 				off_flags(smbl);
 		i++;
