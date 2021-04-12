@@ -68,10 +68,10 @@ char	*check_command(t_parse *parse, char *line)
 			cp = 0;
 		new++;
 	}
-		line[i] = 0;
-		i = -1;
-		while (line[++i])
-			if (line[i] < 0)
-				line[i] *= -1;
+	line[i] = 0;
+	i = -1;
+	while (line[++i])
+		if (line[i] < 0)
+			line[i] *= -1;
 	return line;
 }

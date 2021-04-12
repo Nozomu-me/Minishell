@@ -17,7 +17,10 @@
 // 		return (0);
 //     return (1);
 // }
-
+// char	*check_dollr_quote(t_symbol *smbl, char *line, int i)
+// {
+// 	if (line[i]);
+// }
 int		compare(char *str, char *str2)
 {
 	while (*str || *str2)
@@ -64,12 +67,10 @@ char	*check_dollr(t_parse *parse, char *line)
 	int i;
 	// int j;
 	char *new;
-	int j = 0;
 
 	i = 0;
 	while (line[i])
 	{
-		j = !count_back(line + (i - 1));
 		// printf("[%d]\t|%d|\t|%d|\n", i, !count_back(line + (i - 1)), j);
 		if (line[i] == '$' && !count_back(line + (i - 1)))
 		{
@@ -80,6 +81,8 @@ char	*check_dollr(t_parse *parse, char *line)
 			line = ft_strjoin(line, new);
 			i = 0;
 		}
+		else if (line[i] == '$' && count_back(line + (i - 1)))
+			line[i] *= -1;
 		i++;
 	}
 	return line;
