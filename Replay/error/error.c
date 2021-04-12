@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:30:33 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/12 18:30:34 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/12 22:21:32 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,9 @@ int 	count_back(char *line)
     return (1);
 }
 
-/*  check " and ' if is closed or note     &	change ; | to non printable characters */
-char	*partition_stage(t_symbol *smbl, char *line)
+char	*check_symbols(t_symbol *smbl, char *line, int i)
 {
-	int i;
-
-	i = 0;
-	initial_symbol(smbl);
-	line = ft_strtrim(line, " ");
-	if (line[0] == '|')
-		ft_error(smbl, "bash: syntax error near unexpected token `|'", RED, WHITE);
-	if (line[0] == ';')
-		ft_error(smbl, "bash: syntax error near unexpected token `;'", RED, WHITE);
-	while (line[i] && !smbl->error)
+	while (line[++i] && !smbl->error)
 	{
 		if (line[i] == '"')
 			line = check_d_quote(smbl, line, i);
@@ -100,11 +90,24 @@ char	*partition_stage(t_symbol *smbl, char *line)
 		else if (line[i] == '$')
 			line[i] = smbl->s_quote == ON ? line[i] *= -1 : line[i];
 		else if (check_flags(smbl) && line[i] != ' ')
-				off_flags(smbl);
-		i++;
+			off_flags(smbl);
 	}
+	return (line);
+}
+/*  check " and ' if is closed or note     &	change ; | to non printable characters */
+char	*partition_stage(t_symbol *smbl, char *line)
+{
+	int i;
+
+	i = 0;
+	initial_symbol(smbl);
+	line = ft_strtrim(line, " ");
+	if (line[0] == '|')
+		ft_error(smbl, "bash: syntax error near unexpected token `|'", RED, WHITE);
+	if (line[0] == ';')
+		ft_error(smbl, "bash: syntax error near unexpected token `;'", RED, WHITE);
+	line = check_symbols(smbl, line, -1);
 	if (!smbl->error && (smbl->d_great || smbl->d_quote || smbl->s_quote || smbl->pipe || smbl->great || smbl->less))
 		ft_error(smbl, "syntax error near unexpected token `newline'", RED, WHITE);
-	// printf("=> |%s|\n\n\n", line);
 	return line;
 }

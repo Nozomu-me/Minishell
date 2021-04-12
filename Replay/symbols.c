@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 17:02:55 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/12 18:37:37 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/12 22:29:58 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*check_semicolone(t_symbol *smbl, char *line, int i)
 	{
 		if (count_back(line + (i - 1)))
 			line[i] *= -1;
-		else 
+		else
 		if (redirection(smbl))
 		{
 			ft_error(smbl, "1=>syntax error near unexpected token `;'", RED, WHITE);
@@ -82,6 +82,11 @@ char	*check_semicolone(t_symbol *smbl, char *line, int i)
 			{
 				ft_error(smbl, "2=>syntax error near unexpected token `;'", RED, WHITE);
 				smbl->semi = OFF;
+			}
+			else if (smbl->pipe == ON)
+			{
+				ft_error(smbl, "3=>syntax error near unexpected token `;'", RED, WHITE);
+				off_flags(smbl);
 			}
 			else
 				smbl->semi = ON;
@@ -115,8 +120,7 @@ char	*check_pipe(t_symbol *smbl, char *line, int i)
 	{
 		if (count_back(line + (i - 1)))
 			line[i] *= -1;
-		else 	
-		if (redirection(smbl))
+		else if (redirection(smbl))
 		{
 			ft_error(smbl, "1=>syntax error near unexpected token `|'", RED, WHITE);
 			off_flags(smbl);
@@ -128,7 +132,13 @@ char	*check_pipe(t_symbol *smbl, char *line, int i)
 				ft_error(smbl, "2=>syntax error near unexpected token `|'", RED, WHITE);
 				smbl->pipe = OFF;
 			}
-			else smbl->pipe = ON;
+			else if (smbl->semi == ON)
+			{
+				ft_error(smbl, "3=>syntax error near unexpected token `|'", RED, WHITE);
+				off_flags(smbl);
+			}
+			else
+				smbl->pipe = ON;
 		}
 	}
 	else
@@ -140,7 +150,7 @@ char	*check_pipe(t_symbol *smbl, char *line, int i)
 			if (smbl->pipe == OFF)
 				smbl->pipe = ON;
 			else
-			ft_error(smbl, "3=>syntax error near unexpected token `|'", RED, WHITE);
+			ft_error(smbl, "4=>syntax error near unexpected token `|'", RED, WHITE);
 		}
 	}
 	return (line);
@@ -167,7 +177,7 @@ char	*check_redirection(t_symbol *smbl, char *line, int i, int *type)
 		{
 			if (line[i + 1] == '>')
 				ft_error_redirection(smbl, "syntax error near unexpected token", 63);
-			else 
+			else
 				ft_error_redirection(smbl, "syntax error near unexpected token", line[i]);
 		}
 	}
