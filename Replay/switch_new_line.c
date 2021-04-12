@@ -69,9 +69,11 @@ char	*check_command(t_parse *parse, char *line)
 		new++;
 	}
 	line[i] = 0;
+	// printf("\t\t\tLINE = |%s|\n", line);
 	i = -1;
 	while (line[++i])
 		if (line[i] < 0)
 			line[i] *= -1;
+	// printf("\t\t\tLINE = |%s|\n", line);
 	return line;
 }

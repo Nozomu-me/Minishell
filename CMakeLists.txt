@@ -51,6 +51,7 @@ add_executable(minishell_
         Replay/parsing.c
         Replay/struct.c
         Replay/struct2.c
+        Replay/change_to_sp.c
         Replay/switch_new_line.c
         Replay/push_to_struct.c
         Replay/symbols.c)

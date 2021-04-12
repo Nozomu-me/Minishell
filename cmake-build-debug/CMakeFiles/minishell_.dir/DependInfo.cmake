@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/Users/abdel-ke/Desktop/minishell_/Replay/change_to_sp.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/change_to_sp.c.o"
   "/Users/abdel-ke/Desktop/minishell_/Replay/dollar.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/dollar.c.o"
   "/Users/abdel-ke/Desktop/minishell_/Replay/error/error.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/error/error.c.o"
   "/Users/abdel-ke/Desktop/minishell_/Replay/libft/ft_atoi.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/libft/ft_atoi.c.o"

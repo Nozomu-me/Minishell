@@ -10,10 +10,6 @@
 parsing.h
 /Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
 
-/Users/abdel-ke/Desktop/minishell_/Replay/error/error.c
-../parsing.h
-/Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
-
 /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
 stdlib.h
 -
@@ -31,28 +27,6 @@ libft/libft.h
 /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
 
 /Users/abdel-ke/Desktop/minishell_/Replay/push_to_struct.c
-parsing.h
-/Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
-
-/Users/abdel-ke/Desktop/minishell_/Replay/redirection.c
-parsing.h
-/Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
-
-/Users/abdel-ke/Desktop/minishell_/Replay/struct.c
-parsing.h
-/Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
-
-/Users/abdel-ke/Desktop/minishell_/Replay/struct2.c
-stdio.h
--
-libft/libft.h
-/Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
-
-/Users/abdel-ke/Desktop/minishell_/Replay/switch_new_line.c
-parsing.h
-/Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
-
-/Users/abdel-ke/Desktop/minishell_/Replay/symbols.c
 parsing.h
 /Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
 

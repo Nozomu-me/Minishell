@@ -84,6 +84,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/change_to_sp.c">
+			<Option target="minishell_"/>
+		</Unit>
 		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/dollar.c">
 			<Option target="minishell_"/>
 		</Unit>

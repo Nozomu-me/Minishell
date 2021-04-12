@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/12 11:28:32 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/12 17:39:54 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,14 @@
 t_parse		*initail_struct(t_parse *parse)
 {
 	parse = (t_parse*)malloc(sizeof(t_parse));
-	// parse->cmds = (t_cmds*)malloc(sizeof(t_cmds));
-	// parse->cmds->file = (t_file*)malloc(sizeof(t_file));
-	// parse->command = (t_command*)malloc(sizeof(t_command));
+	parse->check_env = ft_strdup("=~\\/%#{}$*+-.:?@[]^ '\"");
 	parse->smbl = (t_symbol*)malloc(sizeof(t_symbol));
-	parse->ready_p = NULL;//(t_ready_to_push*)malloc(sizeof(t_ready_to_push));
+	parse->ready_p = NULL;
 	parse->cmds = NULL;
 	parse->command = NULL;
-	// parse->cmds->file = NULL;
-	parse->check_env = ft_strdup("=~\\/%#{}$*+-.:?@[]^ '\"");
+	parse->command = NULL;
+	parse->under_score = "./minishell";
+	parse->already_pipe = 0;
 	return parse;
 }
 
@@ -48,7 +47,10 @@ void	parsing(t_parse *parse, char *line)
 				*parse->s_pipe = ft_strtrim(*parse->s_pipe, " ");
 				*parse->s_pipe = ft_strtrim(*parse->s_pipe, "\t");
 				if (--i)
+				{
+					parse->already_pipe = 1;
 					ft_lstadd_back_cmd(&parse->command, ft_lstnew_cmd(*parse->s_pipe, PIPE));
+				}
 				else
 					ft_lstadd_back_cmd(&parse->command, ft_lstnew_cmd(*parse->s_pipe, END));
 				parse->s_pipe++;
@@ -56,17 +58,15 @@ void	parsing(t_parse *parse, char *line)
 			parse->s_semi++;
 		}
 	}
-	// puts("ok");
+
 	while (parse->command)
 	{
-	// puts("ok1");
+		parse->command->command = search_replace(parse->command->command, "\t", " ");
 		parse->command->command = check_dollr(parse, parse->command->command);
 		push_to_struct(parse, parse->command->command);
-		// parse->command->command = sort_redirection(parse->command->command);
-		// printf("AFTER  => |%s|\nTYPE => |%s|\n\n", parse->command->command, parse->command->type == 3 ? "PIPE" : "END");
+		parse->under_score = parse->command->command;
 		parse->command = parse->command->next;
 	}
-	// parse->command->command = check_command(parse, parse->command->command);
 }
 
 int main(int ac, char **av, char **env)

@@ -106,14 +106,18 @@ void	push_to_struct(t_parse *parse, char *line)
 		}
 		i++;
 	}
+
 	split = ft_split(line, ' ');
 	parse->cmds->cmd = split;
 	parse->cmds->type = parse->command->type;
 
+		// printf("TEST 0 \t|%s|\n", *parse->cmds->cmd);
 	printf("ARGS =>");
 	while (*parse->cmds->cmd)
 	{
+		// printf("\nTEST 1 \t|%s|\n", *parse->cmds->cmd);
 		*parse->cmds->cmd = check_command(parse, *parse->cmds->cmd);
+		// printf("TEST 2 \t|%s|\n", *parse->cmds->cmd);
 		printf("\t|%s|", *parse->cmds->cmd);
 		parse->cmds->cmd++;
 	}

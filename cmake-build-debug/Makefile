@@ -123,6 +123,33 @@ minishell_/fast:
 	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/build
 .PHONY : minishell_/fast
 
+Replay/change_to_sp.o: Replay/change_to_sp.c.o
+
+.PHONY : Replay/change_to_sp.o
+
+# target to build an object file
+Replay/change_to_sp.c.o:
+	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/change_to_sp.c.o
+.PHONY : Replay/change_to_sp.c.o
+
+Replay/change_to_sp.i: Replay/change_to_sp.c.i
+
+.PHONY : Replay/change_to_sp.i
+
+# target to preprocess a source file
+Replay/change_to_sp.c.i:
+	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/change_to_sp.c.i
+.PHONY : Replay/change_to_sp.c.i
+
+Replay/change_to_sp.s: Replay/change_to_sp.c.s
+
+.PHONY : Replay/change_to_sp.s
+
+# target to generate assembly for a file
+Replay/change_to_sp.c.s:
+	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/change_to_sp.c.s
+.PHONY : Replay/change_to_sp.c.s
+
 Replay/dollar.o: Replay/dollar.c.o
 
 .PHONY : Replay/dollar.o
@@ -1320,6 +1347,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... minishell_"
+	@echo "... Replay/change_to_sp.o"
+	@echo "... Replay/change_to_sp.i"
+	@echo "... Replay/change_to_sp.s"
 	@echo "... Replay/dollar.o"
 	@echo "... Replay/dollar.i"
 	@echo "... Replay/dollar.s"

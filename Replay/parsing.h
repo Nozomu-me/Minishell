@@ -90,6 +90,8 @@ typedef	struct	s_parse
 	char			**s_pipe;
 	char			**env;
 	char			*check_env;
+	char			*under_score;
+	int 			already_pipe;
 	t_cmds			*cmds;
 	t_symbol		*smbl;
 	t_command		*command;

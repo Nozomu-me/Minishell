@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/minishell_.dir/Replay/change_to_sp.c.o"
   "CMakeFiles/minishell_.dir/Replay/dollar.c.o"
   "CMakeFiles/minishell_.dir/Replay/error/error.c.o"
   "CMakeFiles/minishell_.dir/Replay/libft/ft_atoi.c.o"
