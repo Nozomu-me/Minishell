@@ -6,13 +6,13 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 17:34:46 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/03/28 12:04:40 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/12 18:57:21 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	void		ft_free(char **tab, int i)
+static	void	ft_free(char **tab, int i)
 {
 	while (i)
 	{
@@ -22,11 +22,11 @@ static	void		ft_free(char **tab, int i)
 	free(tab);
 }
 
-static int			count_word(char const *s, char c)
+static int	count_word(char const *s, char c)
 {
-	int i;
-	int pos;
-	int count;
+	int		i;
+	int		pos;
+	int		count;
 
 	i = 0;
 	pos = 0;
@@ -46,7 +46,7 @@ static int			count_word(char const *s, char c)
 	return (count);
 }
 
-static	char		*put_word(char const *s, char c, int *n)
+static	char	*put_word(char const *s, char c, int *n)
 {
 	int		i;
 	int		first;
@@ -71,16 +71,17 @@ static	char		*put_word(char const *s, char c, int *n)
 	return (word);
 }
 
-char				**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	char		**rslt;
-	int			i;
-	int			count;
-	int			count_w;
+	char	**rslt;
+	int		i;
+	int		count;
+	int		count_w;
 
 	if (!s)
 		return (0);
-	if (!(rslt = (char **)malloc(sizeof(char*) * (count_word(s, c) + 1))))
+	rslt = (char **)malloc(sizeof (char *) * (count_word(s, c) + 1));
+	if (!rslt)
 		return (NULL);
 	count = 0;
 	i = 0;

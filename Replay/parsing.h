@@ -2,6 +2,8 @@
 #define PARSING_H
 
 # include "libft/libft.h"
+# include <stdio.h>
+# include <string.h>
 
 # define ERROR 1
 # define ON 1
@@ -15,7 +17,7 @@
 typedef struct  s_global
 {
 	char    *oldpwd;
-	char    **commands;
+	char    **f_cmds;
 	int     exit_status;
 }               t_global;
 
@@ -37,34 +39,17 @@ typedef struct  s_file
 
 typedef struct  s_cmds
 {
-    char        	**cmd;
+    char        	**args;
     t_type      	type;
     t_file      	*file;
 }               t_cmds;
 
-typedef	struct	s_command
+typedef	struct	s_f_cmd
 {
-	char				*command;
+	char				*cmd;
 	t_type				type;
-	struct s_command	*next;
-}				t_command;
-
-/*
-typedef struct	s_file
-{
-	char *filename;
-	char *filetype;
-	struct s_file *next;
-}				t_file;
-
-typedef struct  s_cmds
-{
-	char **cmd;
-	char *type;
-	t_file *file;
-	struct s_cmds *next;
-}               t_cmds;
-*/
+	struct s_f_cmd	*next;
+}				t_f_cmd;
 
 typedef	struct	s_symbol
 {
@@ -94,7 +79,7 @@ typedef	struct	s_parse
 	int 			already_pipe;
 	t_cmds			*cmds;
 	t_symbol		*smbl;
-	t_command		*command;
+	t_f_cmd		*f_cmd;
 	t_ready_to_push	*ready_p;
 }				t_parse;
 
@@ -118,8 +103,8 @@ int		redirection(t_symbol *smbl);
 char	*check_redirection(t_symbol *smbl, char *line, int i, int *type);
 void	off_flags(t_symbol *smbl);
 
-/* command */
-char	*check_command(t_parse *parse, char *line);
+/* f_cmd */
+char	*check_f_cmd(t_parse *parse, char *line);
 char	*ft_substr2(char *s, unsigned int start, size_t len);
 void	push_to_struct(t_parse *parse, char *line);
 
@@ -127,8 +112,8 @@ void	push_to_struct(t_parse *parse, char *line);
 void    			file_lstadd_back(t_file **alst, t_file *new);
 t_file  			*file_lst_new(void *filename, int filetype);
 t_cmds				*ft_lstnew(char **v_cmd, int v_type, char *f_name, int f_type);
-t_command			*ft_lstnew_cmd(char *v_cmd, int type);
-void				ft_lstadd_back_cmd(t_command **alst, t_command *new);
+t_f_cmd			*ft_lstnew_cmd(char *v_cmd, int type);
+void				ft_lstadd_back_cmd(t_f_cmd **alst, t_f_cmd *new);
 t_ready_to_push		*ft_lstnew_cmd_to_push(char *new_cmd);
 void				ft_lstadd_back_to_push(t_ready_to_push **alst, t_ready_to_push *new);
 

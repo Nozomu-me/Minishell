@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   switch_new_line.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/12 18:37:04 by abdel-ke          #+#    #+#             */
+/*   Updated: 2021/04/12 19:57:20 by abdel-ke         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 char	*ret(char *line, int i)
@@ -13,7 +25,7 @@ char	*ret(char *line, int i)
 	return (new);
 }
 
-char	*check_command(t_parse *parse, char *line)
+char	*check_f_cmd(t_parse *parse, char *line)
 {
 	char 	*new;
 	int		i;
@@ -69,11 +81,9 @@ char	*check_command(t_parse *parse, char *line)
 		new++;
 	}
 	line[i] = 0;
-	// printf("\t\t\tLINE = |%s|\n", line);
 	i = -1;
 	while (line[++i])
 		if (line[i] < 0)
 			line[i] *= -1;
-	// printf("\t\t\tLINE = |%s|\n", line);
 	return line;
 }

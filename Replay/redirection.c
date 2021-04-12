@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirection.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/12 18:31:56 by abdel-ke          #+#    #+#             */
+/*   Updated: 2021/04/12 18:32:09 by abdel-ke         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 int		skip_spaces(char *line)
@@ -90,14 +102,3 @@ char	*sort_redirection(char *line)
 	}
 	return line;
 }
-//int main()
-//{
-//	char *line;// = "echo hello > f1>f3>f4";
-//	t_parse *parse;
-//	while (1337)
-//	{
-//		get_next_line(&line);
-//		printf("|%s|\n", sort_redirection(parse, line));
-//	}
-//	return (0);
-//}

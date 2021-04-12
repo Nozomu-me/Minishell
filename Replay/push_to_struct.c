@@ -1,22 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_to_struct.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/12 18:32:03 by abdel-ke          #+#    #+#             */
+/*   Updated: 2021/04/12 19:57:20 by abdel-ke         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
-
-// char	*ft_substr2(char *s, unsigned int start, size_t len)
-// {
-//     size_t	i;
-//     size_t  j;
-//     char	*str;
-
-//     if (!s)
-//         return (NULL);
-//     if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
-//         return (NULL);
-//     i = 0;
-//     j = ft_strlen(s);
-//     while (start < len)
-//         str[i++] = s[start++];
-//     str[i] = '\0';
-//     return (str);
-// }
 
 t_ready_to_push		*ft_lstnew_cmd_to_push(char *new_cmd)
 {
@@ -78,7 +72,7 @@ void	push_to_struct(t_parse *parse, char *line)
 	char **split;
 	parse->cmds = (t_cmds*)malloc(sizeof(t_cmds));
 	parse->cmds->file = NULL;
-	parse->cmds->cmd = NULL;
+	parse->cmds->args = NULL;
 
 	while (line[i])
 	{
@@ -108,18 +102,14 @@ void	push_to_struct(t_parse *parse, char *line)
 	}
 
 	split = ft_split(line, ' ');
-	parse->cmds->cmd = split;
-	parse->cmds->type = parse->command->type;
-
-		// printf("TEST 0 \t|%s|\n", *parse->cmds->cmd);
+	parse->cmds->args = split;
+	parse->cmds->type = parse->f_cmd->type;
 	printf("ARGS =>");
-	while (*parse->cmds->cmd)
+	while (*parse->cmds->args)
 	{
-		// printf("\nTEST 1 \t|%s|\n", *parse->cmds->cmd);
-		*parse->cmds->cmd = check_command(parse, *parse->cmds->cmd);
-		// printf("TEST 2 \t|%s|\n", *parse->cmds->cmd);
-		printf("\t|%s|", *parse->cmds->cmd);
-		parse->cmds->cmd++;
+		*parse->cmds->args = check_f_cmd(parse, *parse->cmds->args);
+		printf("\t|%s|", *parse->cmds->args);
+		parse->cmds->args++;
 	}
 	puts("");
 	if (parse->cmds->type == 3)
@@ -129,7 +119,7 @@ void	push_to_struct(t_parse *parse, char *line)
 	printf("FILES :\n");
 	while (parse->cmds->file)
 	{
-		parse->cmds->file->filename = check_command(parse, parse->cmds->file->filename);
+		parse->cmds->file->filename = check_f_cmd(parse, parse->cmds->file->filename);
 		if (parse->cmds->file->filetype == 0)
 			printf("|%s|\t|%s|\n", parse->cmds->file->filename, "WRITE");
 		else if (parse->cmds->file->filetype == 1)

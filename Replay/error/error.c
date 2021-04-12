@@ -1,5 +1,16 @@
-#include "../parsing.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/12 18:30:33 by abdel-ke          #+#    #+#             */
+/*   Updated: 2021/04/12 18:30:34 by abdel-ke         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../parsing.h"
 
 void	initial_symbol(t_symbol *sbl)
 {
@@ -38,13 +49,12 @@ int		check_flags(t_symbol *smbl)
 	return (sum);
 }
 
-int 	count_back(char *line /*, int l */)
+int 	count_back(char *line)
 {
     int cp;
 
 	cp = 0;
-	// line--;
-    while (*line == '\\' /* && l-- */)
+    while (*line == '\\')
     {
         cp++;
         line--;
@@ -57,7 +67,7 @@ int 	count_back(char *line /*, int l */)
     return (1);
 }
 
-//  check " and ' if is closed or note     &	change ; | to non printable characters
+/*  check " and ' if is closed or note     &	change ; | to non printable characters */
 char	*partition_stage(t_symbol *smbl, char *line)
 {
 	int i;
@@ -95,10 +105,6 @@ char	*partition_stage(t_symbol *smbl, char *line)
 	}
 	if (!smbl->error && (smbl->d_great || smbl->d_quote || smbl->s_quote || smbl->pipe || smbl->great || smbl->less))
 		ft_error(smbl, "syntax error near unexpected token `newline'", RED, WHITE);
-		// multiple_line
-		//syntax error near unexpected token `newline'
-	// printf("D_Q \t=> |%d|\nS_Q \t=> |%d|\nL \t=> |%d|\nG \t=> |%d|\nD_G \t=> |%d|\nP \t=> |%d|\nS \t=> |%d|\n\n",
-	// smbl->d_quote, smbl->s_quote, smbl->less, smbl->great, smbl->d_great, smbl->pipe, smbl->semi);
-	printf("=> |%s|\n\n\n", line);
+	// printf("=> |%s|\n\n\n", line);
 	return line;
 }

@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 17:02:55 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/11 11:50:21 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/12 18:37:37 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ int		redirection(t_symbol *smbl)
 		return (63);
 	return (0);
 }
-/* 			1 		  */
 
 char	*check_d_quote(t_symbol *smbl, char *line, int i)
 {
-	// printf("1=> |%s|\t|%c|\tR:|%d|\tS_:|%d|\t|%c|\n", line, line[i - 2], r, smbl->d_quote, line[i]);
 	if (!count_back(line + (i - 1)))
 	{
 		if (smbl->pipe == ON)
@@ -40,7 +38,6 @@ char	*check_d_quote(t_symbol *smbl, char *line, int i)
 	}
 	else if (smbl->d_quote == ON)
 		line[i] *= -1;
-	// printf("2=> |%s|\t|%c|\tR:|%d|\tS_:|%d|\t|%c|\n\n", line, line[i - 2], r, smbl->d_quote, line[i]);
 	return (line);
 }
 
@@ -74,7 +71,7 @@ char	*check_semicolone(t_symbol *smbl, char *line, int i)
 		if (count_back(line + (i - 1)))
 			line[i] *= -1;
 		else 
-		if (redirection(smbl))// || smbl->semi == ON)
+		if (redirection(smbl))
 		{
 			ft_error(smbl, "1=>syntax error near unexpected token `;'", RED, WHITE);
 			off_flags(smbl);
@@ -119,7 +116,7 @@ char	*check_pipe(t_symbol *smbl, char *line, int i)
 		if (count_back(line + (i - 1)))
 			line[i] *= -1;
 		else 	
-		if (redirection(smbl))// && smbl->pipe == ON)
+		if (redirection(smbl))
 		{
 			ft_error(smbl, "1=>syntax error near unexpected token `|'", RED, WHITE);
 			off_flags(smbl);
@@ -168,7 +165,6 @@ char	*check_redirection(t_symbol *smbl, char *line, int i, int *type)
 			*type = ON;
 		else
 		{
-			// ft_error("SYntax error REDIRECTION", RED, WHITE);
 			if (line[i + 1] == '>')
 				ft_error_redirection(smbl, "syntax error near unexpected token", 63);
 			else 

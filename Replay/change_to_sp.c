@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   change_to_sp.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/12 18:31:32 by abdel-ke          #+#    #+#             */
+/*   Updated: 2021/04/12 18:31:37 by abdel-ke         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "parsing.h"
-#include <string.h>
 
 char    *search_replace(char *str, char *org, char *rep)
 {
@@ -39,11 +49,3 @@ char    *search_replace(char *str, char *org, char *rep)
    new[i++] = '\0';
    return (new);
 }
-
-/* int main()
-{
-	char *line = "\tkamal\thamid\tlatif";
-	line = search_replace(line, "\t", " ");
-	puts(line);
-	return (0);
-} */

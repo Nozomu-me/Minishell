@@ -1,1 +1,0 @@
-gcc dollar.c libft/ft_split.c libft/ft_strdup.c libft/ft_strlen.c libft/ft_substr.c libft/ft_strchr.c libft/get_next_line.c libft/ft_strjoin.c && ./a.out

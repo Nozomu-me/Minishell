@@ -4,7 +4,6 @@ LIBFT = libft/libft.a
 SRCS =	parsing.c \
 		symbols.c \
 		struct.c \
-		struct2.c \
 		dollar.c \
 		error/error.c\
 		switch_new_line.c\
