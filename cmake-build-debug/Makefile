@@ -204,6 +204,33 @@ Replay/error/error.c.s:
 	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/error/error.c.s
 .PHONY : Replay/error/error.c.s
 
+Replay/free.o: Replay/free.c.o
+
+.PHONY : Replay/free.o
+
+# target to build an object file
+Replay/free.c.o:
+	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/free.c.o
+.PHONY : Replay/free.c.o
+
+Replay/free.i: Replay/free.c.i
+
+.PHONY : Replay/free.i
+
+# target to preprocess a source file
+Replay/free.c.i:
+	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/free.c.i
+.PHONY : Replay/free.c.i
+
+Replay/free.s: Replay/free.c.s
+
+.PHONY : Replay/free.s
+
+# target to generate assembly for a file
+Replay/free.c.s:
+	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/free.c.s
+.PHONY : Replay/free.c.s
+
 Replay/libft/ft_atoi.o: Replay/libft/ft_atoi.c.o
 
 .PHONY : Replay/libft/ft_atoi.o
@@ -1257,33 +1284,6 @@ Replay/struct.c.s:
 	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/struct.c.s
 .PHONY : Replay/struct.c.s
 
-Replay/struct2.o: Replay/struct2.c.o
-
-.PHONY : Replay/struct2.o
-
-# target to build an object file
-Replay/struct2.c.o:
-	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/struct2.c.o
-.PHONY : Replay/struct2.c.o
-
-Replay/struct2.i: Replay/struct2.c.i
-
-.PHONY : Replay/struct2.i
-
-# target to preprocess a source file
-Replay/struct2.c.i:
-	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/struct2.c.i
-.PHONY : Replay/struct2.c.i
-
-Replay/struct2.s: Replay/struct2.c.s
-
-.PHONY : Replay/struct2.s
-
-# target to generate assembly for a file
-Replay/struct2.c.s:
-	$(MAKE) -f CMakeFiles/minishell_.dir/build.make CMakeFiles/minishell_.dir/Replay/struct2.c.s
-.PHONY : Replay/struct2.c.s
-
 Replay/switch_new_line.o: Replay/switch_new_line.c.o
 
 .PHONY : Replay/switch_new_line.o
@@ -1356,6 +1356,9 @@ help:
 	@echo "... Replay/error/error.o"
 	@echo "... Replay/error/error.i"
 	@echo "... Replay/error/error.s"
+	@echo "... Replay/free.o"
+	@echo "... Replay/free.i"
+	@echo "... Replay/free.s"
 	@echo "... Replay/libft/ft_atoi.o"
 	@echo "... Replay/libft/ft_atoi.i"
 	@echo "... Replay/libft/ft_atoi.s"
@@ -1473,9 +1476,6 @@ help:
 	@echo "... Replay/struct.o"
 	@echo "... Replay/struct.i"
 	@echo "... Replay/struct.s"
-	@echo "... Replay/struct2.o"
-	@echo "... Replay/struct2.i"
-	@echo "... Replay/struct2.s"
 	@echo "... Replay/switch_new_line.o"
 	@echo "... Replay/switch_new_line.i"
 	@echo "... Replay/switch_new_line.s"

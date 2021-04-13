@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 17:34:46 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/13 10:32:09 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/13 12:25:30 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ char	**ft_split(char const *s, char c)
 	count_w = count_word(s, c);
 	while (count < count_w)
 	{
-		rslt[count++] = put_word(s, c, &i);
-		if (!rslt[count])
+		rslt[count] = put_word(s, c, &i);
+		if (!rslt[count++])
 		{
 			ft_free(rslt, i);
 			return (NULL);

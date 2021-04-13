@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:22:04 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/13 11:35:41 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/13 15:13:37 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,3 +75,41 @@ void    file_lstadd_back(t_file **alst, t_file *new)
         new->next = NULL;
     }
 }
+
+// void	ft_lstdelone_file(t_file *lst, void (*del)(void*))
+// {
+// 	if (!lst || !del)
+// 		return ;
+// 	del(lst->filename);
+// 	free(lst);
+// }
+
+// void	ft_lstclear_file(t_file **lst, void (*del)(void*))
+// {
+// 	t_file  *temp;
+
+// 	if (!lst || !*lst || !del)
+// 		return ;
+// 	while (*lst != NULL)
+// 	{
+// 		temp = *lst;
+// 		*lst = (*lst)->next;
+// 		ft_lstdelone(temp, del);
+// 	}
+// 	*lst = NULL;
+// }
+
+// void	ft_lstclear_first_cmd(t_f_cmd **lst, void (*del)(void*))
+// {
+// 	t_f_cmd	*temp;
+
+// 	if (!lst || !*lst || !del)
+// 		return ;
+// 	while (*lst != NULL)
+// 	{
+// 		temp = *lst;
+// 		*lst = (*lst)->next;
+// 		ft_lstdelone(temp, del);
+// 	}
+// 	*lst = NULL;
+// }

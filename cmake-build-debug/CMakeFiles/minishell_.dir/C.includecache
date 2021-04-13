@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/abdel-ke/Desktop/minishell_/Replay/dollar.c
-parsing.h
-/Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
-
 /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
 stdlib.h
 -
@@ -25,8 +21,8 @@ parsing.h
 /Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
 libft/libft.h
 /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
-
-/Users/abdel-ke/Desktop/minishell_/Replay/push_to_struct.c
-parsing.h
-/Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
+stdio.h
+-
+string.h
+-
 

@@ -13,6 +13,10 @@ CMakeFiles/minishell_.dir/Replay/error/error.c.o: ../Replay/error/error.c
 CMakeFiles/minishell_.dir/Replay/error/error.c.o: ../Replay/libft/libft.h
 CMakeFiles/minishell_.dir/Replay/error/error.c.o: ../Replay/parsing.h
 
+CMakeFiles/minishell_.dir/Replay/free.c.o: ../Replay/free.c
+CMakeFiles/minishell_.dir/Replay/free.c.o: ../Replay/libft/libft.h
+CMakeFiles/minishell_.dir/Replay/free.c.o: ../Replay/parsing.h
+
 CMakeFiles/minishell_.dir/Replay/libft/ft_atoi.c.o: ../Replay/libft/ft_atoi.c
 CMakeFiles/minishell_.dir/Replay/libft/ft_atoi.c.o: ../Replay/libft/libft.h
 
@@ -133,9 +137,6 @@ CMakeFiles/minishell_.dir/Replay/redirection.c.o: ../Replay/redirection.c
 CMakeFiles/minishell_.dir/Replay/struct.c.o: ../Replay/libft/libft.h
 CMakeFiles/minishell_.dir/Replay/struct.c.o: ../Replay/parsing.h
 CMakeFiles/minishell_.dir/Replay/struct.c.o: ../Replay/struct.c
-
-CMakeFiles/minishell_.dir/Replay/struct2.c.o: ../Replay/libft/libft.h
-CMakeFiles/minishell_.dir/Replay/struct2.c.o: ../Replay/struct2.c
 
 CMakeFiles/minishell_.dir/Replay/switch_new_line.c.o: ../Replay/libft/libft.h
 CMakeFiles/minishell_.dir/Replay/switch_new_line.c.o: ../Replay/parsing.h

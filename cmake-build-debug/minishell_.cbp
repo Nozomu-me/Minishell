@@ -93,6 +93,9 @@
 		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/error/error.c">
 			<Option target="minishell_"/>
 		</Unit>
+		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/free.c">
+			<Option target="minishell_"/>
+		</Unit>
 		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/libft/ft_atoi.c">
 			<Option target="minishell_"/>
 		</Unit>
@@ -213,13 +216,7 @@
 		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/redirection.c">
 			<Option target="minishell_"/>
 		</Unit>
-		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/sh_dollar.sh">
-			<Option target="minishell_"/>
-		</Unit>
 		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/struct.c">
-			<Option target="minishell_"/>
-		</Unit>
-		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/struct2.c">
 			<Option target="minishell_"/>
 		</Unit>
 		<Unit filename="/Users/abdel-ke/Desktop/minishell_/Replay/switch_new_line.c">

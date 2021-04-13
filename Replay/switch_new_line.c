@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:37:04 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/12 19:57:20 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/13 16:27:43 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ char	*check_f_cmd(t_parse *parse, char *line)
 					line[i++] = *new++;
 				parse->smbl->s_quote = OFF;
 			}
+			
 		}
 		if (*new != '\\')
 			cp = 0;

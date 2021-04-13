@@ -63,24 +63,18 @@ typedef	struct	s_symbol
 	int error;
 }				t_symbol;
 
-typedef	struct	s_ready_to_push
-{
-	char	*cmd;
-	struct s_ready_to_push	*next;
-}				t_ready_to_push;
-
 typedef	struct	s_parse
 {
 	char			**s_semi;
 	char			**s_pipe;
+	char			**split;
 	char			**env;
 	char			*check_env;
 	char			*under_score;
 	int 			already_pipe;
 	t_cmds			*cmds;
 	t_symbol		*smbl;
-	t_f_cmd		*f_cmd;
-	t_ready_to_push	*ready_p;
+	t_f_cmd			*f_cmd;
 }				t_parse;
 
 void		affichage(char *line, t_cmds *cmds);
@@ -88,7 +82,7 @@ t_cmds		*parser(t_cmds *cmds, char *line);
 
 //syntax error
 int 	count_back(char *line);
-void	ft_error(t_symbol *smbl, char *str, char *first_color, char *second_color);
+void	ft_error(t_symbol *smbl, char *str);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 char	*partition_stage(t_symbol *smbl, char *line);
@@ -114,12 +108,16 @@ t_file  			*file_lst_new(void *filename, int filetype);
 t_cmds				*ft_lstnew(char **v_cmd, int v_type, char *f_name, int f_type);
 t_f_cmd			*ft_lstnew_cmd(char *v_cmd, int type);
 void				ft_lstadd_back_cmd(t_f_cmd **alst, t_f_cmd *new);
-t_ready_to_push		*ft_lstnew_cmd_to_push(char *new_cmd);
-void				ft_lstadd_back_to_push(t_ready_to_push **alst, t_ready_to_push *new);
+
+/* free struct */
+void	free_cmds_struct(t_cmds *cmds);
+void	ft_free_tab(char **s);
+void	ft_free(t_parse *parse);
 
 /* dollar */
 char	*dollar(t_parse *parse, char *line);
 char	*check_dollr(t_parse *parse, char *line);
+char	*ft_turn_dollar(t_symbol *smbl, char *line, int i);
 
 /*redirection */
 char	*sort_redirection(char *line);

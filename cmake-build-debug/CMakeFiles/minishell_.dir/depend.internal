@@ -13,6 +13,10 @@ CMakeFiles/minishell_.dir/Replay/error/error.c.o
  /Users/abdel-ke/Desktop/minishell_/Replay/error/error.c
  /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
  /Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
+CMakeFiles/minishell_.dir/Replay/free.c.o
+ /Users/abdel-ke/Desktop/minishell_/Replay/free.c
+ /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
+ /Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
 CMakeFiles/minishell_.dir/Replay/libft/ft_atoi.c.o
  /Users/abdel-ke/Desktop/minishell_/Replay/libft/ft_atoi.c
  /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
@@ -134,9 +138,6 @@ CMakeFiles/minishell_.dir/Replay/struct.c.o
  /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
  /Users/abdel-ke/Desktop/minishell_/Replay/parsing.h
  /Users/abdel-ke/Desktop/minishell_/Replay/struct.c
-CMakeFiles/minishell_.dir/Replay/struct2.c.o
- /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
- /Users/abdel-ke/Desktop/minishell_/Replay/struct2.c
 CMakeFiles/minishell_.dir/Replay/switch_new_line.c.o
  /Users/abdel-ke/Desktop/minishell_/Replay/libft/libft.h
  /Users/abdel-ke/Desktop/minishell_/Replay/parsing.h

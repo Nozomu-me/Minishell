@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:30:33 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/12 22:21:32 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/13 15:56:13 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,38 +33,35 @@ void	off_flags(t_symbol *smbl)
 	smbl->pipe = 0;
 }
 
-void	ft_error(t_symbol *smbl, char *str, char *first_color, char *second_color)
+void	ft_error(t_symbol *smbl, char *str)
 {
-	ft_putstr_fd(first_color, 1);
+	ft_putstr_fd(RED, 1);
 	ft_putendl_fd(str, 1);
-	ft_putstr_fd(second_color, 1);
+	ft_putstr_fd(WHITE, 1);
 	smbl->error = ON;
 }
 
-int		check_flags(t_symbol *smbl)
+int	check_flags(t_symbol *smbl)
 {
-	int sum;
+	int	sum;
 
 	sum = smbl->d_great + smbl->less + smbl->great + smbl->semi + smbl->pipe;
 	return (sum);
 }
 
-int 	count_back(char *line)
+int	count_back(char *line)
 {
-    int cp;
+	int	cp;
 
 	cp = 0;
-    while (*line == '\\')
-    {
-        cp++;
-        line--;
+	while (*line == '\\')
+	{
+		cp++;
+		line--;
 	}
-	/*	1	=>	doesnt followed by quotes
-		0	=>	followed by quotes
-	*/
 	if (cp % 2 == 0)
 		return (0);
-    return (1);
+	return (1);
 }
 
 char	*check_symbols(t_symbol *smbl, char *line, int i)
@@ -80,7 +77,7 @@ char	*check_symbols(t_symbol *smbl, char *line, int i)
 		else if (line[i] == ';')
 			line = check_semicolone(smbl, line, i);
 		else if (line[i] == '>' && line[i + 1] == '>')
-				line = check_redirection(smbl, line, i++, &smbl->d_great);
+			line = check_redirection(smbl, line, i++, &smbl->d_great);
 		else if (line[i] == '>')
 			line = check_redirection(smbl, line, i, &smbl->great);
 		else if (line[i] == '<')
@@ -88,26 +85,28 @@ char	*check_symbols(t_symbol *smbl, char *line, int i)
 		else if (line[i] == ' ')
 			line = check_space(smbl, line, i);
 		else if (line[i] == '$')
-			line[i] = smbl->s_quote == ON ? line[i] *= -1 : line[i];
+			line = ft_turn_dollar(smbl, line, i);
 		else if (check_flags(smbl) && line[i] != ' ')
 			off_flags(smbl);
 	}
 	return (line);
 }
-/*  check " and ' if is closed or note     &	change ; | to non printable characters */
+/*check " & ' if is closed or note & change ; | to non printable characters */
+
 char	*partition_stage(t_symbol *smbl, char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	initial_symbol(smbl);
 	line = ft_strtrim(line, " ");
 	if (line[0] == '|')
-		ft_error(smbl, "bash: syntax error near unexpected token `|'", RED, WHITE);
+		ft_error(smbl, "bash: syntax error near unexpected token `|'");
 	if (line[0] == ';')
-		ft_error(smbl, "bash: syntax error near unexpected token `;'", RED, WHITE);
+		ft_error(smbl, "bash: syntax error near unexpected token `;'");
 	line = check_symbols(smbl, line, -1);
-	if (!smbl->error && (smbl->d_great || smbl->d_quote || smbl->s_quote || smbl->pipe || smbl->great || smbl->less))
-		ft_error(smbl, "syntax error near unexpected token `newline'", RED, WHITE);
-	return line;
+	if (!smbl->error && (smbl->d_great || smbl->d_quote || smbl->s_quote
+			|| smbl->pipe || smbl->great || smbl->less))
+		ft_error(smbl, "syntax error near unexpected token `newline'");
+	return (line);
 }

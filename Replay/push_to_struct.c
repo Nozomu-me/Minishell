@@ -6,40 +6,11 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:32:03 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/12 19:57:20 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/13 16:26:08 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-t_ready_to_push		*ft_lstnew_cmd_to_push(char *new_cmd)
-{
-	t_ready_to_push *new;
-
-	new = (t_ready_to_push*)malloc(sizeof(t_ready_to_push));
-	if (new)
-	{
-		new->cmd = new_cmd;
-		new->next = NULL;
-	}
-	return (new);
-}
-
-void				ft_lstadd_back_to_push(t_ready_to_push **alst, t_ready_to_push *new)
-{
-	t_ready_to_push *list;
-	if (!alst || !new)
-		return ;
-	if (*alst)
-	{
-		list = *alst;
-		while (list && list->next)
-			list = list->next;
-		list->next = new;
-	}
-	else
-		*alst = new;
-}
 
 char	*get_file_name(t_parse *parse, char *line, char **file,  int *index)
 {
@@ -69,7 +40,7 @@ void	push_to_struct(t_parse *parse, char *line)
 	int pos = 0;
 	int i = 0;
 	char *file;
-	char **split;
+
 	parse->cmds = (t_cmds*)malloc(sizeof(t_cmds));
 	parse->cmds->file = NULL;
 	parse->cmds->args = NULL;
@@ -100,16 +71,15 @@ void	push_to_struct(t_parse *parse, char *line)
 		}
 		i++;
 	}
-
-	split = ft_split(line, ' ');
-	parse->cmds->args = split;
+	parse->cmds->args = ft_split(line, ' ');
 	parse->cmds->type = parse->f_cmd->type;
+	i = 0;
 	printf("ARGS =>");
-	while (*parse->cmds->args)
+	while (parse->cmds->args[i])
 	{
-		*parse->cmds->args = check_f_cmd(parse, *parse->cmds->args);
-		printf("\t|%s|", *parse->cmds->args);
-		parse->cmds->args++;
+		parse->cmds->args[i] = check_f_cmd(parse, parse->cmds->args[i]);
+		printf("\t|%s|", parse->cmds->args[i]);
+		i++;
 	}
 	puts("");
 	if (parse->cmds->type == 3)
@@ -128,4 +98,5 @@ void	push_to_struct(t_parse *parse, char *line)
 			printf("|%s|\t|%s|\n", parse->cmds->file->filename, "APPEND");
 		parse->cmds->file = parse->cmds->file->next;
 	}
+	// free_cmds_struct(parse->cmds);
 }

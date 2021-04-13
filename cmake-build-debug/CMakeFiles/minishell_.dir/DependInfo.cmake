@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/abdel-ke/Desktop/minishell_/Replay/change_to_sp.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/change_to_sp.c.o"
   "/Users/abdel-ke/Desktop/minishell_/Replay/dollar.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/dollar.c.o"
   "/Users/abdel-ke/Desktop/minishell_/Replay/error/error.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/error/error.c.o"
+  "/Users/abdel-ke/Desktop/minishell_/Replay/free.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/free.c.o"
   "/Users/abdel-ke/Desktop/minishell_/Replay/libft/ft_atoi.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/libft/ft_atoi.c.o"
   "/Users/abdel-ke/Desktop/minishell_/Replay/libft/ft_bzero.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/libft/ft_bzero.c.o"
   "/Users/abdel-ke/Desktop/minishell_/Replay/libft/ft_calloc.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/libft/ft_calloc.c.o"
@@ -46,7 +47,6 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/abdel-ke/Desktop/minishell_/Replay/push_to_struct.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/push_to_struct.c.o"
   "/Users/abdel-ke/Desktop/minishell_/Replay/redirection.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/redirection.c.o"
   "/Users/abdel-ke/Desktop/minishell_/Replay/struct.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/struct.c.o"
-  "/Users/abdel-ke/Desktop/minishell_/Replay/struct2.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/struct2.c.o"
   "/Users/abdel-ke/Desktop/minishell_/Replay/switch_new_line.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/switch_new_line.c.o"
   "/Users/abdel-ke/Desktop/minishell_/Replay/symbols.c" "/Users/abdel-ke/Desktop/minishell_/cmake-build-debug/CMakeFiles/minishell_.dir/Replay/symbols.c.o"
   )
