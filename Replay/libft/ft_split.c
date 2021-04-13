@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 17:34:46 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/12 18:57:21 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/13 10:32:09 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,18 @@ static	char	*put_word(char const *s, char c, int *n)
 	return (word);
 }
 
+char	**ft_malloc(char const *s, char c)
+{
+	char	**rslt;
+
+	if (!s)
+		return (0);
+	rslt = (char **)malloc(sizeof (char *) * (count_word(s, c) + 1));
+	if (!rslt)
+		return (NULL);
+	return (rslt);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**rslt;
@@ -78,20 +90,19 @@ char	**ft_split(char const *s, char c)
 	int		count;
 	int		count_w;
 
-	if (!s)
-		return (0);
-	rslt = (char **)malloc(sizeof (char *) * (count_word(s, c) + 1));
-	if (!rslt)
-		return (NULL);
+	rslt = ft_malloc(s, c);
 	count = 0;
 	i = 0;
 	count_w = count_word(s, c);
 	while (count < count_w)
-		if (!(rslt[count++] = put_word(s, c, &i)))
+	{
+		rslt[count++] = put_word(s, c, &i);
+		if (!rslt[count])
 		{
 			ft_free(rslt, i);
 			return (NULL);
 		}
+	}
 	rslt[count] = NULL;
 	return (rslt);
 }

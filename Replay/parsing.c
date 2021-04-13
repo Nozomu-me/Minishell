@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/12 19:57:20 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/13 11:27:31 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,22 @@ void	parsing(t_parse *parse, char *line)
 	}
 }
 
+void	ft_free_tab(char **line)
+{
+	while (*line)
+	{
+		free(line);
+		line++;
+	}
+}
+
+void	ft_free(t_parse *parse)
+{
+	ft_free_tab(parse->s_semi);
+	ft_free_tab(parse->s_pipe);
+	ft_free_tab(parse->env);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	char	*line;
@@ -83,6 +99,8 @@ int	main(int ac, char **av, char **env)
 		ft_putstr_fd(MINISHELL, 1);
 		r = get_next_line(&line);
 		parsing(parse, line);
+		if (!strcmp(line, "exit"))
+			exit(0);
 		free(line);
 	}
 	return (0);
