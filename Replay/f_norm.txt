@@ -1,0 +1,4 @@
+parsing.c		//ok
+dollar.c		//Too many functions in file
+error.c			//Too many functions in file
+free.c			//ok

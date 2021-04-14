@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 17:02:55 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/13 15:50:09 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/14 15:24:02 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,11 @@ void	ft_error_redirection(t_symbol *smbl, char *error, char c)
 char	*check_redirection(t_symbol *smbl, char *line, int i, int *type)
 {
 	if (smbl->d_quote == ON || smbl->s_quote == ON)
+	{
+		if (line[i + 1] == '>')
+			line[i + 1] *= -1;
 		line[i] *= -1;
+	}
 	else
 	{
 		if(redirection(smbl) == OFF)

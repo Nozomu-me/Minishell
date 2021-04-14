@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:32:03 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/13 16:26:08 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/14 17:27:19 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,29 +74,31 @@ void	push_to_struct(t_parse *parse, char *line)
 	parse->cmds->args = ft_split(line, ' ');
 	parse->cmds->type = parse->f_cmd->type;
 	i = 0;
-	printf("ARGS =>");
+	printf("\n=================================================\n\nARGS  => ");
 	while (parse->cmds->args[i])
 	{
 		parse->cmds->args[i] = check_f_cmd(parse, parse->cmds->args[i]);
-		printf("\t|%s|", parse->cmds->args[i]);
+		printf("|%s|\t", parse->cmds->args[i]);
 		i++;
 	}
-	puts("");
-	if (parse->cmds->type == 3)
-		printf("TYPES   => |%s|\n", "PIPE");
-	else if (parse->cmds->type == 4)
-		printf("TYPES   => |%s|\n", "END");
-	printf("FILES :\n");
-	while (parse->cmds->file)
+	puts("\n");
+	printf("FILES =>\n");
+	if (!parse->cmds->file)
+		puts("\t |NULL|");
+	else while (parse->cmds->file)
 	{
 		parse->cmds->file->filename = check_f_cmd(parse, parse->cmds->file->filename);
 		if (parse->cmds->file->filetype == 0)
-			printf("|%s|\t|%s|\n", parse->cmds->file->filename, "WRITE");
+			printf("\t |%s|\t|%s|\n", parse->cmds->file->filename, "WRITE");
 		else if (parse->cmds->file->filetype == 1)
-			printf("|%s|\t|%s|\n", parse->cmds->file->filename, "READ");
+			printf("\t |%s|\t|%s|\n", parse->cmds->file->filename, "READ");
 		else if (parse->cmds->file->filetype == 2)
-			printf("|%s|\t|%s|\n", parse->cmds->file->filename, "APPEND");
+			printf("\t |%s|\t|%s|\n", parse->cmds->file->filename, "APPEND");
 		parse->cmds->file = parse->cmds->file->next;
 	}
-	// free_cmds_struct(parse->cmds);
+	puts("\n");
+	if (parse->cmds->type == 3)
+		printf("TYPES => |%s|\n", "PIPE");
+	else if (parse->cmds->type == 4)
+		printf("TYPES => |%s|\n", "END");
 }

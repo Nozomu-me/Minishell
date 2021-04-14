@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:30:58 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/13 17:56:27 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/14 13:45:32 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@ char	*ft_turn_dollar(t_symbol *smbl, char *line, int i)
 	return (line);
 }
 
-int		compare(char *str, char *str2)
+int	compare(char *str, char *str2)
 {
 	while (*str || *str2)
 	{
 		if (*str != *str2)
-			return 0;
+			return (0);
 		str++;
 		str2++;
 	}
-	return 1;
+	return (1);
 }
 
 char	*last_word(char *line)
 {
-	int i;
+	int	i;
 
 	i = ft_strlen(line) - 1;
 	while (line[i - 1] && line[i - 1] != ' ')
@@ -45,7 +45,7 @@ char	*get_path(t_parse *parse, char *line, int *j)
 {
 	while (line[++(*j)])
 		if (ft_strchr(parse->check_env, line[*j]))
-			break;
+			break ;
 	return (ft_substr(line, 0, *j));
 }
 
@@ -57,9 +57,7 @@ char	*dollar(t_parse *parse, char *line)
 
 	j = -1;
 	i = -1;
-	
 	path = get_path(parse, line, &j);
-	printf("\t\t|%s|\n", path);
 	i = 0;
 	while (parse->env[i])
 	{
@@ -69,7 +67,7 @@ char	*dollar(t_parse *parse, char *line)
 			if (parse->already_pipe == 0)
 				return (ft_strjoin(last_word(parse->under_score), line + j));
 			else
-				return(line + j);
+				return (line + j);
 		}
 		else if (compare(parse->split[0], path))
 			return (ft_strjoin(parse->split[1], line + j));
@@ -81,15 +79,15 @@ char	*dollar(t_parse *parse, char *line)
 
 char	*check_dollr(t_parse *parse, char *line)
 {
-	char *new;
-	int i;
+	char	*new;
+	int		i;
 
 	i = 0;
 	new = ft_strdup("");
 	while (line[i])
 	{
-		if (line[i] == '$' && !count_back(line + (i - 1)) &&
-			!ft_strchr(parse->check_env, line[i + 1]))
+		if (line[i] == '$' && !count_back(line + (i - 1))
+			&& !ft_strchr(parse->check_env, line[i + 1]))
 		{
 			new = dollar(parse, line + i + 1);
 			line[i] = 0;
@@ -100,6 +98,5 @@ char	*check_dollr(t_parse *parse, char *line)
 			line[i] *= -1;
 		i++;
 	}
-	// free(new);
-	return line;
+	return (line);
 }

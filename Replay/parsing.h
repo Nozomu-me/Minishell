@@ -106,11 +106,11 @@ void	push_to_struct(t_parse *parse, char *line);
 void    			file_lstadd_back(t_file **alst, t_file *new);
 t_file  			*file_lst_new(void *filename, int filetype);
 t_cmds				*ft_lstnew(char **v_cmd, int v_type, char *f_name, int f_type);
-t_f_cmd			*ft_lstnew_cmd(char *v_cmd, int type);
-void				ft_lstadd_back_cmd(t_f_cmd **alst, t_f_cmd *new);
+t_f_cmd				*lstnew_cmd(char *v_cmd, int type);
+void				lstadd_cmd(t_f_cmd **alst, t_f_cmd *new);
 
 /* free struct */
-void	free_cmds_struct(t_cmds *cmds);
+void	free_cmds_struct(t_parse *cmds);
 void	ft_free_tab(char **s);
 void	ft_free(t_parse *parse);
 
