@@ -72,6 +72,7 @@ typedef	struct	s_parse
 	char			*check_env;
 	char			*under_score;
 	int 			already_pipe;
+	int				cp;
 	t_cmds			*cmds;
 	t_symbol		*smbl;
 	t_f_cmd			*f_cmd;
@@ -97,8 +98,8 @@ int		redirection(t_symbol *smbl);
 char	*check_redirection(t_symbol *smbl, char *line, int i, int *type);
 void	off_flags(t_symbol *smbl);
 
-/* f_cmd */
-char	*check_f_cmd(t_parse *parse, char *line);
+/* command */
+char	*reverse_cmd(t_parse *parse, char *line, int i, int j);
 char	*ft_substr2(char *s, unsigned int start, size_t len);
 void	push_to_struct(t_parse *parse, char *line);
 
