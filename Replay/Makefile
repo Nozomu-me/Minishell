@@ -8,9 +8,10 @@ SRCS =	parsing.c \
 		error/error.c\
 		switch_new_line.c\
 		redirection.c\
-		change_to_sp.c\
+		search_replace.c\
 		push_to_struct.c\
-		free.c
+		free.c\
+		pipe_semi.c
 
 # OBJ = $(SRCS:.c=.o)
 OBJ_DIR		=	./objs

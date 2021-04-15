@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:30:58 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/14 13:45:32 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/15 15:07:52 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,6 @@ char	*ft_turn_dollar(t_symbol *smbl, char *line, int i)
 	return (line);
 }
 
-int	compare(char *str, char *str2)
-{
-	while (*str || *str2)
-	{
-		if (*str != *str2)
-			return (0);
-		str++;
-		str2++;
-	}
-	return (1);
-}
-
 char	*last_word(char *line)
 {
 	int	i;
@@ -41,7 +29,7 @@ char	*last_word(char *line)
 	return (line + i);
 }
 
-char	*get_path(t_parse *parse, char *line, int *j)
+char	*get_path_dollar(t_parse *parse, char *line, int *j)
 {
 	while (line[++(*j)])
 		if (ft_strchr(parse->check_env, line[*j]))
@@ -57,13 +45,14 @@ char	*dollar(t_parse *parse, char *line)
 
 	j = -1;
 	i = -1;
-	path = get_path(parse, line, &j);
+	path = get_path_dollar(parse, line, &j);
 	i = 0;
 	while (parse->env[i])
 	{
 		parse->split = ft_split(parse->env[i], '=');
 		if (compare(path, "_"))
 		{
+			// printf("SECOND |%d|\n", parse->already_pipe);
 			if (parse->already_pipe == 0)
 				return (ft_strjoin(last_word(parse->under_score), line + j));
 			else

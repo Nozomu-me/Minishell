@@ -6,23 +6,11 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:30:33 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/13 15:56:13 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/15 10:34:19 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
-
-void	initial_symbol(t_symbol *sbl)
-{
-	sbl->pipe = OFF;
-	sbl->semi = OFF;
-	sbl->s_quote = OFF;
-	sbl->d_quote = OFF;
-	sbl->great = OFF;
-	sbl->less = OFF;
-	sbl->d_great = OFF;
-	sbl->error = OFF;
-}
 
 void	off_flags(t_symbol *smbl)
 {
@@ -41,14 +29,6 @@ void	ft_error(t_symbol *smbl, char *str)
 	smbl->error = ON;
 }
 
-int	check_flags(t_symbol *smbl)
-{
-	int	sum;
-
-	sum = smbl->d_great + smbl->less + smbl->great + smbl->semi + smbl->pipe;
-	return (sum);
-}
-
 int	count_back(char *line)
 {
 	int	cp;
@@ -64,34 +44,14 @@ int	count_back(char *line)
 	return (1);
 }
 
-char	*check_symbols(t_symbol *smbl, char *line, int i)
+void	error_red(t_symbol *smbl, char *error, char c)
 {
-	while (line[++i] && !smbl->error)
-	{
-		if (line[i] == '"')
-			line = check_d_quote(smbl, line, i);
-		else if (line[i] == '\'')
-			line = check_s_quote(smbl, line, i);
-		else if (line[i] == '|')
-			line = check_pipe(smbl, line, i);
-		else if (line[i] == ';')
-			line = check_semicolone(smbl, line, i);
-		else if (line[i] == '>' && line[i + 1] == '>')
-			line = check_redirection(smbl, line, i++, &smbl->d_great);
-		else if (line[i] == '>')
-			line = check_redirection(smbl, line, i, &smbl->great);
-		else if (line[i] == '<')
-			line = check_redirection(smbl, line, i, &smbl->less);
-		else if (line[i] == ' ')
-			line = check_space(smbl, line, i);
-		else if (line[i] == '$')
-			line = ft_turn_dollar(smbl, line, i);
-		else if (check_flags(smbl) && line[i] != ' ')
-			off_flags(smbl);
-	}
-	return (line);
+	if (c == 63)
+		printf("%s%s `%s'%s\n", RED, error, ">>", WHITE);
+	else
+		printf("%s%s `%c'%s\n", RED, error, c, WHITE);
+	smbl->error = 1;
 }
-/*check " & ' if is closed or note & change ; | to non printable characters */
 
 char	*partition_stage(t_symbol *smbl, char *line)
 {

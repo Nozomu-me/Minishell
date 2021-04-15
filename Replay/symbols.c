@@ -6,21 +6,22 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 17:02:55 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/14 15:24:02 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/15 10:36:02 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int		redirection(t_symbol *smbl)
+void	initial_symbol(t_symbol *sbl)
 {
-	if (smbl->great == ON)
-		return (62);
-	if (smbl->less == ON)
-		return (60);
-	if (smbl->d_great == ON)
-		return (63);
-	return (0);
+	sbl->pipe = OFF;
+	sbl->semi = OFF;
+	sbl->s_quote = OFF;
+	sbl->d_quote = OFF;
+	sbl->great = OFF;
+	sbl->less = OFF;
+	sbl->d_great = OFF;
+	sbl->error = OFF;
 }
 
 char	*check_d_quote(t_symbol *smbl, char *line, int i)
@@ -45,12 +46,12 @@ char	*check_s_quote(t_symbol *smbl, char *line, int i)
 {
 	if (smbl->s_quote == OFF && smbl->d_quote == OFF)
 	{
-			if (smbl->d_great == ON)
-				smbl->d_great = OFF;
-			if (smbl->great == ON)
-				smbl->great = OFF;
-			if (smbl->less == ON)
-				smbl->less = OFF;
+		if (smbl->d_great == ON)
+			smbl->d_great = OFF;
+		if (smbl->great == ON)
+			smbl->great = OFF;
+		if (smbl->less == ON)
+			smbl->less = OFF;
 		if (!count_back(line + (i - 1)))
 			smbl->s_quote = ON;
 	}
@@ -64,49 +65,6 @@ char	*check_s_quote(t_symbol *smbl, char *line, int i)
 	return (line);
 }
 
-char	*check_semicolone(t_symbol *smbl, char *line, int i)
-{
-	if (smbl->d_quote == OFF && smbl->s_quote == OFF)
-	{
-		if (count_back(line + (i - 1)))
-			line[i] *= -1;
-		else
-		if (redirection(smbl))
-		{
-			ft_error(smbl, "1=>syntax error near unexpected token `;'");
-			off_flags(smbl);
-		}
-		else
-		{
-			if (smbl->semi == ON)
-			{
-				ft_error(smbl, "2=>syntax error near unexpected token `;'");
-				smbl->semi = OFF;
-			}
-			else if (smbl->pipe == ON)
-			{
-				ft_error(smbl, "3=>syntax error near unexpected token `;'");
-				off_flags(smbl);
-			}
-			else
-				smbl->semi = ON;
-		}
-	}
-	else
-	{
-		if (smbl->d_quote == ON || smbl->s_quote == ON)
-			line[i] *= -1;
-		else
-		{
-			if (smbl->semi == OFF)
-				smbl->semi = ON;
-			else
-				ft_error(smbl, "3=>syntax error near unexpected token `;'");
-		}
-	}
-	return (line);
-}
-
 char	*check_space(t_symbol *smbl, char *line, int i)
 {
 	if (smbl->d_quote == ON || smbl->s_quote == ON)
@@ -114,76 +72,30 @@ char	*check_space(t_symbol *smbl, char *line, int i)
 	return (line);
 }
 
-char	*check_pipe(t_symbol *smbl, char *line, int i)
+char	*check_symbols(t_symbol *smbl, char *line, int i)
 {
-	if (smbl->d_quote == OFF && smbl->s_quote == OFF)
+	while (line[++i] && !smbl->error)
 	{
-		if (count_back(line + (i - 1)))
-			line[i] *= -1;
-		else if (redirection(smbl))
-		{
-			ft_error(smbl, "1=>syntax error near unexpected token `|'");
+		if (line[i] == '"')
+			line = check_d_quote(smbl, line, i);
+		else if (line[i] == '\'')
+			line = check_s_quote(smbl, line, i);
+		else if (line[i] == '|')
+			line = check_pipe(smbl, line, i);
+		else if (line[i] == ';')
+			line = check_semicolone(smbl, line, i);
+		else if (line[i] == '>' && line[i + 1] == '>')
+			line = check_redirection(smbl, line, i++, &smbl->d_great);
+		else if (line[i] == '>')
+			line = check_redirection(smbl, line, i, &smbl->great);
+		else if (line[i] == '<')
+			line = check_redirection(smbl, line, i, &smbl->less);
+		else if (line[i] == ' ')
+			line = check_space(smbl, line, i);
+		else if (line[i] == '$')
+			line = ft_turn_dollar(smbl, line, i);
+		else if (check_flags(smbl) && line[i] != ' ')
 			off_flags(smbl);
-		}
-		else
-		{
-			if (smbl->pipe == ON)
-			{
-				ft_error(smbl, "2=>syntax error near unexpected token `|'");
-				smbl->pipe = OFF;
-			}
-			else if (smbl->semi == ON)
-			{
-				ft_error(smbl, "3=>syntax error near unexpected token `|'");
-				off_flags(smbl);
-			}
-			else
-				smbl->pipe = ON;
-		}
-	}
-	else
-	{
-		if (smbl->d_quote == ON || smbl->s_quote == ON)
-			line[i] *= -1;
-		else
-		{
-			if (smbl->pipe == OFF)
-				smbl->pipe = ON;
-			else
-			ft_error(smbl, "4=>syntax error near unexpected token `|'");
-		}
-	}
-	return (line);
-}
-
-void	ft_error_redirection(t_symbol *smbl, char *error, char c)
-{
-	if (c == 63)
-		printf("%s%s `%s'%s\n", RED, error, ">>", WHITE);
-	else
-		printf("%s%s `%c'%s\n", RED, error, c, WHITE);
-	smbl->error = 1;
-}
-
-char	*check_redirection(t_symbol *smbl, char *line, int i, int *type)
-{
-	if (smbl->d_quote == ON || smbl->s_quote == ON)
-	{
-		if (line[i + 1] == '>')
-			line[i + 1] *= -1;
-		line[i] *= -1;
-	}
-	else
-	{
-		if(redirection(smbl) == OFF)
-			*type = ON;
-		else
-		{
-			if (line[i + 1] == '>')
-				ft_error_redirection(smbl, "syntax error near unexpected token", 63);
-			else
-				ft_error_redirection(smbl, "syntax error near unexpected token", line[i]);
-		}
 	}
 	return (line);
 }

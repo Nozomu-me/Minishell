@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/14 15:21:50 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/15 15:11:19 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	split_semi_pipe(t_parse *parse, char *line, int len)
 			if (--len)
 			{
 				parse->already_pipe = 1;
+				// printf("FIRST |%d|\n", parse->already_pipe);
 				lstadd_cmd(&parse->f_cmd, lstnew_cmd(parse->s_pipe[j], PIPE));
 			}
 			else
@@ -55,13 +56,16 @@ void	split_semi_pipe(t_parse *parse, char *line, int len)
 
 void	parsing(t_parse *parse, char *line)
 {
-	search_replace(line, "\t", " ");
+	char	*tmp;
+	
+	// search_replace(parse, line, "\t", " ");
 	line = partition_stage(parse->smbl, line);
 	if (!parse->smbl->error)
 		split_semi_pipe(parse, line, 0);
 	while (parse->f_cmd)
 	{
-		parse->f_cmd->cmd = search_replace(parse->f_cmd->cmd, "\t", " ");
+		puts("ok");
+		parse->f_cmd->cmd = search_replace(parse, parse->f_cmd->cmd, "\t", " ");
 		parse->f_cmd->cmd = check_dollr(parse, parse->f_cmd->cmd);
 		push_to_struct(parse, parse->f_cmd->cmd);
 		parse->under_score = parse->f_cmd->cmd;
