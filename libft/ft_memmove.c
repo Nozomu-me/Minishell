@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 16:34:11 by amouassi          #+#    #+#             */
-/*   Updated: 2019/11/07 14:50:07 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/12 16:45:30 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	{
 		while (len--)
 		{
-			*(unsigned char*)(dst + len) = *(unsigned char*)(src + len);
+			*(unsigned char *)(dst + len) = *(unsigned char *)(src + len);
 		}
 		return (dst);
 	}

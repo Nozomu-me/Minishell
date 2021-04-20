@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 14:07:59 by amouassi          #+#    #+#             */
-/*   Updated: 2019/11/05 16:59:34 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/12 16:38:05 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_subatoi(const char *str, int sign, int i)
+static int	ft_subatoi(const char *str, int sign, int i)
 {
 	long int		res;
 	long int		over;
@@ -31,7 +31,7 @@ static int		ft_subatoi(const char *str, int sign, int i)
 	return (res);
 }
 
-int				ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int			i;
 	long int	res;

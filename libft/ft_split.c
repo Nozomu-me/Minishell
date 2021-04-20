@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 16:03:10 by amouassi          #+#    #+#             */
-/*   Updated: 2019/11/06 16:02:33 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/12 16:46:19 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int			ft_count_words(const char *s, char c)
+static int	ft_count_words(const char *s, char c)
 {
 	int		i;
 	int		count;
@@ -28,25 +28,25 @@ static int			ft_count_words(const char *s, char c)
 	return (count);
 }
 
-static char			*ft_print_tab(const char *s, int deb, int fin)
+static char	*ft_print_tabl(const char *s, int deb, int fin)
 {
 	int		i;
-	char	*tab;
+	char	*tabl;
 
 	i = deb;
-	tab = malloc((fin - deb + 2) * sizeof(char));
-	if (tab == NULL)
+	tabl = malloc((fin - deb + 2) * sizeof(char));
+	if (tabl == NULL)
 		return (NULL);
 	while (i <= fin)
 	{
-		tab[i - deb] = s[i];
+		tabl[i - deb] = s[i];
 		i++;
 	}
-	tab[i - deb] = '\0';
-	return (tab);
+	tabl[i - deb] = '\0';
+	return (tabl);
 }
 
-static int			ft_check_allocation(char **str, int j)
+static int	ft_check_allocation(char **str, int j)
 {
 	int		k;
 
@@ -64,7 +64,7 @@ static int			ft_check_allocation(char **str, int j)
 	return (1);
 }
 
-static char			**ft_fit_tab(const char *s, char c, char **str)
+static char	**ft_fit_tabl(const char *s, char c, char **str)
 {
 	int		i;
 	int		deb;
@@ -80,7 +80,7 @@ static char			**ft_fit_tab(const char *s, char c, char **str)
 		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
 		{
 			fin = i;
-			str[j] = ft_print_tab(s, deb, fin);
+			str[j] = ft_print_tabl(s, deb, fin);
 			if (!ft_check_allocation(str, j))
 				return (NULL);
 			j++;
@@ -91,15 +91,15 @@ static char			**ft_fit_tab(const char *s, char c, char **str)
 	return (str);
 }
 
-char				**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	char **str;
+	char	**str;
 
 	if (s == NULL)
 		return (NULL);
-	str = (char **)malloc((ft_count_words(s, c) + 1) * sizeof(char*));
+	str = (char **)malloc((ft_count_words(s, c) + 1) * sizeof(char *));
 	if (str == NULL)
 		return (NULL);
-	str = ft_fit_tab(s, c, str);
+	str = ft_fit_tabl(s, c, str);
 	return (str);
 }

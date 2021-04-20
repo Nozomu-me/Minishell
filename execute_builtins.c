@@ -5,85 +5,74 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/27 14:07:53 by amouassi          #+#    #+#             */
-/*   Updated: 2021/03/04 12:22:14 by amouassi         ###   ########.fr       */
+/*   Created: 2021/03/10 22:34:56 by amouassi          #+#    #+#             */
+/*   Updated: 2021/04/18 13:39:54 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    execute_pwd()
+int		check_isbuiltin(char *cmd)
 {
-	char    buf[PATH_MAX];
-	
-	if (getcwd(buf, PATH_MAX) == NULL)
-	{
-		error_pwd("pwd: ",errno);
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		printf("%s\n", buf);
-	}
+	if (cmd == NULL)
+		return (2);
+	if (ft_strcmp(cmd, "echo") == 0)
+		return (1);
+	if (ft_strcmp(cmd, "cd") == 0)
+		return (1);
+	if (ft_strcmp(cmd, "pwd") == 0)
+		return (1);
+	if (ft_strcmp(cmd, "env") == 0)
+		return (1);
+	if (ft_strcmp(cmd, "export") == 0)
+		return (1);
+	if (ft_strcmp(cmd, "unset") == 0)
+		return (1);
+	if (ft_strcmp(cmd, "exit") == 0)
+		return (1);
+	return (0);
 }
 
-void    execute_cd(t_builtins *builtins)
+int		check_pipe_builtins(t_mini *mini)
 {
-	int     check_dir;
-	char	pwd[PATH_MAX];
-
-	check_dir = chdir(builtins->cd_path);
-		if (check_dir == -1 && builtins->cd_path != NULL)
-			error_cd(builtins->cd_path, errno);
-	getcwd(pwd, PATH_MAX);
+	if (mini->cmds.cmd[0] == NULL)
+		return (2);
+	if (ft_strcmp(mini->cmds.cmd[0], "exit") == 0)
+		return (2);
+	if (ft_strcmp(mini->cmds.cmd[0], "echo") == 0)
+		return (1);
+	if (ft_strcmp(mini->cmds.cmd[0], "cd") == 0)
+		return (1);
+	if (ft_strcmp(mini->cmds.cmd[0], "pwd") == 0)
+		return (1);
+	if (ft_strcmp(mini->cmds.cmd[0], "env") == 0)
+		return (1);
+	if (ft_strcmp(mini->cmds.cmd[0], "export") == 0
+		&& mini->cmds.cmd[2] == NULL)
+		return (1);
+	if (ft_strcmp(mini->cmds.cmd[0], "unset") == 0
+		&& mini->cmds.cmd[2] == NULL)
+		return (1);
+	return (0);
 }
 
-void	execute_env(t_builtins *builtins, char **split, int i)
+void	execute_builtins(t_mini *mini)
 {
-	char *env[i];
-	int		j;
-
-	i = 1;
-	j = 0;
-	while(split[i] != NULL)
-	{
-		env[j] = split[i];
-		i++;
-		j++;
-	}
-	env[j] = NULL;
-	i = 0;
-	while(builtins->env[i] != NULL)
-	{
-		printf("%s\n",builtins->env[i]);
-		i++;
-	}
-	i = 0;
-	while (env[i] != NULL)
-	{
-		printf("%s\n", env[i]);
-		i++;
-	}
-	free_tab(split);
+    mini->glob.fd_red = redir_builtins(mini);
+	if (ft_strcmp(mini->cmds.cmd[0], "pwd") == 0)
+		execute_pwd(mini);
+	else if (ft_strcmp(mini->cmds.cmd[0], "cd") == 0)
+		execute_cd(mini);
+	else if (ft_strcmp(mini->cmds.cmd[0], "echo") == 0)
+		execute_echo(mini->cmds.cmd, mini);
+	else if (ft_strcmp(mini->cmds.cmd[0], "export") == 0)
+		execute_export(mini);
+	else if (ft_strcmp(mini->cmds.cmd[0], "unset") == 0)
+		execute_unset(mini);
+	else if (ft_strcmp(mini->cmds.cmd[0], "env") == 0)
+		execute_env(mini);
+	else if (ft_strcmp(mini->cmds.cmd[0], "exit") == 0)
+		execute_exit(mini);
+	if (mini->glob.fd_red != 1)
+		close(mini->glob.fd_red);
 }
-
-void	execute_export(t_builtins *builtins, int b)
-{
-	int		i;
-	t_export	*tmp;
-	char		**tab;
-
-	i = 0;
-	if (b == 1)
-	{
-		ft_sort_tab(builtins->env);
-		while(builtins->env[i] != NULL)
-		{
-			printf("declare -x %s\n",builtins->env[i]);
-			i++;
-		}
-		sort_list(builtins->export);
-		print_export(builtins);
-	}
-}
-

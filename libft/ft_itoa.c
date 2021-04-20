@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 13:17:20 by amouassi          #+#    #+#             */
-/*   Updated: 2019/10/29 12:30:34 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/12 16:44:09 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_count(int n)
+static int	ft_count(int n)
 {
 	int		count;
 
@@ -32,7 +32,7 @@ static int		ft_count(int n)
 	return (count);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char		*str;
 	int			i;
@@ -41,7 +41,7 @@ char			*ft_itoa(int n)
 	nb = n;
 	if (nb == 0)
 		return (ft_strdup("0"));
-	str = (char*)malloc((ft_count(n) + 1) * sizeof(char));
+	str = (char *)malloc((ft_count(n) + 1) * sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	i = ft_count(n) - 1;

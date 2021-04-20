@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:42:06 by amouassi          #+#    #+#             */
-/*   Updated: 2019/11/01 11:28:12 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/12 16:48:58 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_is_char(char c, const char *set)
+static int	ft_is_char(char c, const char *set)
 {
 	int		i;
 
@@ -26,7 +26,7 @@ static int		ft_is_char(char c, const char *set)
 	return (0);
 }
 
-static int		ft_find_deb(char const *s, char const *set)
+static int	ft_find_deb(char const *s, char const *set)
 {
 	int		i;
 
@@ -40,7 +40,7 @@ static int		ft_find_deb(char const *s, char const *set)
 	return (i);
 }
 
-static int		ft_find_fin(char const *s, char const *set)
+static int	ft_find_fin(char const *s, char const *set)
 {
 	int		slen;
 	int		fin;
@@ -59,7 +59,7 @@ static int		ft_find_fin(char const *s, char const *set)
 	return (fin);
 }
 
-char			*ft_strtrim(char const *s, char const *set)
+char	*ft_strtrim(char const *s, char const *set)
 {
 	char	*str;
 	int		start;

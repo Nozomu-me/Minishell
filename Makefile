@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+         #
+#    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:19:58 by amouassi          #+#    #+#              #
-#    Updated: 2021/03/09 12:15:23 by abdel-ke         ###   ########.fr        #
+#    Updated: 2021/04/20 12:18:15 by amouassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,20 +51,63 @@ SRCLIB =  ft_atoi.c \
 		  ft_strtrim.c \
 		  ft_substr.c \
 		  ft_tolower.c \
-		  ft_toupper.c
+		  ft_toupper.c \
+		  ft_lstadd_back.c \
+		  ft_lstadd_front.c \
+		  ft_lstlast.c \
+		  ft_lstnew.c \
+		  ft_lstsize.c \
+		  ft_lstdelone.c \
+		  ft_lstclear.c \
+		  ft_lstiter.c \
+		  ft_lstmap.c \
 
-SRC = utils.c \
-	  execute_builtins.c \
-	  parsing.c \
-	  init_structs.c \
-	  errors.c \
-	  gnl/get_next_line.c \
-	  gnl/get_next_line_utils.c \
-	  parsing_utils.c \
+SRC = utils/utils.c \
+	  utils/utils2.c \
+	  utils/utils3.c \
+	  utils/utils4.c \
+	  utils/env_utils.c \
+	  utils/list_utils.c \
+	  utils/list_utils2.c \
+	  utils/list_utils3.c \
+	  utils/execute_shell_utils.c \
+	  sig_handler.c \
 	  free.c \
-	  print.c \
+	  init.c \
+	  builtins/execute_pwd.c \
+	  builtins/execute_cd.c \
+	  builtins/execute_env.c \
+	  builtins/execute_export.c \
+	  builtins/execute_unset.c \
+	  builtins/execute_echo.c \
+	  builtins/execute_exit.c \
+	  builtins/mod_old_pwd.c \
+	  errors/errors.c \
+	  errors/exec_errors.c \
+	  execute_cmd.c \
+	  execute_shell.c \
+	  call_execve.c \
+	  init_cmd.c \
+	  execute_builtins.c \
+	  shlvl.c \
+	  main.c \
+	  redirections/create_files.c \
+	  redirections/redir.c \
+	  readline.c \
+	  termcap.c \
+	  history.c \
+	  parsing/parsing.c \
+	  parsing/symbols.c \
+	  parsing/struct.c \
+	  parsing/dollar.c \
+	  parsing/error.c\
+	  parsing/switch_new_line.c\
+	  parsing/redirection.c\
+	  parsing/search_replace.c\
+	  parsing/push_to_struct.c\
+	  parsing/free.c\
+	  parsing/pipe_semi.c
 
-MAIN = main.c
 OBJ = $(SRC:.c=.o)
 OBJLIB = $(addprefix $(LIBFT)/,$(SRCLIB:.c=.o))
 
@@ -72,17 +115,16 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(OBJLIB)
 	$(AR) $(NAME) $(OBJ) $(OBJLIB)
-	$(CC) $(FLAG) $(MAIN) $(NAME) -o $(EXE)
-	@./minishell
+	$(CC) -ltermcap $(FLAG) $(NAME) -o $(EXE)
+
 %.o : %.c
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
 	rm -f $(OBJLIB)
-	rm -f main.o
 fclean: clean
 	rm -f $(NAME)
-	rm -f $(LIBFT)/$(NAMELIBFT) $(EXE)
+	rm -f $(LIBFT)/$(NAMELIBFT)
 
 re: fclean all

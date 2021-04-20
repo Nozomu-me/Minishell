@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 15:49:29 by amouassi          #+#    #+#             */
-/*   Updated: 2019/10/23 15:11:46 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/12 16:48:33 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strrchr(const char *s, int c)
 	while (len >= 0)
 	{
 		if (s[len] == c)
-			return (char *)(&s[len]);
+			return ((char *)(&s[len]));
 		len--;
 	}
 	return (NULL);
