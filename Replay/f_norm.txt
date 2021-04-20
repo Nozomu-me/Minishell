@@ -1,9 +1,0 @@
-parsing.c				//ok
-dollar.c				//ok 		but Too many functions in file
-error.c					//ok but Too many functions in file
-free.c					//ok
-switch_new_line			//ok
-symbols.char			//ok but Too many functions in file
-push_to_struct			//ok
-divid_function.c		//ok
-struct.c				//ok
