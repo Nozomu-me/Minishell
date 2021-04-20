@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
+#    By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:19:58 by amouassi          #+#    #+#              #
-#    Updated: 2021/04/20 12:18:15 by amouassi         ###   ########.fr        #
+#    Updated: 2021/04/20 15:32:01 by abdel-ke         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,6 +107,38 @@ SRC = utils/utils.c \
 	  parsing/push_to_struct.c\
 	  parsing/free.c\
 	  parsing/pipe_semi.c
+
+# OBJ_DIR		=	./objs
+# OBJ = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
+# CFLAGS = #-Wall -Wextra -Werror
+
+# all: $(NAME)
+
+# $(NAME) : $(OBJ) $(LIBFT)
+# 	@gcc -g $(OBJ) $(LIBFT) -o $(NAME)
+# 	@echo "\n\033[32m--------- successfully ---------\033[0m"
+
+# $(LIBFT): force
+# 	@make -C libft/
+
+
+# $(OBJ): $(OBJ_DIR)/%.o: %.c
+# 	@mkdir -p $(dir $@)
+# 	@gcc -g -c $< -o $@
+
+# force:
+
+# clean :
+# 	@make clean -C libft/
+# 	@rm -rf $(OBJ_DIR)
+
+# fclean: clean
+# 	@make fclean -C libft/
+# 	@rm -f $(NAME)
+
+# re : fclean all
+
+# .PHONY: all clean fclean force
 
 OBJ = $(SRC:.c=.o)
 OBJLIB = $(addprefix $(LIBFT)/,$(SRCLIB:.c=.o))

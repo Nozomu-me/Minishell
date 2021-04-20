@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   search_replace.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:31:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/20 13:19:57 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/20 15:24:48 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	replace_searche(t_parse *parse, char *str, char *org, char *rep)
-{
-	while (*str)
-	{
-		if (ft_strnstr(str, org, ft_strlen(str)) == str)
-		{
-			strcpy(&parse->src_new[parse->src_i], rep);
-			parse->src_i += parse->src_len1;
-			str += parse->src_len2;
-		}
-		else
-			parse->src_new[parse->src_i++] = *str++;
-	}
-}
+// void	replace_searche(t_mini *mini, char *str, char *org, char *rep)
+// {
+// 	while (*str)
+// 	{
+// 		if (ft_strnstr(str, org, ft_strlen(str)) == str)
+// 		{
+// 			strcpy(&mini->src_new[mini->src_i], rep);
+// 			mini->src_i += mini->src_len1;
+// 			str += mini->src_len2;
+// 		}
+// 		else
+// 			mini->src_new[mini->src_i++] = *str++;
+// 	}
+// }
 
 // char	*search_replace(t_parse *parse, char *str, char *org, char *rep)
 // {

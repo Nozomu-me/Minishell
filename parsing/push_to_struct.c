@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_to_struct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:32:03 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/20 14:00:53 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/20 16:49:43 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*get_file_name(t_parse *parse, char *line, int *index)
+char	*get_file_name(t_mini *mini, char *line, int *index)
 {
 	char	*tmp;
 	int		pos;
@@ -26,9 +26,9 @@ char	*get_file_name(t_parse *parse, char *line, int *index)
 	start = i;
 	while (line[i] && line[i] != ' ' && line[i] != '>' && line[i] != '<')
 		i++;
-	if (parse->file_nme)
-		free(parse->file_nme);
- 	parse->file_nme = ft_substr2(line, start, i);
+	// if (mini->file_nme)
+	// 	free(mini->file_nme);
+ 	mini->file_nme = ft_substr2(line, start, i);
 	if (pos && line[pos - 1] == '>')
 		--pos;
 	line[pos] = 0;
@@ -39,58 +39,66 @@ char	*get_file_name(t_parse *parse, char *line, int *index)
 	return (line);
 }
 
-char	*push_read_apnd_strct(t_parse *parse, char *line, int *i)
+char	*push_read_apnd_strct(t_mini *mini, char *line, int *i)
 {
 	if (line[(*i) + 1] == '>')
 	{
 		(*i)++;
-		line = get_file_name(parse, line, i);
-		file_lstadd_back(&parse->cmds->file, file_lst_new(parse->file_nme, APPEND));
+		line = get_file_name(mini, line, i);
+		file_lstadd_back(&mini->cmds.file, file_lst_new(mini->file_nme, APPEND));
 	}
 	else
 	{
-		line = get_file_name(parse, line, i);
-		file_lstadd_back(&parse->cmds->file, file_lst_new(parse->file_nme, WRITE));
+		line = get_file_name(mini, line, i);
+		file_lstadd_back(&mini->cmds.file, file_lst_new(mini->file_nme, WRITE));
 	}
 	return (line);
 }
 
-char	*push_file_struct(t_parse *parse, char *line, int i)
+char	*push_file_struct(t_mini *mini, char *line, int i)
 {
 	char	*tmp;
+	mini->cmds.file = NULL;
+	mini->file_nme = NULL;
 
 	while (line[i])
 	{
 		if (line[i] == '<')
 		{
-			line = get_file_name(parse, line, &i);
-			file_lstadd_back(&parse->cmds->file, file_lst_new(parse->file_nme, READ));
+			line = get_file_name(mini, line, &i);
+			file_lstadd_back(&mini->cmds.file, file_lst_new(mini->file_nme, READ));
 		}
 		else if (line[i] == '>')
-			line = push_read_apnd_strct(parse, line, &i);
+			line = push_read_apnd_strct(mini, line, &i);
 		i++;
 	}
+	if (mini->file_nme)
+		free(mini->file_nme);
 	return (line);
 }
 
-void	push_to_struct(t_parse *parse, char *line)
+void	push_to_struct(t_mini *mini, char *line)
 {
 	int		i;
+	t_cflist *tmp;
+	
 
-	parse->cmds = (t_cmds *)malloc(sizeof(t_cmds));
-	parse->cmds->file = NULL;
-	parse->cmds->cmd = NULL;
-	line = push_file_struct(parse, line, 0);
-	parse->cmds->cmd = ft_split(line, ' ');
-	parse->cmds->type = parse->f_cmd->type;
+	// mini->cmds = (t_cmds *)malloc(sizeof(t_cmds));
+	// mini->cmds.file = NULL;
+	// mini->cmds.file = NULL;
+	// mini->cmds.cmd = NULL;
+	line = push_file_struct(mini, line, 0);
+	mini->cmds.cmd = ft_split(line, ' ');
+	// mini->cmds.type = mini->splited_cmd->type;
 	i = -1;
-	while (parse->cmds->cmd[++i])
-		parse->cmds->cmd[i] = reverse_cmd(parse, parse->cmds->cmd[i], 0, -1);
-	while (parse->cmds->file)
+	while (mini->cmds.cmd[++i])
+		mini->cmds.cmd[i] = reverse_cmd(mini, mini->cmds.cmd[i], 0, -1);
+	tmp = mini->cmds.file;
+	while (tmp)
 	{
-		parse->cmds->file->name = reverse_cmd(parse,
-				parse->cmds->file->name, 0, -1);
-		parse->cmds->file = parse->cmds->file->next;
+		tmp->name = reverse_cmd(mini,
+				tmp->name, 0, -1);
+		tmp = tmp->next;
 	}
 }
 

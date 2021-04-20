@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:30:58 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/20 13:35:44 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/20 16:03:55 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,32 @@ char	*last_word(char *line)
 	return (line + i);
 }
 
-char	*get_path_dollar(t_parse *parse, char *line, int *j)
+char	*get_path_dollar(t_mini *mini, char *line, int *j)
 {
 	while (line[++(*j)])
-		if (ft_strchr(parse->check_env, line[*j]))
+		if (ft_strchr(mini->check_env, line[*j]))
 			break ;
 	line = ft_substr(line, 0, *j);
 	return (line);
 }
 
-char	*dollar(t_parse *parse, char *line)
+char	*dollar(t_mini *mini, char *line)
 {
 	t_env	*curr;
 	char	*path;
 	int		j;
 
 	j = -1;
-	printf("line=%s\n", line);
-	curr = parse->env2;
-	path = get_path_dollar(parse, line, &j);
+	curr = mini->env2;
+	path = get_path_dollar(mini, line, &j);
 	while (curr)
 	{
-		if (compare(path, "_"))
+		if (compare(path, "OLDPWD"))
+			return (ft_strjoin(last_word(mini->glob.oldpwd), line + j));
+		else if (compare(path, "_"))
 		{
 			free(path);
-			return (ft_strjoin(last_word(parse->under_score), line + j));
+			return (ft_strjoin(last_word(mini->under_score), line + j));
 		}
 		else if (compare(curr->name, path))
 		{
@@ -66,7 +67,7 @@ char	*dollar(t_parse *parse, char *line)
 	return (ft_strdup(line + j));
 }
 
-char	*check_dollr(t_parse *parse, char *line)
+char	*check_dollr(t_mini *mini, char *line)
 {
 	char	*new;
 	char	*tmp;
@@ -77,9 +78,9 @@ char	*check_dollr(t_parse *parse, char *line)
 	while (line[++i])
 	{
 		if (line[i] == '$' && !count_back(line + (i - 1))
-			&& !ft_strchr(parse->check_env, line[i + 1]))
+			&& !ft_strchr(mini->check_env, line[i + 1]))
 		{
-			new = dollar(parse, line + i + 1);
+			new = dollar(mini, line + i + 1);
 			line[i] = 0;
 			tmp = ft_strjoin(line, new);
 			if (line)

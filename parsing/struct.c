@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:22:04 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/20 13:19:09 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/20 16:29:12 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_cflist	*file_lst_new(void *filename, int filetype)
 		return (NULL);
 	head->name = ft_strdup(filename);
 	head->type = filetype;
+
 	head->next = NULL;
 	return (head);
 }

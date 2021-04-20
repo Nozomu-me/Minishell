@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/20 13:56:21 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/20 15:27:42 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ typedef struct 	s_cmds
     t_type		type;
     t_cflist	*file;
 }				t_cmds;
+
+
 typedef	struct s_env
 {
 	char		*name;
@@ -133,31 +135,32 @@ typedef struct s_symbol
 	int already_pipe;
 }					t_symbol;
 
-typedef struct s_parse
-{
-	char			**s_semi;
-	char			**s_pipe;
-	char			**split;
-	char			**env;
-	char			*check_env;
-	char			*under_score;
+// typedef struct s_parse
+// {
+// 	char			**s_semi;
+// 	char			**s_pipe;
+// 	char			**split;
+// 	char			**env;
+// 	char			*check_env;
+// 	char			*under_score;
 
-	int				cp;
-	int				src_i;
-	int				src_count;
-	int				src_len1;
-	int				src_len2;
-	char			*src_new;
-	char			*new;
-	char			*file_nme;
-	t_cmds			*cmds;
-	t_symbol		*smbl;
-	t_cflist		*f_cmd;
-	t_env			*env2;
-}					t_parse;
+// 	int				cp;
+// 	int				src_i;
+// 	int				src_count;
+// 	int				src_len1;
+// 	int				src_len2;
+// 	char			*src_new;
+// 	char			*new;
+// 	char			*file_nme;
+// 	t_cmds			*cmds;
+// 	t_symbol		*smbl;
+// 	t_cflist		*f_cmd;
+// 	t_env			*env2;
+// }					t_parse;
 
 typedef struct      s_minishell
 {
+
 	t_cmds			cmds;
 	t_cflist		*splited_cmd;
     t_list			*env;
@@ -169,7 +172,27 @@ typedef struct      s_minishell
 	int				sig_status;
 	pid_t			pid;
     int				fd[2];
-	t_parse			*parse;
+	// t_parse			*parse;
+
+
+	//meee
+	char			**s_semi;
+	char			**s_pipe;
+	char			**split;
+	char			**envv;
+	char			*check_env;
+	char			*under_score;
+
+	int				cp;
+	int				src_i;
+	int				src_count;
+	int				src_len1;
+	int				src_len2;
+	char			*src_new;
+	char			*new;
+	char			*file_nme;
+	t_env			*env2;
+	t_symbol		*smbl;
 }                   t_mini;
 /*
 ** utils
@@ -317,9 +340,9 @@ int			check_flags(t_symbol *smbl);
 void		off_flags(t_symbol *smbl);
 
 /* command */
-char		*reverse_cmd(t_parse *parse, char *line, int i, int j);
+char		*reverse_cmd(t_mini *mini, char *line, int i, int j);
 char		*ft_substr2(char *s, unsigned int start, size_t len);
-void		push_to_struct(t_parse *parse, char *line);
+void		push_to_struct(t_mini *mini, char *line);
 int			compare(char *str, char *str2);
 
 /*struct*/
@@ -330,21 +353,21 @@ t_cflist		*file_lst_new(void *filename, int filetype);
 // void		lstadd_cmd(t_f_cmd **alst, t_f_cmd *new);
 
 /* free struct */
-void		free_cmds_struct(t_parse *cmds);
+void		free_cmds_struct(t_mini *mini);
 void		ft_free_tab(char **s);
-void		ft_free(t_parse *parse);
+void		ft_free(t_mini *mini);
 
 /* dollar */
-char		*dollar(t_parse *parse, char *line);
-char		*check_dollr(t_parse *parse, char *line);
+char		*dollar(t_mini *mini, char *line);
+char		*check_dollr(t_mini *mini, char *line);
 char		*ft_turn_dollar(t_symbol *smbl, char *line, int i);
 
 /*redirection */
 char		*sort_redirection(char *line);
 int			redirection(t_symbol *smbl);
 char		*check_redirection(t_symbol *smbl, char *line, int i, int *type);
-t_parse *initail_struct(t_parse *parse, char **env);
-void	split_semi_pipe(t_parse *parse, char *line, int len, int i);
+void		initail_struct(t_mini *mini, char **env);
+void	split_semi_pipe(t_mini *mini, char *line, int len, int i);
 t_cflist	*lstnew_cmd(char *v_cmd, int type);
 void	lstadd_cmd(t_cflist **alst, t_cflist *new);
 #endif

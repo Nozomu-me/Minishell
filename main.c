@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:28:51 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/20 13:59:44 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/20 16:53:57 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		main(int argc,  char **argv)
 	struct termios term;
 	// t_parse	*parse;
 	char	**env;
+	char	*tmpline;
 
 	signal(SIGINT,sig_handler);
 	signal(SIGQUIT,sig_handler);
@@ -27,33 +28,36 @@ int		main(int argc,  char **argv)
 	shlvl(&mini);
 	set_terminal(term);
 	env = list_to_tabl(mini.export_env);
-	mini.parse = initail_struct(mini.parse, env);
+	// mini.parse = initail_struct(mini.parse, env);
+	initail_struct(&mini, env);
 	while(1)
 	{
 		ft_putstr("\033[33mminishell\033[0m\033[32m~$\033[0m ");
 		readline(&mini, &mini.cmdline, &mini.history);
 		ft_putchar_fd('\n', 1);
-		mini.cmdline = partition_stage(mini.parse->smbl, mini.cmdline);
 		if (mini.cmdline != NULL)
 		{
-			if (!mini.parse->smbl->error)
-				split_semi_pipe(mini.parse, mini.cmdline, 0, -1);
-			// tmp = mini.splited_cmd;
-			tmp = mini.parse->f_cmd;
+			tmpline = mini.cmdline;
+			mini.cmdline = partition_stage(mini.smbl, mini.cmdline);
+			printf("seg\n");
+			free(tmpline);
+			if (!mini.smbl->error)
+				// split_semi_pipe(mini.parse, mini.cmdline, 0, -1);
+					splitpipesemi(&mini);
+			tmp = mini.splited_cmd;
+			// tmp = mini.parse->f_cmd;
 			mini.glob.fd_prv = -1;
 			while(tmp != NULL)
 			{
 				mini.cmds.file = NULL;
 				g_check.exit_sig = 1;
 				mini.cmds.type = tmp->type;
-				// printf("here\n");
-				mini.parse->f_cmd->name = check_dollr(mini.parse, tmp->name);
-				push_to_struct(mini.parse, mini.parse->f_cmd->name);
-				printf("here\n");
-				// inito(&mini, tmp->name);
+				mini.splited_cmd->name = ft_strdup(check_dollr(&mini , tmp->name));
+				push_to_struct(&mini, mini.splited_cmd->name);
+				// printf("name=%s\n", mini.cmds.file->name);
 				execute_cmd(&mini);
-				free(mini.parse->under_score);
-				mini.parse->under_score = ft_strdup(mini.parse->f_cmd->name);
+				free(mini.under_score);
+				mini.under_score = ft_strdup(mini.splited_cmd->name);
 				g_check.exit_sig = 0;
 				tmp = tmp->next;
 				if (mini.cmds.file != NULL)
