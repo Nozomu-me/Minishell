@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:37:04 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/20 15:25:26 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/21 13:52:03 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,25 @@ char	*inverse_line(char *line)
 	return (line);
 }
 
+char	*dollar_d_quote(t_mini *mini, char *line, int i, int j)
+{
+	char *tmp;
+	char *tmp2;
+	tmp = ft_substr(line, j + 1, ft_strlen(line + j + 1));
+	line[j - 1] = 0;
+	tmp2 = ft_strjoin(line, tmp);
+	free (tmp);
+	free(line);
+	line = tmp2;
+	return (line);
+}
+
 char	*delete_quote_off(t_mini *mini, char *line, int *i, int *j)
 {
+
 	if (line[*j - 1] == '$')
-			line[*j - 1] *= '$';
-	else if (line[*j] == '\\')
+		line = dollar_d_quote(mini, line, *i, *j);
+	if (line[*j] == '\\')
 	{
 		mini->cp ++;
 		line[(*i)++] = line[++(*j)];

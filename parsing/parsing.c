@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/20 23:08:07 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/21 14:44:18 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,14 @@ t_env	*create_env_list(char **env)
 
 void	initail_struct(t_mini *mini, char **env)
 {
-	mini->check_env = "=~\\/%#{}$*+-.:?@[]^ '\"";
+	mini->check_env = "=~\\/%#{}$*+-.:?@[]^ \"'";
 	mini->smbl = (t_symbol *)malloc(sizeof(t_symbol));
 	mini->splited_cmd = NULL;
 	mini->under_score = ft_strdup("./minishell");
 	mini->smbl->already_pipe = 0;
 	mini->s_semi = NULL;
 	mini->s_pipe = NULL;
+	mini->file_nme = NULL;
 	// mini->env2 = create_env_list(env);
 }
 

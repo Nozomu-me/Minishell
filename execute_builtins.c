@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_builtins.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 22:34:56 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/18 13:39:54 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/21 14:07:39 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		check_isbuiltin(char *cmd)
 {
+	int i = -1;
 	if (cmd == NULL)
 		return (2);
 	if (ft_strcmp(cmd, "echo") == 0)

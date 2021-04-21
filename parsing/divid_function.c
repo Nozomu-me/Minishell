@@ -16,6 +16,7 @@ char	*delete_quote_off(t_mini *mini, char *line, int *i, int *j)
 		else
 			line[(*i)++] = line[*j];
 	}
+	return (line);
 }
 
 char	*delete_quote_on(t_mini *mini, char *line, int *i, int *j)
