@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:28:51 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/21 00:25:15 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/21 11:43:21 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int		main(int argc,  char **argv)
 	t_mini		mini;
 	t_cflist *tmp;
 	struct termios term;
-	// t_parse	*parse;
 	char	**env;
 	char	*tmpline;
 
@@ -27,8 +26,6 @@ int		main(int argc,  char **argv)
 	init(&mini, environ);
 	shlvl(&mini);
 	set_terminal(term);
-	// env = list_to_tabl(mini.export_env);
-	// mini.parse = initail_struct(mini.parse, env);
 	initail_struct(&mini, env);
 	while(1)
 	{
@@ -40,7 +37,6 @@ int		main(int argc,  char **argv)
 			tmpline = mini.cmdline;
 			mini.cmdline = partition_stage(mini.smbl, mini.cmdline);
 			free(tmpline);
-			// printf("seg\n");
 			if (!mini.smbl->error)
 					splitpipesemi(&mini);
 			tmp = mini.splited_cmd;
@@ -50,14 +46,10 @@ int		main(int argc,  char **argv)
 				mini.cmds.file = NULL;
 				g_check.exit_sig = 1;
 				mini.cmds.type = tmp->type;
-				// printf("name=%s\n", tmp->name);
-				// free(tmp->name);
 				env = list_to_tabl(mini.export_env);
 				mini.env2 = create_env_list(env);
 				tmp->name = check_dollr(&mini , tmp->name);
-				// printf("name2=%s\n", tmp->name);
 				push_to_struct(&mini, tmp->name);
-				// inito(&mini, tmp->name);
 				execute_cmd(&mini);
 				free(mini.under_score);
 				mini.under_score = ft_strdup(mini.splited_cmd->name);
@@ -74,6 +66,7 @@ int		main(int argc,  char **argv)
 					mini.cmds.cmd = NULL;
 				}
 				free_tabl(env);
+				env_lstclear(&mini.env2, free);
 			}
 			if (mini.glob.b_exit == 1)
 			{
@@ -93,6 +86,5 @@ int		main(int argc,  char **argv)
 	free_mini(&mini);
 	free(mini.under_score);
 	free(mini.smbl);
-	// free_tabl(env);
 	return (mini.glob.mini_ret);
 }

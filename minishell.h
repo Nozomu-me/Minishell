@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/21 00:54:42 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/21 11:42:25 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -373,4 +373,5 @@ void	split_semi_pipe(t_mini *mini, char *line, int len, int i);
 t_cflist	*lstnew_cmd(char *v_cmd, int type);
 void	lstadd_cmd(t_cflist **alst, t_cflist *new);
 t_env	*create_env_list(char **env);
+void    env_lstclear(t_env **lst, void (*del)(void*));
 #endif

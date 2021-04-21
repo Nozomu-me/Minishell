@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 18:16:06 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/18 15:46:17 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/21 11:45:01 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,26 @@ void	free_mini(t_mini *mini)
 	free_tabl(mini->glob.home);
 	if (mini->glob.oldpwd != NULL)
 		free(mini->glob.oldpwd);
+}
+
+void    env_lstdelone(t_env *lst, void (*del)(void*))
+{
+    if (!lst || !del)
+        return ;
+    del(lst->name);
+    del(lst->value);
+    free(lst);
+}
+void    env_lstclear(t_env **lst, void (*del)(void*))
+{
+    t_env   *temp;
+    if (!lst || !*lst || !del)
+        return ;
+    while (*lst != NULL)
+    {
+        temp = *lst;
+        *lst = (*lst)->next;
+        env_lstdelone(temp, del);
+    }
+    *lst = NULL;
 }
