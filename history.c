@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 12:39:58 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/21 01:04:19 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/21 21:59:31 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void    uphistory(t_termcap *term, t_list **history, char **cmdline)
 
 void    delete_dhist(t_termcap *term, char **cmdline)
 {
+	// fprintf(stderr,"delete\n");
     tputs(tgoto(tgetstr("LE", NULL),0, term->prevlen), 0, fd_putchar);
 	tputs(tgoto(tgetstr("ce", NULL),0, term->prevlen), 0, fd_putchar);
     free(*cmdline);
@@ -57,7 +58,9 @@ void    downhistory(t_termcap *term, t_list **history, char **cmdline)
 {
     char **hist_tab;
 
-    if (term->prevlen != 0 && term->histpos != term->lstsize)
+    if ((term->prevlen != 0 && term->histpos != term->lstsize)
+		|| (term->prevlen != 0 && term->histpos == term->lstsize 
+		&& term->save != NULL))
         delete_dhist(term, cmdline);
 	hist_tab = list_to_tabl(*history);
 	if (term->histpos < term->lstsize)
@@ -68,7 +71,18 @@ void    downhistory(t_termcap *term, t_list **history, char **cmdline)
 		term->prevlen = ft_strlen(hist_tab[term->histpos]);
 	}
 	if (term->histpos == term->lstsize)
-		term->prevlen = 0;
+	{
+		if (term->save != NULL)
+		{
+			// if (*cmdline != NULL)
+			ft_putstr(term->save);
+			*cmdline = ft_strdup(term->save);
+			// fprintf(stderr ,"cmdline=%s\n", *cmdline);
+			term->prevlen = ft_strlen(term->save);
+		}
+		else 
+			term->prevlen = 0;
+	}
 	if (hist_tab[term->histpos] != NULL)
 	{
         free(*cmdline);
