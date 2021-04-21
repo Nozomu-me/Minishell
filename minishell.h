@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/20 15:27:42 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/21 00:54:42 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_termcap
 	int		prevlen;
 	char	*histadd;
 	int		histpos;
+	// int		check;
+	char *save;
 	struct winsize win;
 }				t_termcap;
 
@@ -237,8 +239,8 @@ void    		shlvl(t_mini *mini);
 void    		help_execve(t_mini *mini, char **env, char *path);
 int			    s_help_execve(t_mini *mini);
 void			call_execve(t_mini *mini, char **env, char *path);
-int     check_permission(char *path);
-void    get_path(t_mini *mini, char **split, char **path, int *perm, char *tmp);
+int     		check_permission(char *path);
+void    		get_path(t_mini *mini, char **split, char **path, int *perm, char *tmp);
 /*
 ** execute builtins
 */
@@ -252,10 +254,10 @@ void    		execute_exit(t_mini *mini);
 void            execute_export(t_mini *mini);
 void    		execute_pwd(t_mini *mini);
 void            execute_unset(t_mini *mini);
-void    mod_oldpwd(t_mini *mini);
-void    reset_oldpwd(t_mini *mini, char * save_oldpwd);
-void    mod_pwd(t_mini *mini);
-void	mod_old(t_mini *mini, char *cwd);
+void    		mod_oldpwd(t_mini *mini);
+void    		reset_oldpwd(t_mini *mini, char * save_oldpwd);
+void    		mod_pwd(t_mini *mini);
+void			mod_old(t_mini *mini, char *cwd);
 
 /*
 ** error functions
@@ -370,4 +372,5 @@ void		initail_struct(t_mini *mini, char **env);
 void	split_semi_pipe(t_mini *mini, char *line, int len, int i);
 t_cflist	*lstnew_cmd(char *v_cmd, int type);
 void	lstadd_cmd(t_cflist **alst, t_cflist *new);
+t_env	*create_env_list(char **env);
 #endif

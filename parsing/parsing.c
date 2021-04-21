@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/20 15:41:24 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/20 23:08:07 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	initail_struct(t_mini *mini, char **env)
 	mini->smbl->already_pipe = 0;
 	mini->s_semi = NULL;
 	mini->s_pipe = NULL;
-	mini->env2 = create_env_list(env);
+	// mini->env2 = create_env_list(env);
 }
 
 void    splitpipesemi(t_mini *mini)

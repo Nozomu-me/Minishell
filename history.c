@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 12:39:58 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/18 13:31:12 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/21 01:04:19 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ void    uphistory(t_termcap *term, t_list **history, char **cmdline)
 {
     char **hist_tab;
 
+	// printf("|line=%s|",*cmdline);
+	// if (*cmdline != NULL)
+	// {
+	// 	tputs(tgoto(tgetstr("LE", NULL),0, term->prevlen), 0, fd_putchar);
+	// 	tputs(tgoto(tgetstr("ce", NULL),0, term->prevlen), 0, fd_putchar);
+	// }
     if (term->lstsize != 0)
 	{
 		if (term->prevlen != 0)

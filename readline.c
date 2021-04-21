@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:47:20 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/18 13:27:03 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/21 01:00:45 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,20 @@ void	init_termcap(t_termcap *term, t_list **history, char **cmdline)
 int		check_buffer(t_termcap *term, t_list **history, char **cmdline)
 {
 	if (!strcmp(term->buffer, UP))
+	{
 		uphistory(term, history, cmdline);
+	}
 	else if (!strcmp(term->buffer, DOWN))
+	{
 		downhistory(term, history, cmdline);
+	}
 	else if (term->buffer[0] == DELETE || term->buffer[0] == CTRLD
 		|| term->buffer[0] == LEFTRIGHT || term->buffer[0] == ENTER)
 	{
 		if (termcap(term, cmdline) == 1)
+		{
 			return (1) ;	
+		}
 	}
 	else
 		get_cmdline(term, cmdline);

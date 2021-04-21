@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:28:51 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/20 16:53:57 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/21 00:25:15 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		main(int argc,  char **argv)
 	init(&mini, environ);
 	shlvl(&mini);
 	set_terminal(term);
-	env = list_to_tabl(mini.export_env);
+	// env = list_to_tabl(mini.export_env);
 	// mini.parse = initail_struct(mini.parse, env);
 	initail_struct(&mini, env);
 	while(1)
@@ -39,22 +39,25 @@ int		main(int argc,  char **argv)
 		{
 			tmpline = mini.cmdline;
 			mini.cmdline = partition_stage(mini.smbl, mini.cmdline);
-			printf("seg\n");
 			free(tmpline);
+			// printf("seg\n");
 			if (!mini.smbl->error)
-				// split_semi_pipe(mini.parse, mini.cmdline, 0, -1);
 					splitpipesemi(&mini);
 			tmp = mini.splited_cmd;
-			// tmp = mini.parse->f_cmd;
 			mini.glob.fd_prv = -1;
 			while(tmp != NULL)
 			{
 				mini.cmds.file = NULL;
 				g_check.exit_sig = 1;
 				mini.cmds.type = tmp->type;
-				mini.splited_cmd->name = ft_strdup(check_dollr(&mini , tmp->name));
-				push_to_struct(&mini, mini.splited_cmd->name);
-				// printf("name=%s\n", mini.cmds.file->name);
+				// printf("name=%s\n", tmp->name);
+				// free(tmp->name);
+				env = list_to_tabl(mini.export_env);
+				mini.env2 = create_env_list(env);
+				tmp->name = check_dollr(&mini , tmp->name);
+				// printf("name2=%s\n", tmp->name);
+				push_to_struct(&mini, tmp->name);
+				// inito(&mini, tmp->name);
 				execute_cmd(&mini);
 				free(mini.under_score);
 				mini.under_score = ft_strdup(mini.splited_cmd->name);
@@ -70,6 +73,7 @@ int		main(int argc,  char **argv)
 					free_tabl(mini.cmds.cmd);
 					mini.cmds.cmd = NULL;
 				}
+				free_tabl(env);
 			}
 			if (mini.glob.b_exit == 1)
 			{
@@ -87,5 +91,8 @@ int		main(int argc,  char **argv)
 		}
 	}
 	free_mini(&mini);
+	free(mini.under_score);
+	free(mini.smbl);
+	// free_tabl(env);
 	return (mini.glob.mini_ret);
 }
