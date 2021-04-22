@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_to_struct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:32:03 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/21 15:51:41 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/22 15:22:09 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,11 @@ void	push_to_struct(t_mini *mini, char *line)
 	// free(tmp2);
 	i = -1;
 	while (mini->cmds.cmd[++i])
+	{
+		if (compare(mini->cmds.cmd[i], "$?"))
+            mini->cmds.cmd[i][0] *= -1;
 		mini->cmds.cmd[i] = reverse_cmd(mini, mini->cmds.cmd[i], 0, -1);
+	}
 	tmp = mini->cmds.file;
 	while (tmp)
 	{

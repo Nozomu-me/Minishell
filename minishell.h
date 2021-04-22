@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 14:24:20 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 15:13:13 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,13 +148,13 @@ typedef struct s_minishell
 	t_cflist		*tmp;
 	char			*tmpline;
 	struct termios	term;
+	int				redir;
 	char			**s_semi;
 	char			**s_pipe;
 	char			**split;
 	char			**envv;
 	char			*check_env;
 	char			*under_score;
-
 	int				cp;
 	int				src_i;
 	int				src_count;
@@ -252,15 +252,6 @@ int				check_in_env(t_list *env, char *str);
 t_list			*init_env_environ(char **environ);
 t_list			*init_export_environ(char **environ);
 char			**ft_getenv(char *name, t_list *env);
-/*
-** tempo
-*/
-void			init_cmds(t_cmds *cmds, char *buf);
-void			init_cmd(t_cmds *cmds);
-int				redir(t_mini *mini);
-void			inito(t_mini *mini, char *cmd);
-void			historyup(char **cmdline, t_list *history,
-					t_termcap *term, int *histpos);
 /*
 ** termcap functions
 */

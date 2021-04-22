@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:43:14 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/21 16:41:30 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 15:31:16 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	error_nodir(char *command)
 {
 	ft_putstr("minishell: ");
 	ft_putstr(command);
-	ft_putstr(": No such file or directory\n");
+	if (command[0] == '$')
+		ft_putstr(": ambiguous redirect\n");
+	else
+		ft_putstr(": No such file or directory\n");
 }
 
 void	current_dir_err(void)

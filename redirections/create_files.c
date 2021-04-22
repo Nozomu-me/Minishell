@@ -12,12 +12,14 @@
 
 #include "../minishell.h"
 
-int	create_write(t_cflist *tmp, int *fd, t_cflist **w)
+int	create_write(t_mini *mini, t_cflist *tmp, int *fd, t_cflist **w)
 {
 	*fd = open(tmp->name, O_CREAT | O_WRONLY | O_TRUNC, 0666);
 	if (*fd == -1)
 	{
 		error_nodir(tmp->name);
+		mini->redir = 1;
+		printf("redir4=%d4\n", mini->redir);
 		g_check.exit_status = 1;
 		return (-1);
 	}
@@ -26,12 +28,14 @@ int	create_write(t_cflist *tmp, int *fd, t_cflist **w)
 	return (0);
 }
 
-int	create_read(t_cflist *tmp, int *fd, t_cflist **r)
+int	create_read(t_mini *mini, t_cflist *tmp, int *fd, t_cflist **r)
 {
 	*fd = open(tmp->name, O_RDONLY);
 	if (*fd == -1)
 	{
 		error_nodir(tmp->name);
+		mini->redir = 1;
+		printf("redir5=%d\n", mini->redir);
 		g_check.exit_status = 1;
 		return (-1);
 	}
@@ -39,12 +43,14 @@ int	create_read(t_cflist *tmp, int *fd, t_cflist **r)
 	return (0);
 }
 
-int	create_append(t_cflist *tmp, int *fd, t_cflist **w)
+int	create_append(t_mini *mini, t_cflist *tmp, int *fd, t_cflist **w)
 {
 	*fd = open(tmp->name, O_CREAT | O_WRONLY | O_APPEND, 0666);
 	if (*fd == -1)
 	{
 		error_nodir(tmp->name);
+		mini->redir = 1;
+		printf("redir6=%d\n", mini->redir);
 		g_check.exit_status = 1;
 		return (-1);
 	}
@@ -62,17 +68,29 @@ int	create_files(t_mini *mini, t_cflist **w, t_cflist **r, int *fd)
 	{
 		if (tmp->type == WRITE)
 		{
-			if (create_write(tmp, fd, w) == -1)
+			if (tmp->name[0] == '$')
+			{
+				error_nodir(tmp->name);
+				mini->redir = 1;
+				return (-1);
+			}
+			if (create_write(mini, tmp, fd, w) == -1)
 				return (-1);
 		}
 		if (tmp->type == READ)
 		{
-			if (create_read(tmp, fd, r) == -1)
+			if (create_read(mini, tmp, fd, r) == -1)
 				return (-1);
 		}
 		else if (tmp->type == APPEND)
 		{
-			if (create_append(tmp, fd, w) == -1)
+			if (tmp->name[0] == '$')
+			{
+				error_nodir(tmp->name);
+				mini->redir = 1;
+				return (-1);
+			}
+			if (create_append(mini, tmp, fd, w) == -1)
 				return (-1);
 		}
 		tmp = tmp->next;

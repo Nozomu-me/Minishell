@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:30:58 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/22 14:25:42 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 15:08:04 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,16 @@ char    *add_dollar_path(char *path)
     return new;
 }
 
+char    *file_dollar(char *line, char *path)
+{
+    char    *path2;
+    char    *new_line;
+    path2 = add_dollar_path(path);
+    new_line = ft_strjoin(path2, line);
+    free(path2);
+    return (new_line);
+}
+
 char	*dollar(t_mini *mini, char *line)
 {
 	t_env	*curr;
@@ -89,7 +99,7 @@ char	*dollar(t_mini *mini, char *line)
 	while (line[i] && line[i] == ' ')
         i--;
     if (line[i] == '>' || line[i] == '<')
-        return(ft_strjoin(add_dollar_path(path), line + j));
+        return(file_dollar(line + j, path));
 	free(path);
 	return (ft_strdup(line + j));
 }
