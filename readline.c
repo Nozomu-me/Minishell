@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:47:20 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/21 01:00:45 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/21 21:59:21 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ int		check_buffer(t_termcap *term, t_list **history, char **cmdline)
 {
 	if (!strcmp(term->buffer, UP))
 	{
+		// fprintf(stderr, "check=%d\n", term->check);
+		// fprintf(stderr ,"save=%s\n",term->save);
+		if (term->save != NULL && term->check == 0)
+		{
+			term->check = 1;
+			tputs(tgoto(tgetstr("LE", NULL),0, ft_strlen(term->save)), 0, fd_putchar);
+			tputs(tgoto(tgetstr("ce", NULL),0, ft_strlen(term->save)), 0, fd_putchar);
+		}
 		uphistory(term, history, cmdline);
 	}
 	else if (!strcmp(term->buffer, DOWN))
@@ -50,6 +58,8 @@ void	readline(t_mini *mini, char **cmdline, t_list **history)
 {
 	t_termcap term;
 
+	term.save = NULL;
+	term.check = 0;
 	init_termcap(&term, history, cmdline);
 	while(1)
 	{

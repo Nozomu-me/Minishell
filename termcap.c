@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:48:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/18 13:32:47 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/21 22:01:34 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void    delete(char **cmdline, t_termcap *term)
 	{
 		tputs(tgoto(tgetstr("LE", NULL),0, 1), 0, fd_putchar);
 		tputs(tgoto(tgetstr("ce", NULL),0, 1), 0, fd_putchar);
-		if (((term->c + 11) % term->win.ws_col) == 0)
+		if (((term->c + 12) % term->win.ws_col) == 0)
 		{
 			tputs(tgoto(tgetstr("up", NULL),0, 1), 0, fd_putchar);
 			tputs(tgoto(tgetstr("RI", NULL),0, term->win.ws_col), 0, fd_putchar);
@@ -82,6 +82,11 @@ void	get_cmdline(t_termcap *term, char **cmdline)
 	{
 	    tmp = *cmdline;
 		*cmdline = ft_strjoin(*cmdline, term->buffer);
+		if (*cmdline != NULL)
+		{
+			term->check = 0;
+			term->save = ft_strdup(*cmdline);
+		}
 	    free(tmp);
 	}
 	term->c += 1;
