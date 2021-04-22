@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:48:36 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/17 14:44:23 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 14:22:28 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	execute_env(t_mini *mini)
 	g_check.exit_status = 0;
 	if (mini->cmds.cmd[1] != NULL && ft_strcmp(mini->cmds.cmd[1], "#") != 0)
 	{
-		if (strcmp(mini->cmds.cmd[1], "=") == 0
-			|| strcmp(mini->cmds.cmd[1], "==") == 0)
+		if (ft_strcmp(mini->cmds.cmd[1], "=") == 0
+			|| ft_strcmp(mini->cmds.cmd[1], "==") == 0)
 		{
 			printf("env: setenv %s: Invalid argument\n", mini->cmds.cmd[1]);
 			g_check.exit_status = 1;

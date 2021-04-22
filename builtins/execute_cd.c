@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:41:28 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/20 11:53:05 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 12:58:14 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	help_cd_home_cur(t_mini *mini)
 
 void	execute_cd_home_cur(t_mini *mini)
 {
-	char	*tmp_path;
-	int		check_dir;
 	char	cwd[PATH_MAX];
 
 	if (ft_strncmp(mini->cmds.cmd[1], "~", 1) == 0)
@@ -55,7 +53,6 @@ void	execute_cd_home_cur(t_mini *mini)
 void	execute_cd_old(t_mini *mini)
 {
 	char	cwd[PATH_MAX];
-	char	*old;
 
 	if (mini->glob.oldpwd == NULL)
 	{
@@ -102,7 +99,6 @@ void	execute_cd(t_mini *mini)
 {
 	char	*tmp_path;
 	int		check_dir;
-	char	cwd[PATH_MAX];
 
 	g_check.exit_status = 0;
 	tmp_path = NULL;

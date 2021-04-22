@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 11:11:33 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/20 11:42:41 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 14:19:25 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	**list_to_tabl(t_list *list)
 	tabl = malloc((ft_lstsize(tmp) + 1) * sizeof(char *));
 	while (tmp != NULL)
 	{
-		tabl[i] = strndup(tmp->content, ft_strlen(tmp->content));
+		tabl[i] = ft_strndup(tmp->content, ft_strlen(tmp->content));
 		tmp = tmp->next;
 		i++;
 	}

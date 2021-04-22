@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:41:48 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 11:33:27 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 14:19:45 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	find_pos(t_list *list, char *name)
 	while (tmp != NULL)
 	{
 		split = ft_split(tmp->content, '=');
-		if (strncmp(split[0], name, ft_maxlen(split[0], name)) == 0)
+		if (ft_strncmp(split[0], name, ft_maxlen(split[0], name)) == 0)
 		{
 			free_tabl(split);
 			return (pos);
@@ -65,8 +65,6 @@ int	help_delete_node(int position, t_list *list)
 void	delete_node(t_list *list, char *name)
 {
 	int		position;
-	t_list	*next;
-	t_list	*temp;
 
 	position = find_pos(list, name);
 	if (position == -1)

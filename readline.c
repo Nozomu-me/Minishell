@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:47:20 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 11:20:35 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 14:23:19 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,24 @@ void	init_termcap(t_termcap *term, t_list **history, char **cmdline)
 	term->histpos = term->lstsize;
 }
 
-int		check_buffer(t_termcap *term, t_list **history, char **cmdline)
+void	help_check_buffer(t_termcap *term)
 {
-	if (!strcmp(term->buffer, UP))
+	tputs(tgoto(tgetstr("LE", NULL), 0, ft_strlen(term->save)), 0, fd_put);
+	tputs(tgoto(tgetstr("ce", NULL), 0, ft_strlen(term->save)), 0, fd_put);
+}
+
+int	check_buffer(t_termcap *term, t_list **history, char **cmdline)
+{
+	if (!ft_strcmp(term->buffer, UP))
 	{
 		if (term->save != NULL && term->check == 0)
 		{
 			term->check = 1;
-			tputs(tgoto(tgetstr("LE", NULL),0, ft_strlen(term->save)), 0, fd_putchar);
-			tputs(tgoto(tgetstr("ce", NULL),0, ft_strlen(term->save)), 0, fd_putchar);
+			help_check_buffer(term);
 		}
 		uphistory(term, history, cmdline);
 	}
-	else if (!strcmp(term->buffer, DOWN))
+	else if (!ft_strcmp(term->buffer, DOWN))
 	{
 		downhistory(term, history, cmdline);
 	}
@@ -44,7 +49,7 @@ int		check_buffer(t_termcap *term, t_list **history, char **cmdline)
 	{
 		if (termcap(term, cmdline) == 1)
 		{
-			return (1) ;	
+			return (1);
 		}
 	}
 	else
@@ -52,14 +57,14 @@ int		check_buffer(t_termcap *term, t_list **history, char **cmdline)
 	return (0);
 }
 
-void	readline(t_mini *mini, char **cmdline, t_list **history)
+void	readline(char **cmdline, t_list **history)
 {
-	t_termcap term;
+	t_termcap	term;
 
 	term.save = NULL;
 	term.check = 0;
 	init_termcap(&term, history, cmdline);
-	while(1)
+	while (1)
 	{
 		term.buffer[0] = '\0';
 		term.ret = read(0, term.buffer, 4);

@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:51:40 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/12 18:36:51 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 14:18:12 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ t_list	*init_env_environ(char **environ)
 	int		i;
 
 	i = 1;
-	env = ft_lstnew(strdup(environ[0]));
+	env = ft_lstnew(ft_strdup(environ[0]));
 	while (environ[i] != NULL)
 	{
-		if (strncmp(environ[i], "OLDPWD", 6) != 0)
-			ft_lstadd_back(&env, ft_lstnew(strdup(environ[i])));
+		if (ft_strncmp(environ[i], "OLDPWD", 6) != 0)
+			ft_lstadd_back(&env, ft_lstnew(ft_strdup(environ[i])));
 		i++;
 	}
 	return (env);
@@ -34,13 +34,13 @@ t_list	*init_export_environ(char **environ)
 	int		i;
 
 	i = 1;
-	env = ft_lstnew(strdup(environ[0]));
+	env = ft_lstnew(ft_strdup(environ[0]));
 	while (environ[i] != NULL)
 	{
-		if (strncmp(environ[i], "OLDPWD", 6) != 0)
-			ft_lstadd_back(&env, ft_lstnew(strdup(environ[i])));
+		if (ft_strncmp(environ[i], "OLDPWD", 6) != 0)
+			ft_lstadd_back(&env, ft_lstnew(ft_strdup(environ[i])));
 		else
-			ft_lstadd_back(&env, ft_lstnew(strdup("OLDPWD")));
+			ft_lstadd_back(&env, ft_lstnew(ft_strdup("OLDPWD")));
 		i++;
 	}
 	return (env);
@@ -57,7 +57,7 @@ char	**ft_getenv(char *name, t_list *env)
 	while (tmp != NULL)
 	{
 		find = ft_split(tmp->content, '=');
-		if (strcmp(find[0], name) == 0)
+		if (ft_strcmp(find[0], name) == 0)
 		{
 			return (find);
 		}
@@ -76,7 +76,7 @@ void	mod_env(t_list *env, char *name, char *var)
 	while (tmp != NULL)
 	{
 		split = ft_split(tmp->content, '=');
-		if (strncmp(split[0], name, ft_strlen(split[0])) == 0)
+		if (ft_strncmp(split[0], name, ft_strlen(split[0])) == 0)
 		{
 			free(tmp->content);
 			tmp->content = ft_strdup(var);

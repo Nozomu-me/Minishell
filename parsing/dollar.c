@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:30:58 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/22 12:22:20 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 14:25:42 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,30 @@ char	*get_path_dollar(t_mini *mini, char *line, int *j)
 	return (line);
 }
 
+char    *add_dollar_path(char *path)
+{
+    char    *new;
+    int i = 0;
+    new = malloc(sizeof(char) * ft_strlen(path) + 2);
+    new[0] = '$' * -1;
+    while (path[i])
+    {
+        new[i + 1] = path[i];
+        i++;
+    }
+    free(path);
+    return new;
+}
+
 char	*dollar(t_mini *mini, char *line)
 {
 	t_env	*curr;
 	char	*path;
 	int		j;
+	int 	i;
 
 	j = -1;
+	i = -2;
 	curr = mini->env2;
 	path = get_path_dollar(mini, line, &j);
 	while (curr)
@@ -55,9 +72,7 @@ char	*dollar(t_mini *mini, char *line)
 			if (mini->glob.oldpwd != NULL)
 				return (ft_strjoin(last_word(mini->glob.oldpwd), line + j));
 			else
-			{
-				return (ft_strdup(""));
-			}
+				return (ft_strdup(line + j));
 		}
 		else if (compare(path, "_"))
 		{
@@ -71,6 +86,10 @@ char	*dollar(t_mini *mini, char *line)
 		}
 		curr = curr->next;
 	}
+	while (line[i] && line[i] == ' ')
+        i--;
+    if (line[i] == '>' || line[i] == '<')
+        return(ft_strjoin(add_dollar_path(path), line + j));
 	free(path);
 	return (ft_strdup(line + j));
 }
@@ -90,8 +109,7 @@ char	*check_dollr(t_mini *mini, char *line)
 		{
 			new = dollar(mini, line + i + 1);
 			line[i] = 0;
-			if (new != NULL)
-				tmp = ft_strjoin(line, new);
+			tmp = ft_strjoin(line, new);
 			if (line)
 				free(line);
 			line = tmp;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/21 14:44:18 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/22 13:00:27 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_env	*create_env_list(char **env)
 }
 /////////////////////////////////////////////////////////////////////////
 
-void	initail_struct(t_mini *mini, char **env)
+void	initail_struct(t_mini *mini)
 {
 	mini->check_env = "=~\\/%#{}$*+-.:?@[]^ \"'";
 	mini->smbl = (t_symbol *)malloc(sizeof(t_symbol));

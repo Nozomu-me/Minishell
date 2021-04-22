@@ -6,15 +6,15 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 14:07:05 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/18 15:22:47 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 13:07:35 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    init(t_mini *mini, char **environ)
+void	init(t_mini *mini, char **environ)
 {
-    mini->env = init_env_environ(environ);
+	mini->env = init_env_environ(environ);
 	mini->export_env = init_export_environ(environ);
 	mini->unset = NULL;
 	mini->glob.home = ft_getenv("HOME", mini->env);
@@ -25,7 +25,7 @@ void    init(t_mini *mini, char **environ)
 	mini->glob.pwd_env = 0;
 	mini->glob.pwd = NULL;
 	mini->cmds.cmd = NULL;
-    g_check.exit_status = 0;
+	g_check.exit_status = 0;
 	mini->history = NULL;
 	mini->cmdline = NULL;
 }

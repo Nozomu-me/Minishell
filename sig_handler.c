@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:27:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/17 14:15:31 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 12:43:51 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,21 @@ void	sig_handler(int sig)
 		;
 }
 
-void    child_sig_handler(int status)
+void	child_sig_handler(int status)
 {
-    if (WIFEXITED(status))
-        g_check.exit_status = WEXITSTATUS(status);
-    if (WIFSIGNALED(status))
-    {
-        if (WTERMSIG(status) == 2)
-        {
-            g_check.exit_status = 130;
-            ft_putendl_fd("^C", 1);
-        }
-        if (WTERMSIG(status) == 3)
-        {
-            g_check.exit_status = 131;
-            ft_putendl_fd("^\\Quit: 3", 1);
-        }
-    }
+	if (WIFEXITED(status))
+		g_check.exit_status = WEXITSTATUS(status);
+	if (WIFSIGNALED(status))
+	{
+		if (WTERMSIG(status) == 2)
+		{
+			g_check.exit_status = 130;
+			ft_putendl_fd("^C", 1);
+		}
+		if (WTERMSIG(status) == 3)
+		{
+			g_check.exit_status = 131;
+			ft_putendl_fd("^\\Quit: 3", 1);
+		}
+	}
 }

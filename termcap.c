@@ -6,31 +6,31 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:48:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 11:09:56 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 13:41:23 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int     fd_putchar(int c)
+int	fd_put(int c)
 {
 	write(1, &c, 1);
 	return (0);
 }
 
-void    delete(char **cmdline, t_termcap *term)
+void	delete(char **cmdline, t_termcap *term)
 {
 	char	*tmp;
 
 	if (term->c > 0)
 	{
-		tputs(tgoto(tgetstr("LE", NULL),0, 1), 0, fd_putchar);
-		tputs(tgoto(tgetstr("ce", NULL),0, 1), 0, fd_putchar);
+		tputs(tgoto(tgetstr("LE", NULL), 0, 1), 0, fd_put);
+		tputs(tgoto(tgetstr("ce", NULL), 0, 1), 0, fd_put);
 		if (((term->c + 12) % term->win.ws_col) == 0)
 		{
-			tputs(tgoto(tgetstr("up", NULL),0, 1), 0, fd_putchar);
-			tputs(tgoto(tgetstr("RI", NULL),0, term->win.ws_col), 0, fd_putchar);
-			tputs(tgoto(tgetstr("ce", NULL),0, 1), 0, fd_putchar);
+			tputs(tgoto(tgetstr("up", NULL), 0, 1), 0, fd_put);
+			tputs(tgoto(tgetstr("RI", NULL), 0, term->win.ws_col), 0, fd_put);
+			tputs(tgoto(tgetstr("ce", NULL), 0, 1), 0, fd_put);
 		}
 	}
 	if (term->c > 0)
@@ -43,7 +43,7 @@ void    delete(char **cmdline, t_termcap *term)
 	free(tmp);
 }
 
-void	exec_ctrld(char *cmdline, t_termcap *term)
+void	exec_ctrld(char *cmdline)
 {
 	if ((cmdline == NULL || (cmdline != NULL && ft_strlen(cmdline) == 0)))
 	{
@@ -52,15 +52,15 @@ void	exec_ctrld(char *cmdline, t_termcap *term)
 	}
 }
 
-int		termcap(t_termcap *term, char **cmdline)
+int	termcap(t_termcap *term, char **cmdline)
 {
 	if (term->buffer[0] == DELETE)
 	{
 		if (*cmdline != NULL)
 			delete(cmdline, term);
 	}
-	else if(term->buffer[0] == CTRLD)
-		exec_ctrld(*cmdline, term);
+	else if (term->buffer[0] == CTRLD)
+		exec_ctrld(*cmdline);
 	else if (term->buffer[0] == LEFTRIGHT)
 		;
 	else if (term->buffer[0] == ENTER)
@@ -81,7 +81,7 @@ void	get_cmdline(t_termcap *term, char **cmdline)
 		*cmdline = ft_strdup(term->buffer);
 	else
 	{
-	    tmp = *cmdline;
+		tmp = *cmdline;
 		*cmdline = ft_strjoin(*cmdline, term->buffer);
 		if (*cmdline != NULL)
 		{
@@ -91,8 +91,8 @@ void	get_cmdline(t_termcap *term, char **cmdline)
 			if (tmp_save != NULL)
 				free(tmp_save);
 		}
-	    free(tmp);
+		free(tmp);
 	}
 	term->c += 1;
-	ft_putstr_fd(term->buffer,1);
+	ft_putstr_fd(term->buffer, 1);
 }

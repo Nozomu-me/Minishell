@@ -6,7 +6,7 @@
 #    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:19:58 by amouassi          #+#    #+#              #
-#    Updated: 2021/04/22 11:52:34 by amouassi         ###   ########.fr        #
+#    Updated: 2021/04/22 13:52:00 by amouassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRC = utils/utils.c \
 	  utils/list_utils2.c \
 	  utils/list_utils3.c \
 	  utils/execute_shell_utils.c \
+	  mini_utils.c \
 	  sig_handler.c \
 	  free.c \
 	  init.c \
@@ -89,7 +90,6 @@ SRC = utils/utils.c \
 	  execute_cmd.c \
 	  execute_shell.c \
 	  call_execve.c \
-	  init_cmd.c \
 	  execute_builtins.c \
 	  shlvl.c \
 	  main.c \
@@ -109,38 +109,6 @@ SRC = utils/utils.c \
 	  parsing/push_to_struct.c\
 	  parsing/free.c\
 	  parsing/pipe_semi.c
-
-# OBJ_DIR		=	./objs
-# OBJ = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
-# CFLAGS = #-Wall -Wextra -Werror
-
-# all: $(NAME)
-
-# $(NAME) : $(OBJ) $(LIBFT)
-# 	@gcc -g $(OBJ) $(LIBFT) -o $(NAME)
-# 	@echo "\n\033[32m--------- successfully ---------\033[0m"
-
-# $(LIBFT): force
-# 	@make -C libft/
-
-
-# $(OBJ): $(OBJ_DIR)/%.o: %.c
-# 	@mkdir -p $(dir $@)
-# 	@gcc -g -c $< -o $@
-
-# force:
-
-# clean :
-# 	@make clean -C libft/
-# 	@rm -rf $(OBJ_DIR)
-
-# fclean: clean
-# 	@make fclean -C libft/
-# 	@rm -f $(NAME)
-
-# re : fclean all
-
-# .PHONY: all clean fclean force
 
 OBJ = $(SRC:.c=.o)
 OBJLIB = $(addprefix $(LIBFT)/,$(SRCLIB:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 12:39:58 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 12:22:54 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 12:46:48 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	uphistory(t_termcap *term, t_list **history, char **cmdline)
 	{
 		if (term->prevlen != 0)
 		{
-			tputs(tgoto(tgetstr("LE", NULL), 0, term->prevlen), 0, fd_putchar);
-			tputs(tgoto(tgetstr("ce", NULL), 0, term->prevlen), 0, fd_putchar);
+			tputs(tgoto(tgetstr("LE", NULL), 0, term->prevlen), 0, fd_put);
+			tputs(tgoto(tgetstr("ce", NULL), 0, term->prevlen), 0, fd_put);
 		}
 		hist_tab = list_to_tabl(*history);
 		if (term->histpos != 0)
@@ -41,20 +41,35 @@ void	uphistory(t_termcap *term, t_list **history, char **cmdline)
 
 void	delete_dhist(t_termcap *term, char **cmdline)
 {
-	tputs(tgoto(tgetstr("LE", NULL), 0, term->prevlen), 0, fd_putchar);
-	tputs(tgoto(tgetstr("ce", NULL), 0, term->prevlen), 0, fd_putchar);
-	free(*cmdline);
-	*cmdline = NULL;
+	if ((term->prevlen != 0 && term->histpos != term->lstsize)
+		|| (term->prevlen != 0 && term->histpos == term->lstsize
+			&& term->save != NULL))
+	{
+		tputs(tgoto(tgetstr("LE", NULL), 0, term->prevlen), 0, fd_put);
+		tputs(tgoto(tgetstr("ce", NULL), 0, term->prevlen), 0, fd_put);
+		free(*cmdline);
+		*cmdline = NULL;
+	}
+}
+
+void	help_dhist(t_termcap *term, char **cmdline)
+{
+	if (term->save != NULL)
+	{
+		ft_putstr(term->save);
+		*cmdline = ft_strdup(term->save);
+		term->prevlen = ft_strlen(term->save);
+		term->c = ft_strlen(term->save);
+	}
+	else
+		term->prevlen = 0;
 }
 
 void	downhistory(t_termcap *term, t_list **history, char **cmdline)
 {
 	char	**hist_tab;
 
-	if ((term->prevlen != 0 && term->histpos != term->lstsize)
-		|| (term->prevlen != 0 && term->histpos == term->lstsize
-			&& term->save != NULL))
-		delete_dhist(term, cmdline);
+	delete_dhist(term, cmdline);
 	hist_tab = list_to_tabl(*history);
 	if (term->histpos < term->lstsize)
 		term->histpos +=1;
@@ -64,17 +79,7 @@ void	downhistory(t_termcap *term, t_list **history, char **cmdline)
 		term->prevlen = ft_strlen(hist_tab[term->histpos]);
 	}
 	if (term->histpos == term->lstsize)
-	{
-		if (term->save != NULL)
-		{
-			ft_putstr(term->save);
-			*cmdline = ft_strdup(term->save);
-			term->prevlen = ft_strlen(term->save);
-			term->c = ft_strlen(term->save);
-		}
-		else
-			term->prevlen = 0;
-	}
+		help_dhist(term, cmdline);
 	if (hist_tab[term->histpos] != NULL)
 	{
 		free(*cmdline);
