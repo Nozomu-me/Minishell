@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:32:55 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/20 12:04:20 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/21 16:14:57 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,40 @@ void	mod_oldpwd(t_mini *mini)
 	mini->glob.oldpwd = ft_strdup(cwd);
 }
 
+void	help_reset_oldpwd(t_mini *mini, char *save_oldpwd, char **old)
+{
+	if (save_oldpwd != NULL)
+		*old = ft_strjoin("OLDPWD=", save_oldpwd);
+	else
+		*old = ft_strdup("OLDPWD");
+	if (check_in_env(mini->env, "OLDPWD") == 0
+		&& mini->glob.oldpwd_env == 0 && save_oldpwd != NULL)
+		ft_lstadd_back(&mini->env, ft_lstnew(ft_strdup(*old)));
+	else if (check_in_env(mini->env, "OLDPWD") == 1
+		&& mini->glob.oldpwd_env == 0 )
+	{
+		if (save_oldpwd == NULL)
+			delete_node(mini->env, "OLDPWD");
+		else
+			mod_env(mini->env, "OLDPWD", *old);
+	}
+}
+
 void	reset_oldpwd(t_mini *mini, char *save_oldpwd)
 {
 	char	*old;
 
-	old = ft_strjoin("OLDPWD=", save_oldpwd);
-	if (check_in_env(mini->env, "OLDPWD") == 0 && mini->glob.oldpwd_env == 0)
-		ft_lstadd_back(&mini->env, ft_lstnew(ft_strdup(old)));
-	else if (check_in_env(mini->env, "OLDPWD") == 1
-		&& mini->glob.oldpwd_env == 0)
-		mod_env(mini->env, "OLDPWD", old);
+	help_reset_oldpwd(mini, save_oldpwd, &old);
 	if (check_in_env(mini->export_env, "OLDPWD") == 1
 		&& mini->glob.oldpwd_env == 0)
 		mod_env(mini->export_env, "OLDPWD", old);
 	free(old);
 	if (mini->glob.oldpwd != NULL)
 		free(mini->glob.oldpwd);
-	mini->glob.oldpwd = ft_strdup(save_oldpwd);
+	if (save_oldpwd != NULL)
+		mini->glob.oldpwd = ft_strdup(save_oldpwd);
+	else
+		mini->glob.oldpwd = NULL;
 }
 
 void	mod_pwd(t_mini *mini)
