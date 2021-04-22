@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   execute_builtins.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 22:34:56 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/21 14:07:39 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/22 12:02:39 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		check_isbuiltin(char *cmd)
+int	check_isbuiltin(char *cmd)
 {
-	int i = -1;
 	if (cmd == NULL)
 		return (2);
 	if (ft_strcmp(cmd, "echo") == 0)
@@ -34,7 +33,7 @@ int		check_isbuiltin(char *cmd)
 	return (0);
 }
 
-int		check_pipe_builtins(t_mini *mini)
+int	check_pipe_builtins(t_mini *mini)
 {
 	if (mini->cmds.cmd[0] == NULL)
 		return (2);
@@ -59,7 +58,7 @@ int		check_pipe_builtins(t_mini *mini)
 
 void	execute_builtins(t_mini *mini)
 {
-    mini->glob.fd_red = redir_builtins(mini);
+	mini->glob.fd_red = redir_builtins(mini);
 	if (ft_strcmp(mini->cmds.cmd[0], "pwd") == 0)
 		execute_pwd(mini);
 	else if (ft_strcmp(mini->cmds.cmd[0], "cd") == 0)

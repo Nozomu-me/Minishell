@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:47:20 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/21 21:59:21 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 11:20:35 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int		check_buffer(t_termcap *term, t_list **history, char **cmdline)
 {
 	if (!strcmp(term->buffer, UP))
 	{
-		// fprintf(stderr, "check=%d\n", term->check);
-		// fprintf(stderr ,"save=%s\n",term->save);
 		if (term->save != NULL && term->check == 0)
 		{
 			term->check = 1;
@@ -77,4 +75,6 @@ void	readline(t_mini *mini, char **cmdline, t_list **history)
 	}
 	if (*cmdline != NULL && ft_strlen(*cmdline) != 0)
 		ft_lstadd_back(history, ft_lstnew(ft_strdup(*cmdline)));
+	if (term.save != NULL)
+		free(term.save);
 }

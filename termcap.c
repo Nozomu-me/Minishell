@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:48:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/21 22:01:34 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 11:09:56 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int		termcap(t_termcap *term, char **cmdline)
 void	get_cmdline(t_termcap *term, char **cmdline)
 {
 	char	*tmp;
+	char	*tmp_save;
 
 	if (*cmdline == NULL)
 		*cmdline = ft_strdup(term->buffer);
@@ -85,7 +86,10 @@ void	get_cmdline(t_termcap *term, char **cmdline)
 		if (*cmdline != NULL)
 		{
 			term->check = 0;
+			tmp_save = term->save;
 			term->save = ft_strdup(*cmdline);
+			if (tmp_save != NULL)
+				free(tmp_save);
 		}
 	    free(tmp);
 	}

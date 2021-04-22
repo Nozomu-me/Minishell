@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:30:58 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/21 12:39:38 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/22 12:22:20 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,15 @@ char	*dollar(t_mini *mini, char *line)
 	while (curr)
 	{
 		if (compare(path, "OLDPWD"))
-			return (ft_strjoin(last_word(mini->glob.oldpwd), line + j));
+		{
+			free(path);
+			if (mini->glob.oldpwd != NULL)
+				return (ft_strjoin(last_word(mini->glob.oldpwd), line + j));
+			else
+			{
+				return (ft_strdup(""));
+			}
+		}
 		else if (compare(path, "_"))
 		{
 			free(path);
@@ -82,12 +90,13 @@ char	*check_dollr(t_mini *mini, char *line)
 		{
 			new = dollar(mini, line + i + 1);
 			line[i] = 0;
-			tmp = ft_strjoin(line, new);
+			if (new != NULL)
+				tmp = ft_strjoin(line, new);
 			if (line)
 				free(line);
 			line = tmp;
 			i = 0;
-			if (new[0])
+			if (new != NULL)
 				free(new);
 		}
 		else if ((line[i] == '$') && count_back(line + (i - 1)))

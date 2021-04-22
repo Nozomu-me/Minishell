@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amouassi <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/28 10:56:07 by amouassi          #+#    #+#              #
-#    Updated: 2019/11/05 12:51:02 by amouassi         ###   ########.fr        #
+#    Updated: 2021/04/22 11:51:21 by amouassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,8 @@ SOURCES = ft_atoi.c \
 		  ft_lstclear.c \
 		  ft_lstiter.c \
 		  ft_lstmap.c \
+		  ft_strstr.c \
+		  ft_strcpy.c \
 
 OBJECTS = $(SOURCES:.c=.o)
 

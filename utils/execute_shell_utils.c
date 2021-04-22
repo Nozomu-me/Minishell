@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:45:39 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/21 16:42:39 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 11:30:44 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ int	check_permission(char *path)
 		return (3);
 }
 
-void	get_path(t_mini *mini, char **split, char **path, int *perm, char *tmp)
+void	get_path(t_mini *mini, char **split, char **path, int *perm)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
+	tmp = NULL;
 	i = 0;
 	while (split[i] != NULL)
 	{

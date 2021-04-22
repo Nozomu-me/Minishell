@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_cmd.c                                      :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/13 19:11:18 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 12:03:34 by amouassi         ###   ########.fr       */
+/*   Created: 2021/04/22 11:47:27 by amouassi          #+#    #+#             */
+/*   Updated: 2021/04/22 11:47:49 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	execute_cmd(t_mini *mini)
+char	*ft_strcpy(char *dest, char *src)
 {
-	if (check_isbuiltin(mini->cmds.cmd[0]) == 1
-		&& mini->glob.exit_pipe == 0 && mini->cmds.type != PIPE)
+	int		i;
+
+	i = 0;
+	while (src[i] != '\0')
 	{
-		if (mini->glob.exit_pipe == 0)
-		{
-			execute_builtins(mini);
-		}
+		dest[i] = src[i];
+		i++;
 	}
-	else
-	{
-		if (mini->cmds.type == PIPE)
-			mini->glob.exit_pipe = 1;
-		execute_shell(mini);
-	}
+	dest[i] = '\0';
+	return (dest);
 }

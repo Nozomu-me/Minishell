@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 11:25:03 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/21 14:34:23 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/22 11:34:12 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_cflist  *cf_lst_new(void *name, int type)
+t_cflist	*cf_lst_new(void *name, int type)
 {
-    t_cflist *head;
+	t_cflist	*head;
 
-    head = (t_cflist *)malloc(sizeof(t_cflist));
-    if (head == NULL)
-        return (NULL);
-    head->name = name;
-    head->type = type;
-    head->next = NULL;
-    return (head);
+	head = (t_cflist *)malloc(sizeof(t_cflist));
+	if (head == NULL)
+		return (NULL);
+	head->name = name;
+	head->type = type;
+	head->next = NULL;
+	return (head);
 }
 
 void	cf_lstadd_back(t_cflist **alst, t_cflist *new)
@@ -70,4 +70,3 @@ void	cf_lstclear(t_cflist **lst, void (*del)(void*))
 	}
 	*lst = NULL;
 }
-

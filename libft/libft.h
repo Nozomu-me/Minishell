@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:57:18 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/12 16:50:48 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 11:46:41 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct s_list
 }				t_list;
 
 size_t			ft_strlcpy(char *dst, const char *src, size_t size);
+char			*ft_strstr(char *str, char *to_find);
+char			*ft_strcpy(char *dest, char *src);
 size_t			ft_strlen(const char *str);
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);

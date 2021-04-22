@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+         #
+#    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:19:58 by amouassi          #+#    #+#              #
-#    Updated: 2021/04/20 15:32:01 by abdel-ke         ###   ########.fr        #
+#    Updated: 2021/04/22 11:52:34 by amouassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,8 @@ SRCLIB =  ft_atoi.c \
 		  ft_lstclear.c \
 		  ft_lstiter.c \
 		  ft_lstmap.c \
+		  ft_strstr.c \
+		  ft_strcpy.c \
 
 SRC = utils/utils.c \
 	  utils/utils2.c \

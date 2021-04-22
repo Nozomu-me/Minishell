@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/21 21:32:56 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 11:31:52 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,7 +240,7 @@ void    		help_execve(t_mini *mini, char **env, char *path);
 int			    s_help_execve(t_mini *mini);
 void			call_execve(t_mini *mini, char **env, char *path);
 int     		check_permission(char *path);
-void    		get_path(t_mini *mini, char **split, char **path, int *perm, char *tmp);
+void    		get_path(t_mini *mini, char **split, char **path, int *perm);
 /*
 ** execute builtins
 */

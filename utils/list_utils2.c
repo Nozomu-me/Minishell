@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:41:48 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/20 11:42:43 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 11:33:27 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	find_pos(t_list *list, char *name)
 	return (-1);
 }
 
-int		help_delete_node(int position, t_list *list)
+int	help_delete_node(int position, t_list *list)
 {
 	t_list	*temp;
 	t_list	*next;
