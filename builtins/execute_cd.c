@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:41:28 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 12:58:14 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 16:34:20 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,10 @@ void	execute_cd(t_mini *mini)
 	char	*tmp_path;
 	int		check_dir;
 
-	g_check.exit_status = 0;
+	if (g_check.exit_status == -2)
+		g_check.exit_status = 1;
+	else
+		g_check.exit_status = 0;
 	tmp_path = NULL;
 	if (mini->cmds.cmd[1] == NULL)
 	{

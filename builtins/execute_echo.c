@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:08:18 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/20 11:58:39 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 16:35:01 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,8 @@ void	execute_echo(char **cmd, t_mini *mini)
 	}
 	if (b == 0)
 		ft_putstr_fd("\n", mini->glob.fd_red);
-	g_check.exit_status = 0;
+	if (g_check.exit_status == -2)
+		g_check.exit_status = 1;
+	else
+		g_check.exit_status = 0;
 }

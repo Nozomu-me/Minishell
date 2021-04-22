@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:48:36 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 14:22:28 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 16:36:01 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void	execute_env(t_mini *mini)
 {
-	g_check.exit_status = 0;
+	if (g_check.exit_status == -2)
+		g_check.exit_status = 1;
+	else
+		g_check.exit_status = 0;
 	if (mini->cmds.cmd[1] != NULL && ft_strcmp(mini->cmds.cmd[1], "#") != 0)
 	{
 		if (ft_strcmp(mini->cmds.cmd[1], "=") == 0

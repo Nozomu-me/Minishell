@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:46:29 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 15:32:50 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 16:46:31 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@ void	execute_execve(t_mini *mini, char **env, char **split)
 	path = NULL;
 	get_path(mini, split, &path, &perm);
 	call_execve(mini, env, path);
-	printf("redir1=%d\n", mini->redir);
 	if (perm != 1 && mini->cmds.cmd[0] != NULL
 		&& check_isbuiltin(mini->cmds.cmd[0]) != 1
-			&& mini->redir == 0)
+		&& g_check.exit_status != -2)
 	{
 		g_check.exit_status = 127;
 		error_command(mini->cmds.cmd[0]);
 	}
+	if (g_check.exit_status == -2)
+		g_check.exit_status = 1;
 	if (path != NULL)
 		free(path);
 }
@@ -51,9 +52,7 @@ void	execute_path(t_mini *mini, char **env)
 		else if (permission == 3)
 		{
 			g_check.exit_status = 127;
-			mini->redir = 1;
 			error_nodir(mini->cmds.cmd[0]);
-			printf("redir2=%d\n", mini->redir);
 		}
 	}
 	free(path);
@@ -78,9 +77,7 @@ void	check_cur_exec(t_mini *mini, char **env)
 			error_permission(mini->cmds.cmd[0]);
 		else if (permission == 3)
 		{
-			mini->redir = 1;
 			error_nodir(mini->cmds.cmd[0]);
-			printf("redir3=%d\n", mini->redir);
 		}
 	}
 	free(join);
@@ -93,7 +90,6 @@ void	execute_shell(t_mini *mini)
 	char	**env_path;
 
 	g_check.exit_status = 0;
-	mini->redir = 0;
 	mini->glob.env_tab = list_to_tabl(mini->env);
 	env_path = ft_getenv("PATH", mini->env);
 	if (mini->cmds.cmd[0] != NULL

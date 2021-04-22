@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 13:33:48 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/17 14:44:23 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 16:38:12 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,13 @@ void	help_exec_exit(t_mini *mini)
 
 void	execute_exit(t_mini *mini)
 {
-	g_check.exit_status = 0;
+	if (g_check.exit_status == -2)
+	{
+		g_check.exit_status = 1;
+		return ;
+	}
+	else
+		g_check.exit_status = 0;
 	if (mini->cmds.cmd[1] == NULL)
 	{
 		g_check.exit_status = 0;

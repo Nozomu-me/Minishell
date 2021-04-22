@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 15:13:13 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 16:04:46 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ typedef struct s_minishell
 	t_cflist		*tmp;
 	char			*tmpline;
 	struct termios	term;
-	int				redir;
+	int				fds;
 	char			**s_semi;
 	char			**s_pipe;
 	char			**split;
@@ -210,7 +210,7 @@ void			cf_lstclear(t_cflist **lst, void (*del)(void*));
 void			execute_cmd(t_mini *mini);
 void			execute_shell(t_mini *mini);
 void			shlvl(t_mini *mini);
-void			help_execve(t_mini *mini, char **env, char *path);
+int				help_execve(t_mini *mini, char **env, char *path);
 int				s_help_execve(t_mini *mini);
 void			call_execve(t_mini *mini, char **env, char *path);
 int				check_permission(char *path);
