@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:30:58 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/22 15:08:04 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 16:17:33 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,79 +29,46 @@ char	*last_word(char *line)
 	return (line + i);
 }
 
-char	*get_path_dollar(t_mini *mini, char *line, int *j)
-{
-	while (line[++(*j)])
-		if (ft_strchr(mini->check_env, line[*j]))
-			break ;
-	line = ft_substr(line, 0, *j);
-	return (line);
-}
-
-char    *add_dollar_path(char *path)
-{
-    char    *new;
-    int i = 0;
-    new = malloc(sizeof(char) * ft_strlen(path) + 2);
-    new[0] = '$' * -1;
-    while (path[i])
-    {
-        new[i + 1] = path[i];
-        i++;
-    }
-    free(path);
-    return new;
-}
-
-char    *file_dollar(char *line, char *path)
-{
-    char    *path2;
-    char    *new_line;
-    path2 = add_dollar_path(path);
-    new_line = ft_strjoin(path2, line);
-    free(path2);
-    return (new_line);
-}
-
-char	*dollar(t_mini *mini, char *line)
+char	*check_path(t_mini *mini, char *path, char *line, int j)
 {
 	t_env	*curr;
-	char	*path;
-	int		j;
-	int 	i;
+	int		i;
 
-	j = -1;
-	i = -2;
 	curr = mini->env2;
-	path = get_path_dollar(mini, line, &j);
+	i = -2;
 	while (curr)
 	{
 		if (compare(path, "OLDPWD"))
 		{
-			free(path);
 			if (mini->glob.oldpwd != NULL)
 				return (ft_strjoin(last_word(mini->glob.oldpwd), line + j));
 			else
 				return (ft_strdup(line + j));
 		}
 		else if (compare(path, "_"))
-		{
-			free(path);
 			return (ft_strjoin(last_word(mini->under_score), line + j));
-		}
 		else if (compare(curr->name, path))
-		{
-			free(path);
 			return (ft_strjoin(curr->value, line + j));
-		}
 		curr = curr->next;
 	}
 	while (line[i] && line[i] == ' ')
-        i--;
-    if (line[i] == '>' || line[i] == '<')
-        return(file_dollar(line + j, path));
-	free(path);
+		i--;
+	if (line[i] == '>' || line[i] == '<')
+		return (file_dollar(line + j, path));
 	return (ft_strdup(line + j));
+}
+
+char	*dollar(t_mini *mini, char *line)
+{
+	char	*path;
+	char	*tmp;
+	int		j;
+
+	j = -1;
+	path = get_path_dollar(mini, line, &j);
+	tmp = check_path(mini, path, line, j);
+	free(path);
+	return (tmp);
 }
 
 char	*check_dollr(t_mini *mini, char *line)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:31:56 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/20 13:13:44 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 16:50:13 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,12 @@ char	*check_redirection(t_symbol *smbl, char *line, int i, int *type)
 		}
 	}
 	return (line);
+}
+
+int	check_flags(t_symbol *smbl)
+{
+	int	sum;
+
+	sum = smbl->d_great + smbl->less + smbl->great + smbl->semi + smbl->pipe;
+	return (sum);
 }

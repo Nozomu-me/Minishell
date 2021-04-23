@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_semi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 10:27:30 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/20 13:13:44 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/22 17:05:28 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,4 @@ char	*check_pipe(t_symbol *smbl, char *line, int i)
 		}
 	}
 	return (line);
-}
-
-int	check_flags(t_symbol *smbl)
-{
-	int	sum;
-
-	sum = smbl->d_great + smbl->less + smbl->great + smbl->semi + smbl->pipe;
-	return (sum);
 }

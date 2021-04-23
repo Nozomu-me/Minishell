@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 13:49:56 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 15:33:27 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/23 11:04:42 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	sub_free_mini(t_mini *mini)
 
 int	minishell(t_mini *mini)
 {
-	mini->tmpline = mini->cmdline;
 	mini->cmdline = partition_stage(mini->smbl, mini->cmdline);
 	free(mini->tmpline);
 	if (!mini->smbl->error)

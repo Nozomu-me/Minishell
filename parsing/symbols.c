@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 17:02:55 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/20 15:40:29 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/22 16:53:27 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	initial_symbol(t_symbol *sbl)
 {
-	// puts("here");
 	sbl->pipe = OFF;
 	sbl->semi = OFF;
 	sbl->s_quote = OFF;
