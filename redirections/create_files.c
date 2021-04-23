@@ -24,7 +24,7 @@ int	create_write(t_cflist *tmp, int *fd, t_cflist **w)
 	if (*fd == -1)
 	{
 		error_nodir(tmp->name);
-		g_check.exit_status = 1;
+		g_check.exit_status = -2;
 		return (-1);
 	}
 	close(*fd);
@@ -44,7 +44,7 @@ int	create_read(t_cflist *tmp, int *fd, t_cflist **r)
 	if (*fd == -1)
 	{
 		error_nodir(tmp->name);
-		g_check.exit_status = 1;
+		g_check.exit_status = -2;
 		return (-1);
 	}
 	*r = tmp;
@@ -63,7 +63,7 @@ int	create_append(t_cflist *tmp, int *fd, t_cflist **w)
 	if (*fd == -1)
 	{
 		error_nodir(tmp->name);
-		g_check.exit_status = 1;
+		g_check.exit_status = -2;
 		return (-1);
 	}
 	close(*fd);

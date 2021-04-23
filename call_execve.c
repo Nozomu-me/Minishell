@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 11:47:31 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 16:07:28 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/23 13:22:09 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ void	execute_child(t_mini *mini, int fds, char **env, char *path)
 
 int	help_execve(t_mini *mini, char **env, char *path)
 {
+	mini->fds = redir(mini);
+	if (mini->fds == -1)
+		exit(0);
 	if (mini->pid == -1)
 	{
 		g_check.exit_status = 1;
@@ -80,7 +83,13 @@ int	execute_parent(t_mini *mini)
 
 void	call_execve(t_mini *mini, char **env, char *path)
 {
-	mini->fds = redir(mini);
+	int			fd;
+	t_cflist	*w;
+	t_cflist	*r;
+
+	w = NULL;
+	r = NULL;
+	mini->fds = create_files(mini, &w, &r, &fd);
 	if (mini->fds == -1)
 		return ;
 	pipe(mini->fd);
