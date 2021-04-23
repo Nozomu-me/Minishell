@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 12:51:25 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 11:59:52 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/23 16:21:40 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,19 @@ char	*get_export_value(char *name)
 	return (value);
 }
 
+void	print_value(char *value, int fd)
+{
+	int	i;
+
+	i = 0;
+	while(value[i] != '\0')
+	{
+		if (value[i] == '\"')
+			ft_putchar_fd('\\', fd);
+		ft_putchar_fd(value[i], fd);
+		i++;
+	}	
+}
 void	print_export(t_list *export, int fd)
 {
 	t_list		*tmp;
@@ -58,7 +71,7 @@ void	print_export(t_list *export, int fd)
 		{
 			ft_putstr_fd("=\"", fd);
 			value = get_export_value(tmp->content);
-			ft_putstr_fd(value, fd);
+			print_value(value, fd);
 			ft_putstr_fd("\"\n", fd);
 			free(value);
 		}

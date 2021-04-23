@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
+#    By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:19:58 by amouassi          #+#    #+#              #
-#    Updated: 2021/04/23 12:25:18 by amouassi         ###   ########.fr        #
+#    Updated: 2021/04/23 13:38:13 by abdel-ke         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell.a
 CC = gcc 
-FLAGS = 
+FLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 LIBFT = libft
 NAMELIBFT = libft.a

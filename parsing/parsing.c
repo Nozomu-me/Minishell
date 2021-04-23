@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/23 12:19:59 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/23 17:01:17 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	initail_struct(t_mini *mini)
 {
-	mini->check_env = "=~\\/%#{}$*+-.:?@[]^ \"'";
+	mini->check_env = "=~\\/%#{}$*+-.:?@[]^ \"0987654321'";
 	mini->smbl = (t_symbol *)malloc(sizeof(t_symbol));
 	mini->scmd = NULL;
 	mini->under_score = ft_strdup("./minishell");

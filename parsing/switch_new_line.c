@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   switch_new_line.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:37:04 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/23 12:19:44 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/23 13:39:19 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*inverse_line(char *line)
 	return (line);
 }
 
-char	*dollar_d_quote(t_mini *mini, char *line, int i, int j)
+char	*dollar_d_quote(char *line, int j)
 {
 	char	*tmp;
 	char	*tmp2;
@@ -43,7 +43,7 @@ char	*dollar_d_quote(t_mini *mini, char *line, int i, int j)
 char	*delete_quote_off(t_mini *mini, char *line, int *i, int *j)
 {
 	if (line[*j - 1] == '$')
-		line = dollar_d_quote(mini, line, *i, *j);
+		line = dollar_d_quote(line, *j);
 	if (line[*j] == '\\')
 	{
 		mini->cp ++;

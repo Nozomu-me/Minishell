@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:46:29 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/23 12:05:59 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/23 16:22:44 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	execute_shell(t_mini *mini)
 		execute_path(mini, mini->glob.env_tab);
 	else if (env_path == NULL)
 		check_cur_exec(mini, mini->glob.env_tab);
-	if (env_path != NULL)
+	else if (env_path != NULL)
 	{
 		free_tabl(env_path);
 		env_path = ft_getenv("PATH", mini->env);

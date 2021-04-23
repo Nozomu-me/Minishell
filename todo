@@ -1,2 +1,53 @@
 1-double free scmd
 2-history if line not empty
+
+/bin/ls ------- done
+
+exit 9 9
+echo $?
+
+exit -4
+echo $?
+
+exit +99
+echo $?
+
+cat + ctrl+d
+
+somothing+ctrl+c 
+
+export a+=
+
+export a="sxmsx"""""sxsxn" ---- done
+
+one character+up
+
+echo $21213 -------- done
+echo h$5sclkbncs ----- done
+
+
+unset HOME
+cd
+
+""
+''
+
+echo test > '       ' ----- done
+echo test > "       "
+
+echo hello > /f1
+
+echo hello > $PWD
+
+chmod 555 f1
+echo hell > f1
+
+echo hell > f1 | cat < f1
+
+write up and modify
+
+unset PWD
+cd ..
+cd -
+
+echo he > "" > file

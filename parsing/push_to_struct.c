@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_to_struct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:32:03 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/23 10:04:50 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/23 16:36:59 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ char	*push_file_struct(t_mini *mini, char *line, int i)
 void	push_to_struct(t_mini *mini, char *line)
 {
 	int			i;
-	char		*tmp2;
 	char		*tmp3;
 	t_cflist	*tmp;
 
@@ -90,10 +89,13 @@ void	push_to_struct(t_mini *mini, char *line)
 	i = -1;
 	while (mini->cmds.cmd[++i])
 	{
+		
 		if (compare(mini->cmds.cmd[i], "$?")
 			|| compare(mini->cmds.cmd[i], "$/"))
 			mini->cmds.cmd[i][0] *= -1;
 		mini->cmds.cmd[i] = reverse_cmd(mini, mini->cmds.cmd[i], 0, -1);
+		if (mini->cmds.cmd[0][0] == 0)
+			ft_putstr("minishell: : command not found\n");
 	}
 	tmp = mini->cmds.file;
 	while (tmp)
