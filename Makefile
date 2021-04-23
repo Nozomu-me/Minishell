@@ -6,16 +6,12 @@
 #    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:19:58 by amouassi          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2021/04/23 11:30:43 by amouassi         ###   ########.fr        #
-=======
-#    Updated: 2021/04/23 11:23:53 by abdel-ke         ###   ########.fr        #
->>>>>>> b85221a3644e4c127c945039e58d0a6a58227a75
+#    Updated: 2021/04/23 12:22:29 by amouassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell.a
-CC = gcc
+CC = gcc -Wall -Wextra -Werror
 FLAGS = 
 AR = ar rcs
 LIBFT = libft
