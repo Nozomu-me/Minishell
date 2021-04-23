@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/23 09:12:04 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/23 11:09:51 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ typedef struct s_symbol
 typedef struct s_minishell
 {
 	t_cmds			cmds;
-	t_cflist		*splited_cmd;
+	t_cflist		*scmd;
 	t_list			*env;
 	t_list			*export_env;
 	t_list			*unset;
@@ -320,10 +320,9 @@ t_cflist		*lstnew_cmd(char *v_cmd, int type);
 void			lstadd_cmd(t_cflist **alst, t_cflist *new);
 t_env			*create_env_list(char **env);
 void			env_lstclear(t_env **lst, void (*del)(void*));
-
-t_env	*create_env_list(char **env);
-char	*get_path_dollar(t_mini *mini, char *line, int *j);
-char	*add_dollar_path(char *path);
-char	*file_dollar(char *line, char *path);
-void	add_new_env_element(t_env *curr_node, char *env);
+t_env			*create_env_list(char **env);
+char			*get_path_dollar(t_mini *mini, char *line, int *j);
+char			*add_dollar_path(char *path);
+char			*file_dollar(char *line, char *path);
+void			add_new_env_element(t_env *curr_node, char *env);
 #endif

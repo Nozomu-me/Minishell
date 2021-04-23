@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 13:49:56 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/23 11:04:42 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/23 11:23:04 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	help_main(t_mini *mini, t_cflist *tmp)
 	push_to_struct(mini, tmp->name);
 	execute_cmd(mini);
 	free(mini->under_score);
-	mini->under_score = ft_strdup(mini->splited_cmd->name);
+	mini->under_score = ft_strdup(mini->scmd->name);
 	g_check.exit_sig = 0;
 	free_help_main(mini, env);
 }
@@ -50,20 +50,21 @@ void	sub_free_mini(t_mini *mini)
 {
 	if (mini->cmdline != NULL)
 		free(mini->cmdline);
-	if (mini->splited_cmd != NULL)
+	if (mini->scmd != NULL)
 	{
-		cf_lstclear(&mini->splited_cmd, free);
-		mini->splited_cmd = NULL;
+		cf_lstclear(&mini->scmd, free);
+		mini->scmd = NULL;
 	}
 }
 
 int	minishell(t_mini *mini)
 {
+	mini->tmpline = mini->cmdline;
 	mini->cmdline = partition_stage(mini->smbl, mini->cmdline);
 	free(mini->tmpline);
 	if (!mini->smbl->error)
 		splitpipesemi(mini);
-	mini->tmp = mini->splited_cmd;
+	mini->tmp = mini->scmd;
 	mini->glob.fd_prv = -1;
 	while (mini->tmp != NULL)
 	{

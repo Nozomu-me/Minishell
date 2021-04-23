@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 18:16:06 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 12:49:37 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/23 11:09:51 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	free_mini(t_mini *mini)
 	ft_lstclear(&mini->env, free);
 	ft_lstclear(&mini->export_env, free);
 	ft_lstclear(&mini->unset, free);
-	if (mini->splited_cmd != NULL)
-		cf_lstclear(&mini->splited_cmd, free);
+	if (mini->scmd != NULL)
+		cf_lstclear(&mini->scmd, free);
 	if (mini->cmds.file != NULL)
 		cf_lstclear(&mini->cmds.file, free);
 	if (mini->history != NULL)

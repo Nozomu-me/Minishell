@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+         #
+#    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:19:58 by amouassi          #+#    #+#              #
-#    Updated: 2021/04/22 17:39:31 by abdel-ke         ###   ########.fr        #
+#    Updated: 2021/04/23 11:30:43 by amouassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,9 +105,7 @@ SRC = utils/utils.c \
 	  parsing/error.c\
 	  parsing/switch_new_line.c\
 	  parsing/redirection.c\
-	  parsing/search_replace.c\
 	  parsing/push_to_struct.c\
-	  parsing/free.c\
 	  parsing/dollar_utils.c\
 	  parsing/pipe_semi.c
 

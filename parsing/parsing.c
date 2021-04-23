@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 14:20:32 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/22 17:12:20 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/23 11:24:14 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	initail_struct(t_mini *mini)
 {
 	mini->check_env = "=~\\/%#{}$*+-.:?@[]^ \"'";
 	mini->smbl = (t_symbol *)malloc(sizeof(t_symbol));
-	mini->splited_cmd = NULL;
+	mini->scmd = NULL;
 	mini->under_score = ft_strdup("./minishell");
 	mini->smbl->already_pipe = 0;
 	mini->s_semi = NULL;
@@ -36,33 +36,38 @@ void	initail_struct(t_mini *mini)
 	mini->file_nme = NULL;
 }
 
+void	help_splitpipesemi(t_mini *mini, char *semi, char *pipe)
+{
+	if (pipe != NULL)
+		cf_lstadd_back(&mini->scmd, cf_lst_new(ft_strdup(semi), PIPE));
+	else
+		cf_lstadd_back(&mini->scmd, cf_lst_new(ft_strdup(semi), END));
+}
+
 void	splitpipesemi(t_mini *mini)
 {
 	int		i;
-	int 	j;
-	char	**splitpipe;
-	char	**splitsemi;
+	int		j;
+	char	**pipe;
+	char	**semi;
 
 	i = 0;
 	mini->glob.exit_pipe = 0;
 	mini->glob.fd_in = 0;
-	splitpipe = ft_split(mini->cmdline, '|');
-	mini->splited_cmd = NULL;
-	while (splitpipe[i] != NULL)
+	pipe = ft_split(mini->cmdline, '|');
+	mini->scmd = NULL;
+	while (pipe[i] != NULL)
 	{
 		j = 0;
-		splitsemi = ft_split(splitpipe[i], ';');
-		while(splitsemi[j + 1] != NULL)
+		semi = ft_split(pipe[i], ';');
+		while (semi[j + 1] != NULL)
 		{
-			cf_lstadd_back(&mini->splited_cmd, cf_lst_new(ft_strdup(splitsemi[j]), END));
+			cf_lstadd_back(&mini->scmd, cf_lst_new(ft_strdup(semi[j]), END));
 			j++;
 		}
-		if (splitpipe[i + 1] != NULL)
-			cf_lstadd_back(&mini->splited_cmd, cf_lst_new(ft_strdup(splitsemi[j]), PIPE));
-		else
-			cf_lstadd_back(&mini->splited_cmd, cf_lst_new(ft_strdup(splitsemi[j]), END));
-		free_tabl(splitsemi);
+		help_splitpipesemi(mini, semi[j], pipe[i + 1]);
+		free_tabl(semi);
 		i++;
 	}
-	free_tabl(splitpipe);
+	free_tabl(pipe);
 }
