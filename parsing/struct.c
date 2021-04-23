@@ -6,41 +6,22 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:22:04 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/22 17:10:00 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/23 11:28:09 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_cflist	*lstnew_cmd(char *v_cmd, int type)
+void	add_new_env_element(t_env *curr_node, char *env)
 {
-	t_cflist	*new;
+	int		len;
 
-	new = (t_cflist *)malloc(sizeof(t_cflist));
-	if (new)
-	{
-		new->name = ft_strdup(v_cmd);
-		new->type = type;
-		new->next = NULL;
-	}
-	return (new);
-}
-
-void	lstadd_cmd(t_cflist **alst, t_cflist *new)
-{
-	t_cflist	*list;
-
-	if (!alst || !new)
-		return ;
-	if (*alst)
-	{
-		list = *alst;
-		while (list && list->next)
-			list = list->next;
-		list->next = new;
-	}
-	else
-		*alst = new;
+	len = 0;
+	while (env[len] != '=')
+		len++;
+	curr_node->name = ft_substr(env, 0, len);
+	curr_node->value = ft_strdup(env + len + 1);
+	curr_node->next = NULL;
 }
 
 t_cflist	*file_lst_new(void *filename, int filetype)

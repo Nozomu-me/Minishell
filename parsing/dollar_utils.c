@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 15:37:46 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/22 16:20:09 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/23 12:11:41 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 char	*get_path_dollar(t_mini *mini, char *line, int *j)
 {
 	while (line[++(*j)])
-		if (ft_strchr(mini->check_env, line[*j]))
+		if (ft_strchr(mini->check_env, line[*j])
+			|| line[*j] == ' ' * -1 || line[*j] == '\'' * -1
+			|| line[*j] == '|' * -1 || line[*j] == ';' * -1
+			|| line[*j] == '<' * -1 || line[*j] == '>' * -1)
 			break ;
 	line = ft_substr(line, 0, *j);
 	return (line);

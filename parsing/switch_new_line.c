@@ -6,24 +6,11 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:37:04 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/23 09:57:53 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/23 11:28:24 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-// char	*ret(char *line, int i)
-// {
-// 	char	*new;
-// 	int		j;
-
-// 	j = -1;
-// 	new = malloc(sizeof(char) * i + 1);
-// 	while (++j < i)
-// 		new[j] = line[j];
-// 	new[j] = 0;
-// 	return (new);
-// }
 
 char	*inverse_line(char *line)
 {

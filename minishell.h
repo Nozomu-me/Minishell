@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/23 09:12:04 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/23 11:32:46 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,19 +149,9 @@ typedef struct s_minishell
 	char			*tmpline;
 	struct termios	term;
 	int				fds;
-	char			**s_semi;
-	char			**s_pipe;
-	char			**split;
-	char			**envv;
 	char			*check_env;
 	char			*under_score;
 	int				cp;
-	int				src_i;
-	int				src_count;
-	int				src_len1;
-	int				src_len2;
-	char			*src_new;
-	char			*new;
 	char			*file_nme;
 	t_env			*env2;
 	t_symbol		*smbl;
@@ -293,7 +283,6 @@ char			*check_semicolone(t_symbol *smbl, char *line, int i);
 char			*check_semi_off(t_symbol *smbl, char *line, int i);
 char			*check_pipe_off(t_symbol *smbl, char *line, int i);
 char			*check_pipe(t_symbol *smbl, char *line, int i);
-int				redirection(t_symbol *smbl);
 char			*check_redirection(t_symbol *smbl,
 					char *line, int i, int *type);
 int				check_flags(t_symbol *smbl);
