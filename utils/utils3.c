@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:17:56 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 11:58:37 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/23 21:39:36 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_spec_char_export(char *str)
 	int		i;
 	int		j;
 
-	spec_char = "!#$&()*+-./:;<>?@[^]_{}~%";
+	spec_char = "!#$&()*-./:;<>?@[^]_{}~%";
 	i = 0;
 	while (str[i] != '\0')
 	{

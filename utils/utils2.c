@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:23 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/23 17:27:18 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/23 21:06:57 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ int	check_isnumeriq(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (ft_isdigit(str[i]) == 0)
+		if (ft_isdigit(str[i]) == 0 && str[0] == '+'
+			&& str[0] == '-')
 			return (1);
 		i++;
 	}

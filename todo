@@ -3,51 +3,49 @@
 
 /bin/ls ------- done
 
-exit 9 9
-echo $?
+exit 9 9 -> echo $?   -------- done
 
-exit -4
-echo $?
+exit -4 -> echo $? ------ done
 
-exit +99
-echo $?
-
-cat + ctrl+d
-
-somothing+ctrl+c 
-
-export a+=
-
-export a="sxmsx"""""sxsxn" ---- done
-
-one character+up
+exit +99 -> echo $?  ----- done
 
 echo $21213 -------- done
 echo h$5sclkbncs ----- done
 
+export a+= ------- done
 
-unset HOME
-cd
+export b='sxmsx"""""sxsxn' ---- done
+export c="sxmsx""""sxsxn" --- done
+export c="sxmsx"""""sxsxn"
 
-""
-''
-
+"" -------- done (mra93a)
+''-------- done (mra93a)
+unset HOME -> cd ------- done
+unset PWD -> cd .. -> cd -  ----------  done
 echo test > '       ' ----- done
-echo test > "       "
 
-echo hello > /f1
 
+
+one character+up
+somothing+ctrl+c 
+cat + ctrl+d
+write up and modify
+
+
+echo hello > /f1 
 echo hello > $PWD
+echo > $PATH
 
 chmod 555 f1
 echo hell > f1
 
 echo hell > f1 | cat < f1
 
-write up and modify
 
-unset PWD
-cd ..
-cd -
+parsing errors
 
+echo test > "       "
 echo he > "" > file
+
+
+create_env_list segfault

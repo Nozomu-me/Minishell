@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 16:01:03 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 16:30:04 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/24 04:09:15 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	redir(t_mini *mini)
 
 	w = NULL;
 	r = NULL;
+	printf("redir\n");
 	ret = create_files(mini, &w, &r, &fd);
 	if (ret == -1)
 		return (ret);
@@ -49,6 +50,7 @@ int	redir_builtins(t_mini *mini)
 
 	w = NULL;
 	r = NULL;
+	printf("redir built\n");
 	ret = create_files(mini, &w, &r, &fd);
 	if (ret == -1)
 		return (ret);

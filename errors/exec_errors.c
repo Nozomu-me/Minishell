@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:43:14 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/23 17:16:45 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/23 20:54:44 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	error_nodir(char *command)
 	ft_putstr(command);
 	if (command[0] == '$')
 		ft_putstr(": ambiguous redirect\n");
-	if (command[0] == '/')
-		ft_putstr(": Permission denied\n");
 	else
 		ft_putstr(": No such file or directory\n");
 }

@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:41:28 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 16:34:20 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/24 02:20:23 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,17 @@ void	help_cd_home_cur(t_mini *mini)
 {
 	char	*tmp;
 	int		check_dir;
+	char	**home;
 
+	home = ft_getenv("HOME", mini->export_env);
+	if (home == NULL)
+	{
+		ft_putstr("minishell : cd: HOME not set\n");
+		g_check.exit_status = 1;
+		return ;
+	}
 	mod_oldpwd(mini);
-	tmp = search_replace(mini->cmds.cmd[1], "~", mini->glob.home[1]);
+	tmp = search_replace(mini->cmds.cmd[1], "~", home[1]);
 	check_dir = chdir(tmp);
 	if (check_dir == -1)
 	{
@@ -26,6 +34,7 @@ void	help_cd_home_cur(t_mini *mini)
 		g_check.exit_status = 1;
 	}
 	mod_pwd(mini);
+	free_tabl(home);
 	free(tmp);
 }
 
@@ -74,6 +83,13 @@ void	execute_cd_old(t_mini *mini)
 		mini->glob.oldpwd = ft_strdup(cwd);
 		mod_old(mini, ft_strdup(cwd));
 	}
+	if (mini->glob.pwd_env == 1)
+	{
+		if (mini->glob.oldpwd != NULL)
+			free(mini->glob.oldpwd);
+		mini->glob.oldpwd = NULL;
+		mini->glob.pwd_env = 0;
+	}
 }
 
 void	help_execute_cd(t_mini *mini)
@@ -99,6 +115,7 @@ void	execute_cd(t_mini *mini)
 {
 	char	*tmp_path;
 	int		check_dir;
+	char	**home;
 
 	if (g_check.exit_status == -2)
 		g_check.exit_status = 1;
@@ -107,9 +124,17 @@ void	execute_cd(t_mini *mini)
 	tmp_path = NULL;
 	if (mini->cmds.cmd[1] == NULL)
 	{
+		home = ft_getenv("HOME", mini->export_env);
+		if (home == NULL)
+		{
+			ft_putstr("minishell : cd: HOME not set\n");
+			g_check.exit_status = 1;
+			return ;
+		}
 		mod_oldpwd(mini);
 		check_dir = chdir(mini->glob.home[1]);
 		mod_pwd(mini);
+		free_tabl(home);
 	}
 	else if (ft_strncmp(mini->cmds.cmd[1], "~", 1) == 0
 		|| ft_strcmp(mini->cmds.cmd[1], ".") == 0)

@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 11:47:31 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/23 13:22:09 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/24 04:53:25 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,26 @@ void	execute_child(t_mini *mini, int fds, char **env, char *path)
 {
 	if (dup2(mini->glob.fd_in, 0) == -1)
 		ft_putendl_fd(strerror(errno), 1);
-	if (fds)
+	if (mini->cmds.type == PIPE)
 	{
-		dup2(fds, 1);
-		close(fds);
-	}
-	else if (mini->cmds.type == PIPE)
-	{
+		printf("here cat2\n");
 		if (dup2(mini->fd[1], 1) == -1)
 			ft_putendl_fd(strerror(errno), 1);
 		close(mini->fd[0]);
 	}
 	if (check_pipe_builtins(mini) == 1)
-		execute_builtins(mini);
-	else if (check_pipe_builtins(mini) == 0)
 	{
+		execute_builtins(mini);
+	}
+	if (fds)
+	{
+		printf("here cat1\n");
+		dup2(fds, 1);
+		close(fds);
+	}
+	if (check_pipe_builtins(mini) == 0)
+	{
+		printf("here cat3\n");
 		if (execve(path, mini->cmds.cmd, env) != 0)
 			g_check.exit_status = 1;
 	}

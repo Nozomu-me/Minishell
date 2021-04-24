@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:51:40 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 14:18:12 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/24 01:29:40 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,38 @@ void	mod_env(t_list *env, char *name, char *var)
 {
 	t_list	*tmp;
 	char	**split;
+	char	**split2;
+	char	**split3;
+	char	*str;
+	char	*str2;
 
 	tmp = env;
 	while (tmp != NULL)
 	{
 		split = ft_split(tmp->content, '=');
-		if (ft_strncmp(split[0], name, ft_strlen(split[0])) == 0)
+		if (name[ft_strlen(name) - 1] != '+')
 		{
-			free(tmp->content);
-			tmp->content = ft_strdup(var);
+			if (ft_strncmp(split[0], name, ft_strlen(split[0])) == 0)
+			{
+				free(tmp->content);
+				tmp->content = ft_strdup(var);
+			}
+		}
+		else
+		{
+			split2 = ft_split(name, '+');
+			split3 = ft_split(var, '=');
+			if (ft_strncmp(split[0], split2[0], ft_strlen(split[0])) == 0)
+			{
+				free(tmp->content);
+				str2 = ft_strjoin(split[0], "=");
+				str = ft_strjoin(str2, split[1]);
+				tmp->content = ft_strjoin(str, split3[1]);
+				free(str2);
+				free(str);
+			}
+			free_tabl(split2);
+			free_tabl(split3);
 		}
 		free_tabl(split);
 		tmp = tmp->next;
@@ -89,12 +112,31 @@ void	mod_env(t_list *env, char *name, char *var)
 int	check_in_env(t_list *env, char *str)
 {
 	t_list	*tmp;
+	char	**split;
 
 	tmp = env;
 	while (tmp != NULL)
 	{
-		if (ft_strncmp(tmp->content, str, ft_strlen(str)) == 0)
-			return (1);
+		if (str[ft_strlen(str) - 1] != '+')
+		{
+			split = ft_split(tmp->content, '=');
+			if (ft_strncmp(tmp->content, str, ft_maxlen(str, split[0])) == 0)
+			{
+				free_tabl(split);
+				return (1);
+			}
+			free_tabl(split);
+		}
+		else if (str[ft_strlen(str) - 1] == '+')
+		{
+			split = ft_split(str, '+');
+			if (ft_strncmp(tmp->content, split[0], ft_strlen(split[0])) == 0)
+			{
+				free_tabl(split);
+				return (1);
+			}
+			free_tabl(split);
+		}
 		tmp = tmp->next;
 	}
 	return (0);
