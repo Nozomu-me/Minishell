@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:08:18 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 16:35:01 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/24 22:11:27 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,15 @@ void	echo_dollar(t_mini *mini, char *cmd)
 
 	str = ft_itoa(g_check.exit_status);
 	ft_putstr_fd(str, mini->glob.fd_red);
+	if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
+		ft_putendl_fd(str, 1);
 	check = check_valid_echo(cmd);
 	if (check != NULL)
+	{
 		ft_putstr_fd(check, mini->glob.fd_red);
+		if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
+			ft_putendl_fd(check, 1);
+	}
 	free(check);
 	free(str);
 }
@@ -87,9 +93,17 @@ void	execute_echo(char **cmd, t_mini *mini)
 		if (ft_strncmp(cmd[i], "$?", 2) == 0)
 			echo_dollar(mini, cmd[i]);
 		else
+		{
 			ft_putstr_fd(cmd[i], mini->glob.fd_red);
+			if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
+				ft_putendl_fd(cmd[i], 1);
+		}
 		if (cmd[i + 1] != NULL)
+		{
 			ft_putstr_fd(" ", mini->glob.fd_red);
+			if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
+				ft_putendl_fd(" ", 1);
+		}
 		i++;
 	}
 	if (b == 0)

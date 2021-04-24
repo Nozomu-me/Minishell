@@ -52,7 +52,7 @@ echo he > "" > file
 create_env_list segfault
 
 
-pwd > f1 | cat <ivcd
+pwd > f1 | cat <ivcd ---- it works
 
 
 child leak

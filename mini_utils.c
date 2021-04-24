@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 13:49:56 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/24 01:12:58 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/24 20:40:04 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	help_main(t_mini *mini, t_cflist *tmp)
 	g_check.exit_sig = 1;
 	mini->cmds.type = tmp->type;
 	env = list_to_tabl(mini->export_env);
-	printf("seg here1\n");
+	// printf("seg here1\n");
 	mini->env2 = create_env_list(env);
-	printf("seg here2\n");
+	// printf("seg here2\n");
 	tmp->name = check_dollr(mini, tmp->name);
 	push_to_struct(mini, tmp->name);
 	execute_cmd(mini);
