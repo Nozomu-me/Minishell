@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:46:29 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/23 16:22:44 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/24 17:25:46 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,21 @@ void	execute_execve(t_mini *mini, char **env, char **split)
 {
 	char	*path;
 	int		perm;
+	int		check;
 
 	path = NULL;
+	check = 0;
 	get_path(mini, split, &path, &perm);
-	call_execve(mini, env, path);
 	if (perm != 1 && mini->cmds.cmd[0] != NULL
 		&& check_isbuiltin(mini->cmds.cmd[0]) != 1
 		&& g_check.exit_status != -2)
 	{
 		g_check.exit_status = 127;
 		error_command(mini->cmds.cmd[0]);
+		check = 1;
 	}
+	if (check == 0)
+		call_execve(mini, env, path);
 	if (g_check.exit_status == -2)
 		g_check.exit_status = 1;
 	if (path != NULL)

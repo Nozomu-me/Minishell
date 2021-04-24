@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 11:47:31 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/24 04:53:25 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/24 17:35:36 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,31 @@
 
 void	execute_child(t_mini *mini, int fds, char **env, char *path)
 {
+	// fprintf(stderr,"fds=%d\n", fds);
 	if (dup2(mini->glob.fd_in, 0) == -1)
 		ft_putendl_fd(strerror(errno), 1);
 	if (mini->cmds.type == PIPE)
 	{
-		printf("here cat2\n");
+		// fprintf(stderr,"here cat2\n");
 		if (dup2(mini->fd[1], 1) == -1)
 			ft_putendl_fd(strerror(errno), 1);
 		close(mini->fd[0]);
 	}
-	if (check_pipe_builtins(mini) == 1)
+	if (fds != 0)
 	{
-		execute_builtins(mini);
-	}
-	if (fds)
-	{
-		printf("here cat1\n");
+		// fprintf(stderr,"fds2=%d\n", fds);
+		// fprintf(stderr,"here cat1\n");
 		dup2(fds, 1);
 		close(fds);
 	}
+	if (check_pipe_builtins(mini) == 1)
+	{
+		printf("built\n");
+		execute_builtins(mini);
+	}
 	if (check_pipe_builtins(mini) == 0)
 	{
-		printf("here cat3\n");
+		// fprintf(stderr,"here cat3\n");
 		if (execve(path, mini->cmds.cmd, env) != 0)
 			g_check.exit_status = 1;
 	}
@@ -43,7 +46,8 @@ void	execute_child(t_mini *mini, int fds, char **env, char *path)
 
 int	help_execve(t_mini *mini, char **env, char *path)
 {
-	mini->fds = redir(mini);
+	if (check_pipe_builtins(mini) == 0)
+		mini->fds = redir(mini);
 	if (mini->fds == -1)
 		exit(0);
 	if (mini->pid == -1)

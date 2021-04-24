@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:48:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 13:41:23 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/24 12:04:14 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,22 @@ void	get_cmdline(t_termcap *term, char **cmdline)
 	char	*tmp_save;
 
 	if (*cmdline == NULL)
+	{
 		*cmdline = ft_strdup(term->buffer);
+		if (*cmdline != NULL)
+		{
+			term->check = 0;
+			tmp_save = term->save;
+			term->save = ft_strdup(*cmdline);
+			if (tmp_save != NULL)
+				free(tmp_save);
+		}
+	}
 	else
 	{
 		tmp = *cmdline;
 		*cmdline = ft_strjoin(*cmdline, term->buffer);
+		// fprintf(stderr, "cmdline=%s\n", *cmdline);
 		if (*cmdline != NULL)
 		{
 			term->check = 0;

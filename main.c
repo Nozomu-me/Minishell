@@ -6,12 +6,19 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:28:51 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/24 00:40:12 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/24 17:47:24 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// void	unconfigure(struct termios term)
+// {
+// 	tcgetattr(0, &term);
+// 	term.c_lflag &= ~(CANON | ECHO);
+// 	tcsetattr(0, TCSANOW, &term);
+// 	tgetent(0, getenv("TERM"));
+// }
 int	main(void)
 {
 	extern char	**environ;

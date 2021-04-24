@@ -47,6 +47,7 @@ int	create_read(t_cflist *tmp, int *fd, t_cflist **r)
 		g_check.exit_status = -2;
 		return (-1);
 	}
+	close(*fd);
 	*r = tmp;
 	return (0);
 }

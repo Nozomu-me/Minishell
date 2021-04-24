@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/23 12:20:08 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/24 16:01:15 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 # define PATH_MAX = 1024
 # define BUFFER_SIZE 1024
+# define TTYS  "/dev/ttys009"
 
 # include <signal.h>
 # include <unistd.h>

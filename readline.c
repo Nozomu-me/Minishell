@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:47:20 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 14:23:19 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/24 13:36:30 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ void	readline(char **cmdline, t_list **history)
 		if (g_check.exit_status == -1)
 		{
 			g_check.exit_status = 1;
+			term.prevlen = 0;
+			free(term.save);
+			term.save= NULL;
 			free(*cmdline);
 			*cmdline = NULL;
 		}

@@ -9,8 +9,8 @@ exit -4 -> echo $? ------ done
 
 exit +99 -> echo $?  ----- done
 
-echo $21213 -------- done
-echo h$5sclkbncs ----- done
+echo $21213 -------- done (maybe not)
+echo h$5sclkbncs ----- done (maybe not)
 
 export a+= ------- done
 
@@ -24,13 +24,13 @@ unset HOME -> cd ------- done
 unset PWD -> cd .. -> cd -  ----------  done
 echo test > '       ' ----- done
 
+one character+up ------ done
 
+somothing+ctrl+c  ------- done
 
-one character+up
-somothing+ctrl+c 
-cat + ctrl+d
 write up and modify
 
+cat + ctrl+d
 
 echo hello > /f1 
 echo hello > $PWD
@@ -38,6 +38,7 @@ echo > $PATH
 
 chmod 555 f1
 echo hell > f1
+
 
 echo hell > f1 | cat < f1
 
@@ -49,3 +50,9 @@ echo he > "" > file
 
 
 create_env_list segfault
+
+
+pwd > f1 | cat <ivcd
+
+
+child leak
