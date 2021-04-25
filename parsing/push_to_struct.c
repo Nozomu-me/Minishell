@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_to_struct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:32:03 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/25 14:14:49 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/25 14:48:14 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,11 @@ void	push_to_struct(t_mini *mini, char *line)
 	while (tmp)
 	{
 		tmp->file_dollar = 1;
-		printf("FILE NAME |%s|\ttesT|%d|\n", tmp->name, tmp->file_dollar);
 		if (tmp->name[0] == '\'' && tmp->name[1] == '$' * -1)
 			tmp->file_dollar = 0;
 		if (compare(tmp->name, "$?") || compare(tmp->name, "\"$?\""))
 			tmp->name = ft_itoa(g_check.exit_status);
-		printf("NAME[0] [%d]\n", tmp->name[1]);
 		tmp->name = reverse_cmd(mini, tmp->name, 0, -1);
-		printf("FILE NAME2 |%s|\n", tmp->name);
 		tmp = tmp->next;
 	}
 	free(tmp3);
