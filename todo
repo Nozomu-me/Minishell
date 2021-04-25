@@ -29,30 +29,23 @@ one character+up ------ done
 somothing+ctrl+c  ------- done
 
 write up and modify
-
 cat + ctrl+d
 
 echo hello > /f1 
 echo hello > $PWD
 echo > $PATH
-
 chmod 555 f1
 echo hell > f1
 
-
 echo hell > f1 | cat < f1
-
 
 parsing errors
 
 echo test > "       "
 echo he > "" > file
 
-
 create_env_list segfault
 
-
 pwd > f1 | cat <ivcd ---- it works
-
 
 child leak

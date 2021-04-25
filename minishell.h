@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/24 16:01:15 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/25 14:06:28 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_cflist
 {
 	char				*name;
 	t_type				type;
+	int					file_dollar;
 	struct s_cflist		*next;
 }						t_cflist;
 

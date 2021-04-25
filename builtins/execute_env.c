@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:48:36 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 16:36:01 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/25 12:58:13 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,9 @@ void	execute_env(t_mini *mini)
 		}
 	}
 	else
+	{
 		print_list(mini->env, mini->glob.fd_red);
+		if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
+			print_list(mini->env, 1);
+	}
 }

@@ -12,15 +12,47 @@
 
 #include "../minishell.h"
 
+int	check_file_perm(t_cflist *file)
+{
+	struct stat		buf;
+	int				status;
+
+	status = stat(file->name, &buf);
+	if (status == 0)
+	{
+		if ((buf.st_mode & S_IRUSR) == 0)
+			return (1);
+		if ((buf.st_mode & S_IWUSR) == 0)
+			return (1);
+		return (2);
+	}
+	return (0);
+}
+
 int	create_write(t_cflist *tmp, int *fd, t_cflist **w)
 {
-	if (tmp->name[0] == '$')
+	int	perm;
+
+	if (tmp->name[0] == '$' && tmp->file_dollar)
 	{
 		g_check.exit_status = -2;
 		error_nodir(tmp->name);
 		return (-1);
 	}
 	*fd = open(tmp->name, O_CREAT | O_WRONLY | O_TRUNC, 0666);
+	perm = check_file_perm(tmp);
+	if (perm == 1)
+	{
+		ft_putendl_fd("permission denied", 1);
+		g_check.exit_status = -2;
+		return (-1);
+	}
+	if (perm == 2 && *fd == -1)
+	{
+		ft_putendl_fd("is a directory1", 1);
+		g_check.exit_status = -2;
+		return (-1);
+	}
 	if (*fd == -1)
 	{
 		error_nodir(tmp->name);
@@ -34,13 +66,28 @@ int	create_write(t_cflist *tmp, int *fd, t_cflist **w)
 
 int	create_read(t_cflist *tmp, int *fd, t_cflist **r)
 {
-	if (tmp->name[0] == '$')
+	int	perm;
+
+	if (tmp->name[0] == '$' && tmp->file_dollar)
 	{
 		g_check.exit_status = -2;
 		error_nodir(tmp->name);
 		return (-1);
 	}
 	*fd = open(tmp->name, O_RDONLY);
+	perm = check_file_perm(tmp);
+	if (perm == 1)
+	{
+		ft_putendl_fd("permission denied", 1);
+		g_check.exit_status = -2;
+		return (-1);
+	}
+	if (perm == 2 && *fd == -1)
+	{
+		ft_putendl_fd("is a directory2", 1);
+		g_check.exit_status = -2;
+		return (-1);
+	}
 	if (*fd == -1)
 	{
 		error_nodir(tmp->name);
@@ -54,13 +101,27 @@ int	create_read(t_cflist *tmp, int *fd, t_cflist **r)
 
 int	create_append(t_cflist *tmp, int *fd, t_cflist **w)
 {
-	if (tmp->name[0] == '$')
+	int	perm;
+	if (tmp->name[0] == '$' && tmp->file_dollar)
 	{
 		g_check.exit_status = -2;
 		error_nodir(tmp->name);
 		return (-1);
 	}
 	*fd = open(tmp->name, O_CREAT | O_WRONLY | O_APPEND, 0666);
+	perm = check_file_perm(tmp);
+	if (perm == 1)
+	{
+		ft_putendl_fd("permission denied", 1);
+		g_check.exit_status = -2;
+		return (-1);
+	}
+	if (perm == 2 && *fd == -1)
+	{
+		ft_putendl_fd("is a directory3", 1);
+		g_check.exit_status = -2;
+		return (-1);
+	}
 	if (*fd == -1)
 	{
 		error_nodir(tmp->name);

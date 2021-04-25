@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 11:47:31 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/24 20:45:59 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/25 13:13:58 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	execute_child(t_mini *mini, int fds, char **env, char *path)
 	}
 	if (check_pipe_builtins(mini) == 0)
 	{
+		// printf("fds=%d\n", fds);
 		if (execve(path, mini->cmds.cmd, env) != 0)
 			g_check.exit_status = 1;
 	}

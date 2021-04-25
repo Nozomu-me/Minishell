@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 19:29:17 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/24 20:51:38 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/25 14:30:59 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	execute_pwd(t_mini *mini)
 	{
 		mini->glob.pwd = buf;
 		ft_putendl_fd(mini->glob.pwd, mini->glob.fd_red);
-		if (mini->glob.fd_red != 1)
+		if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
 			ft_putendl_fd(mini->glob.pwd, 1);
 	}
 	else
 	{
 		mini->glob.pwd = buf;
 		ft_putendl_fd(mini->glob.pwd, mini->glob.fd_red);
-		if (mini->glob.fd_red != 1)
+		if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
 			ft_putendl_fd(mini->glob.pwd, 1);
 	}
 }

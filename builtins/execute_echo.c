@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:08:18 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/24 22:11:27 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/25 12:08:58 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,18 +96,22 @@ void	execute_echo(char **cmd, t_mini *mini)
 		{
 			ft_putstr_fd(cmd[i], mini->glob.fd_red);
 			if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
-				ft_putendl_fd(cmd[i], 1);
+				ft_putstr_fd(cmd[i], 1);
 		}
 		if (cmd[i + 1] != NULL)
 		{
 			ft_putstr_fd(" ", mini->glob.fd_red);
 			if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
-				ft_putendl_fd(" ", 1);
+				ft_putstr_fd(" ", 1);
 		}
 		i++;
 	}
 	if (b == 0)
+	{
 		ft_putstr_fd("\n", mini->glob.fd_red);
+		if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
+			ft_putstr_fd("\n", 1);
+	}
 	if (g_check.exit_status == -2)
 		g_check.exit_status = 1;
 	else
