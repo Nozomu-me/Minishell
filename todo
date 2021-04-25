@@ -28,16 +28,16 @@ one character+up ------ done
 
 somothing+ctrl+c  ------- done
 
-write up and modify
-cat + ctrl+d
+write up and modify ------ done
+cat + ctrl+d ------- done
 
-echo hello > /f1 
-echo hello > $PWD
-echo > $PATH
-chmod 555 f1
-echo hell > f1
+echo hello > /f1  ----- done
+echo hello > $PWD ----- done
+echo > $PATH ----- done
+chmod 555 f1 ----- done
+echo hell > f1 ----- done
 
-echo hell > f1 | cat < f1
+echo hell > f1 | cat < f1 ----- done
 
 parsing errors
 
@@ -48,4 +48,4 @@ create_env_list segfault
 
 pwd > f1 | cat <ivcd ---- it works
 
-child leak
+child leak  -------- works

@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 12:39:58 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/24 13:36:20 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/25 16:19:51 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ void	uphistory(t_termcap *term, t_list **history, char **cmdline)
 	{
 		if (term->prevlen != 0)
 		{
-			tputs(tgoto(tgetstr("LE", NULL), 0, term->prevlen), 0, fd_put);
+			tputs(tgoto(tgetstr("cr", NULL), 0, term->prevlen), 0, fd_put);
 			tputs(tgoto(tgetstr("ce", NULL), 0, term->prevlen), 0, fd_put);
+			ft_putstr("\033[33mminishell\033[0m\033[32m~$\033[0m ");
 		}
 		hist_tab = list_to_tabl(*history);
 		if (term->histpos != 0)
@@ -45,8 +46,9 @@ void	delete_dhist(t_termcap *term, char **cmdline)
 		|| (term->prevlen != 0 && term->histpos == term->lstsize
 			&& term->save != NULL))
 	{
-		tputs(tgoto(tgetstr("LE", NULL), 0, term->prevlen), 0, fd_put);
+		tputs(tgoto(tgetstr("cr", NULL), 0, term->prevlen), 0, fd_put);
 		tputs(tgoto(tgetstr("ce", NULL), 0, term->prevlen), 0, fd_put);
+		ft_putstr("\033[33mminishell\033[0m\033[32m~$\033[0m ");
 		free(*cmdline);
 		*cmdline = NULL;
 	}

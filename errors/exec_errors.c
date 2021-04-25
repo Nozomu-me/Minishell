@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:43:14 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/23 20:54:44 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/25 15:07:43 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	error_nodir(char *command)
 	ft_putstr(command);
 	if (command[0] == '$')
 		ft_putstr(": ambiguous redirect\n");
+	else if (command[0] == '/')
+		ft_putstr(": Permission denied\n");
 	else
 		ft_putstr(": No such file or directory\n");
 }
@@ -41,4 +43,11 @@ void	current_dir_err(void)
 	ft_putstr_fd("cd: error retrieving current directory:", 1);
 	ft_putstr_fd(" getcwd: cannot access parent directories:", 1);
 	ft_putendl_fd(" No such file or directory", 1);
+}
+
+void	error_dir(char *command)
+{
+	ft_putstr("minishell: ");
+	ft_putstr(command);
+	ft_putstr(": Is a directory\n");
 }

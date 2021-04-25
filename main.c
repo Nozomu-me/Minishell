@@ -6,19 +6,19 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:28:51 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/24 17:47:24 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/25 16:29:02 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// void	unconfigure(struct termios term)
-// {
-// 	tcgetattr(0, &term);
-// 	term.c_lflag &= ~(CANON | ECHO);
-// 	tcsetattr(0, TCSANOW, &term);
-// 	tgetent(0, getenv("TERM"));
-// }
+void	unconfigure(struct termios term)
+{
+	tcgetattr(0, &term);
+    term.c_lflag |= (ICANON | ECHO);
+    tcsetattr(0, TCSANOW, &term);
+}
+
 int	main(void)
 {
 	extern char	**environ;
@@ -28,13 +28,14 @@ int	main(void)
 	signal(SIGQUIT, sig_handler);
 	init(&mini, environ);
 	shlvl(&mini);
-	set_terminal(mini.term);
 	initail_struct(&mini);
 	while (1)
 	{
+		set_terminal(mini.term);
 		ft_putstr("\033[33mminishell\033[0m\033[32m~$\033[0m ");
 		readline(&mini.cmdline, &mini.history);
 		ft_putchar_fd('\n', 1);
+		unconfigure(mini.term);
 		if (mini.cmdline != NULL)
 		{
 			if (minishell(&mini) == 1)

@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/25 14:06:28 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/25 16:03:50 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_termcap
 	char			*histadd;
 	int				histpos;
 	int				check;
+	int				check2;
 	char			*save;
 	struct winsize	win;
 }				t_termcap;
@@ -244,6 +245,7 @@ int				check_in_env(t_list *env, char *str);
 t_list			*init_env_environ(char **environ);
 t_list			*init_export_environ(char **environ);
 char			**ft_getenv(char *name, t_list *env);
+void			error_dir(char *command);
 /*
 ** termcap functions
 */

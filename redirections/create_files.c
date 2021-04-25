@@ -21,7 +21,7 @@ int	check_file_perm(t_cflist *file)
 	if (status == 0)
 	{
 		if ((buf.st_mode & S_IRUSR) == 0)
-			return (1);
+			return (3);
 		if ((buf.st_mode & S_IWUSR) == 0)
 			return (1);
 		return (2);
@@ -43,13 +43,13 @@ int	create_write(t_cflist *tmp, int *fd, t_cflist **w)
 	perm = check_file_perm(tmp);
 	if (perm == 1)
 	{
-		ft_putendl_fd("permission denied", 1);
+		error_permission(tmp->name);
 		g_check.exit_status = -2;
 		return (-1);
 	}
 	if (perm == 2 && *fd == -1)
 	{
-		ft_putendl_fd("is a directory1", 1);
+		error_dir(tmp->name);
 		g_check.exit_status = -2;
 		return (-1);
 	}
@@ -76,15 +76,15 @@ int	create_read(t_cflist *tmp, int *fd, t_cflist **r)
 	}
 	*fd = open(tmp->name, O_RDONLY);
 	perm = check_file_perm(tmp);
-	if (perm == 1)
+	if (perm == 3)
 	{
-		ft_putendl_fd("permission denied", 1);
+		error_permission(tmp->name);
 		g_check.exit_status = -2;
 		return (-1);
 	}
 	if (perm == 2 && *fd == -1)
 	{
-		ft_putendl_fd("is a directory2", 1);
+		error_dir(tmp->name);
 		g_check.exit_status = -2;
 		return (-1);
 	}
@@ -112,13 +112,13 @@ int	create_append(t_cflist *tmp, int *fd, t_cflist **w)
 	perm = check_file_perm(tmp);
 	if (perm == 1)
 	{
-		ft_putendl_fd("permission denied", 1);
+		error_permission(tmp->name);
 		g_check.exit_status = -2;
 		return (-1);
 	}
 	if (perm == 2 && *fd == -1)
 	{
-		ft_putendl_fd("is a directory3", 1);
+		error_dir(tmp->name);
 		g_check.exit_status = -2;
 		return (-1);
 	}
