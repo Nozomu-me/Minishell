@@ -6,13 +6,13 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:28:51 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/26 13:54:57 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/26 16:56:00 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	unconfigure(struct termios term)
+void	unset_terminal(struct termios term)
 {
 	tcgetattr(0, &term);
 	term.c_lflag |= (ICANON | ECHO);
@@ -35,7 +35,7 @@ int	main(void)
 		ft_putstr("\033[33mminishell\033[0m\033[32m~$\033[0m ");
 		readline(&mini.cmdline, &mini.history);
 		ft_putchar_fd('\n', 1);
-		unconfigure(mini.term);
+		unset_terminal(mini.term);
 		if (mini.cmdline != NULL)
 		{
 			if (minishell(&mini) == 1)
