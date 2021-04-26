@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:41:28 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/26 15:13:02 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/26 16:32:07 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ void	cd_home(t_mini *mini)
 void	execute_cd(t_mini *mini)
 {
 	char	*tmp_path;
-	int		check_dir;
-	char	**home;
 
 	if (g_check.exit_status == -2)
 		g_check.exit_status = 1;
