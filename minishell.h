@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/26 16:29:56 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/26 16:39:42 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MINISHELL_H
 # define PATH_MAX = 1024
 # define BUFFER_SIZE 1024
-# define TTYS  "/dev/ttys009"
 
 # include <signal.h>
 # include <unistd.h>
@@ -49,6 +48,7 @@
 # define RED	"\e[0;31m"
 # define WHITE	"\033[0m"
 # define BLUE "\e[0;34m"
+
 typedef struct s_termcap
 {
 	int				ret;
