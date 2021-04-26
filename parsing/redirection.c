@@ -6,7 +6,7 @@
 /*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:31:56 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/22 16:50:13 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/26 14:14:14 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int	compare(char *str, char *str2)
 
 int	redirection(t_symbol *smbl)
 {
-	if (smbl->great == ON)
+	if (smbl->read == ON)
 		return (62);
-	if (smbl->less == ON)
+	if (smbl->write == ON)
 		return (60);
-	if (smbl->d_great == ON)
+	if (smbl->append == ON)
 		return (63);
 	return (0);
 }
@@ -67,9 +67,9 @@ char	*check_redirection(t_symbol *smbl, char *line, int i, int *type)
 		else
 		{
 			if (line[i + 1] == '>')
-				error_red(smbl, "syntax error near unexpected token", 63);
+				error_red(smbl, 63);
 			else
-				error_red(smbl, "syntax error near unexpected token", line[i]);
+				error_red(smbl, line[i]);
 		}
 	}
 	return (line);
@@ -77,8 +77,5 @@ char	*check_redirection(t_symbol *smbl, char *line, int i, int *type)
 
 int	check_flags(t_symbol *smbl)
 {
-	int	sum;
-
-	sum = smbl->d_great + smbl->less + smbl->great + smbl->semi + smbl->pipe;
-	return (sum);
+	return (smbl->append + smbl->write + smbl->read + smbl->semi + smbl->pipe);
 }

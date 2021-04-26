@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/26 16:04:09 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/26 16:29:56 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,9 @@ typedef struct s_symbol
 	int		pipe;
 	int		d_quote;
 	int		s_quote;
-	int		less;
-	int		great;
-	int		d_great;
+	int		read;
+	int		write;
+	int		append;
 	int		error;
 	int		already_pipe;
 }					t_symbol;
@@ -281,7 +281,7 @@ int				redir_builtins(t_mini *mini);
 ** parsing functions
 */
 void			splitpipesemi(t_mini *mini);
-void			error_red(t_symbol *smbl, char *error, char c);
+void			error_red(t_symbol *smbl, char c);
 int				count_back(char *line);
 void			ft_error(t_symbol *smbl, char *str);
 void			ft_putstr_fd(char *s, int fd);
@@ -327,4 +327,7 @@ char			*get_path_dollar(t_mini *mini, char *line, int *j);
 char			*add_dollar_path(char *path);
 char			*file_dollar(char *line, char *path);
 void			add_new_env_element(t_env *curr_node, char *env);
+char			*dollar_digit(char *line, int *i);
+char			*dollar_simple(t_mini *mini, char *line, int *i);
+void			off_red(t_symbol *smbl);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_to_struct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:32:03 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/25 14:48:14 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/26 14:44:52 by abdel-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,10 @@ char	*push_file_struct(t_mini *mini, char *line, int i)
 	return (line);
 }
 
-void	push_to_struct(t_mini *mini, char *line)
+void	push_to_cmd(t_mini *mini)
 {
-	int			i;
-	char		*tmp3;
-	t_cflist	*tmp;
+	int	i;
 
-	tmp3 = ft_strdup(line);
-	tmp3 = push_file_struct(mini, tmp3, 0);
-	mini->cmds.cmd = ft_split(tmp3, ' ');
 	i = -1;
 	while (mini->cmds.cmd[++i])
 	{
@@ -94,6 +89,17 @@ void	push_to_struct(t_mini *mini, char *line)
 			mini->cmds.cmd[i][0] *= -1;
 		mini->cmds.cmd[i] = reverse_cmd(mini, mini->cmds.cmd[i], 0, -1);
 	}
+}
+
+void	push_to_struct(t_mini *mini, char *line)
+{
+	char		*tmp3;
+	t_cflist	*tmp;
+
+	tmp3 = ft_strdup(line);
+	tmp3 = push_file_struct(mini, tmp3, 0);
+	mini->cmds.cmd = ft_split(tmp3, ' ');
+	push_to_cmd((mini));
 	tmp = mini->cmds.file;
 	while (tmp)
 	{
