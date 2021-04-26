@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:08:18 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/25 12:08:58 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/26 15:34:56 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,6 @@ static char	*check_valid_echo(char *str)
 	return (ret);
 }
 
-int	check_n(char *str)
-{
-	int	i;
-
-	i = 1;
-	while (str[i] != '\0')
-	{
-		if (str[i] != 'n')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 void	echo_dollar(t_mini *mini, char *cmd)
 {
 	char	*str;
@@ -67,18 +53,22 @@ void	echo_dollar(t_mini *mini, char *cmd)
 	free(str);
 }
 
-int	get_n(char **cmd, int *b)
+void	help_echo(char **cmd, t_mini *mini, int i)
 {
-	int		i;
-
-	i = 1;
-	while (cmd[i] != NULL && (ft_strncmp(cmd[1], "-", 1) == 0
-			&& check_n(cmd[i]) == 0))
+	if (ft_strncmp(cmd[i], "$?", 2) == 0)
+		echo_dollar(mini, cmd[i]);
+	else
 	{
-		*b = 1;
-		i++;
+		ft_putstr_fd(cmd[i], mini->glob.fd_red);
+		if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
+			ft_putstr_fd(cmd[i], 1);
 	}
-	return (i);
+	if (cmd[i + 1] != NULL)
+	{
+		ft_putstr_fd(" ", mini->glob.fd_red);
+		if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
+			ft_putstr_fd(" ", 1);
+	}
 }
 
 void	execute_echo(char **cmd, t_mini *mini)
@@ -90,20 +80,7 @@ void	execute_echo(char **cmd, t_mini *mini)
 	i = get_n(cmd, &b);
 	while (cmd[i] != NULL)
 	{
-		if (ft_strncmp(cmd[i], "$?", 2) == 0)
-			echo_dollar(mini, cmd[i]);
-		else
-		{
-			ft_putstr_fd(cmd[i], mini->glob.fd_red);
-			if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
-				ft_putstr_fd(cmd[i], 1);
-		}
-		if (cmd[i + 1] != NULL)
-		{
-			ft_putstr_fd(" ", mini->glob.fd_red);
-			if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
-				ft_putstr_fd(" ", 1);
-		}
+		help_echo(cmd, mini, i);
 		i++;
 	}
 	if (b == 0)

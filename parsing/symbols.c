@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   symbols.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 17:02:55 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/22 16:53:27 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/26 11:10:50 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ void	initial_symbol(t_symbol *sbl)
 	sbl->error = OFF;
 }
 
+void    off_red(t_symbol *smbl)
+{
+    smbl->great = OFF;
+    smbl->great = OFF;
+    smbl->less = OFF;
+}
+
 char	*check_d_quote(t_symbol *smbl, char *line, int i)
 {
 	if (!count_back(line + (i - 1)))
@@ -36,6 +43,7 @@ char	*check_d_quote(t_symbol *smbl, char *line, int i)
 			smbl->d_quote = OFF;
 		else if (smbl->s_quote == ON)
 			line[i] *= -1;
+		off_red(smbl);
 	}
 	else if (smbl->d_quote == ON)
 		line[i] *= -1;
@@ -92,10 +100,10 @@ char	*check_symbols(t_symbol *smbl, char *line, int i)
 			line = check_redirection(smbl, line, i, &smbl->less);
 		else if (line[i] == ' ')
 			line = check_space(smbl, line, i);
-		else if (line[i] == '$')
-			line = ft_turn_dollar(smbl, line, i);
 		else if (check_flags(smbl) && line[i] != ' ')
 			off_flags(smbl);
+		if (line[i] == '$')
+			line = ft_turn_dollar(smbl, line, i);
 	}
 	return (line);
 }

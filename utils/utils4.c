@@ -6,11 +6,17 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 12:51:25 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/25 13:03:57 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/26 14:20:29 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	fd_put(int c)
+{
+	write(1, &c, 1);
+	return (0);
+}
 
 int	check_valid(char *str)
 {
@@ -47,7 +53,7 @@ void	print_value(char *value, int fd)
 	int	i;
 
 	i = 0;
-	while(value[i] != '\0')
+	while (value[i] != '\0')
 	{
 		if (value[i] == '\"')
 			ft_putchar_fd('\\', fd);
@@ -55,6 +61,7 @@ void	print_value(char *value, int fd)
 		i++;
 	}	
 }
+
 void	print_export(t_list *export, int fd)
 {
 	t_list		*tmp;

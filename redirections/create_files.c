@@ -12,53 +12,17 @@
 
 #include "../minishell.h"
 
-int	check_file_perm(t_cflist *file)
-{
-	struct stat		buf;
-	int				status;
-
-	status = stat(file->name, &buf);
-	if (status == 0)
-	{
-		if ((buf.st_mode & S_IRUSR) == 0)
-			return (3);
-		if ((buf.st_mode & S_IWUSR) == 0)
-			return (1);
-		return (2);
-	}
-	return (0);
-}
-
 int	create_write(t_cflist *tmp, int *fd, t_cflist **w)
 {
-	int	perm;
-
-	if (tmp->name[0] == '$' && tmp->file_dollar)
+	if (tmp->name[0] == '$' && tmp->file_dollar && ft_strlen(tmp->name) != 1)
 	{
 		g_check.exit_status = -2;
-		error_nodir(tmp->name);
+		error_file_nodir(tmp->name);
 		return (-1);
 	}
 	*fd = open(tmp->name, O_CREAT | O_WRONLY | O_TRUNC, 0666);
-	perm = check_file_perm(tmp);
-	if (perm == 1)
-	{
-		error_permission(tmp->name);
-		g_check.exit_status = -2;
+	if (wapp_error(tmp, fd) == -1)
 		return (-1);
-	}
-	if (perm == 2 && *fd == -1)
-	{
-		error_dir(tmp->name);
-		g_check.exit_status = -2;
-		return (-1);
-	}
-	if (*fd == -1)
-	{
-		error_nodir(tmp->name);
-		g_check.exit_status = -2;
-		return (-1);
-	}
 	close(*fd);
 	*w = tmp;
 	return (0);
@@ -66,34 +30,15 @@ int	create_write(t_cflist *tmp, int *fd, t_cflist **w)
 
 int	create_read(t_cflist *tmp, int *fd, t_cflist **r)
 {
-	int	perm;
-
-	if (tmp->name[0] == '$' && tmp->file_dollar)
+	if (tmp->name[0] == '$' && tmp->file_dollar && ft_strlen(tmp->name) != 1)
 	{
 		g_check.exit_status = -2;
-		error_nodir(tmp->name);
+		error_file_nodir(tmp->name);
 		return (-1);
 	}
 	*fd = open(tmp->name, O_RDONLY);
-	perm = check_file_perm(tmp);
-	if (perm == 3)
-	{
-		error_permission(tmp->name);
-		g_check.exit_status = -2;
+	if (r_error(tmp, fd) == -1)
 		return (-1);
-	}
-	if (perm == 2 && *fd == -1)
-	{
-		error_dir(tmp->name);
-		g_check.exit_status = -2;
-		return (-1);
-	}
-	if (*fd == -1)
-	{
-		error_nodir(tmp->name);
-		g_check.exit_status = -2;
-		return (-1);
-	}
 	close(*fd);
 	*r = tmp;
 	return (0);
@@ -101,33 +46,15 @@ int	create_read(t_cflist *tmp, int *fd, t_cflist **r)
 
 int	create_append(t_cflist *tmp, int *fd, t_cflist **w)
 {
-	int	perm;
-	if (tmp->name[0] == '$' && tmp->file_dollar)
+	if (tmp->name[0] == '$' && tmp->file_dollar && ft_strlen(tmp->name) != 1)
 	{
 		g_check.exit_status = -2;
-		error_nodir(tmp->name);
+		error_file_nodir(tmp->name);
 		return (-1);
 	}
 	*fd = open(tmp->name, O_CREAT | O_WRONLY | O_APPEND, 0666);
-	perm = check_file_perm(tmp);
-	if (perm == 1)
-	{
-		error_permission(tmp->name);
-		g_check.exit_status = -2;
+	if (wapp_error(tmp, fd) == -1)
 		return (-1);
-	}
-	if (perm == 2 && *fd == -1)
-	{
-		error_dir(tmp->name);
-		g_check.exit_status = -2;
-		return (-1);
-	}
-	if (*fd == -1)
-	{
-		error_nodir(tmp->name);
-		g_check.exit_status = -2;
-		return (-1);
-	}
 	close(*fd);
 	*w = tmp;
 	return (0);

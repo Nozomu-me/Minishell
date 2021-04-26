@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/25 16:03:50 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/26 16:04:09 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,10 @@ int				help_execve(t_mini *mini, char **env, char *path);
 int				s_help_execve(t_mini *mini);
 void			call_execve(t_mini *mini, char **env, char *path);
 int				check_permission(char *path);
+int				check_dir(char *path);
 void			get_path(t_mini *mini, char **split, char **path, int *perm);
+void			help_cd_home_cur(t_mini *mini);
+void			execute_cd_home_cur(t_mini *mini);
 /*
 ** execute builtins
 */
@@ -225,6 +228,9 @@ void			mod_oldpwd(t_mini *mini);
 void			reset_oldpwd(t_mini *mini, char *save_oldpwd);
 void			mod_pwd(t_mini *mini);
 void			mod_old(t_mini *mini, char *cwd);
+int				check_n(char *str);
+void			echo_dollar(t_mini *mini, char *cmd);
+int				get_n(char **cmd, int *b);
 /*
 ** error functions
 */
@@ -235,8 +241,11 @@ void			error_unset(char *str, t_mini *mini);
 void			error_exit(char *str);
 void			error_command(char *command);
 void			error_nodir(char *command);
+void			error_file_nodir(char *command);
 void			error_permission(char *command);
 void			current_dir_err(void);
+int				wapp_error(t_cflist *tmp, int *fd);
+int				r_error(t_cflist *tmp, int *fd);
 /*
 ** environ functions
 */

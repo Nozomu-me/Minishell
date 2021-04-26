@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:28:51 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/25 16:29:02 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/26 13:54:57 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	unconfigure(struct termios term)
 {
 	tcgetattr(0, &term);
-    term.c_lflag |= (ICANON | ECHO);
-    tcsetattr(0, TCSANOW, &term);
+	term.c_lflag |= (ICANON | ECHO);
+	tcsetattr(0, TCSANOW, &term);
 }
 
 int	main(void)

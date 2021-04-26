@@ -6,7 +6,7 @@
 #    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:19:58 by amouassi          #+#    #+#              #
-#    Updated: 2021/04/24 22:05:30 by amouassi         ###   ########.fr        #
+#    Updated: 2021/04/26 16:03:23 by amouassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ SRC = utils/utils.c \
 	  utils/utils3.c \
 	  utils/utils4.c \
 	  utils/env_utils.c \
+	  utils/env_utils2.c \
 	  utils/list_utils.c \
 	  utils/list_utils2.c \
 	  utils/list_utils3.c \
@@ -85,8 +86,11 @@ SRC = utils/utils.c \
 	  builtins/execute_echo.c \
 	  builtins/execute_exit.c \
 	  builtins/mod_old_pwd.c \
+	  builtins/cd_utils.c \
+	  builtins/echo_utils.c \
 	  errors/errors.c \
 	  errors/exec_errors.c \
+	  errors/exec_errors2.c \
 	  execute_cmd.c \
 	  execute_shell.c \
 	  call_execve.c \
@@ -94,6 +98,7 @@ SRC = utils/utils.c \
 	  shlvl.c \
 	  main.c \
 	  redirections/create_files.c \
+	  redirections/create_files_err.c \
 	  redirections/redir.c \
 	  readline.c \
 	  termcap.c \

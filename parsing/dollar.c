@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:30:58 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/25 11:34:45 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/26 13:57:59 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,22 @@ char	*check_dollr(t_mini *mini, char *line)
 	while (line[++i])
 	{
 		if (line[i] == '$' && !count_back(line + (i - 1))
+            && ft_isdigit(line[i + 1]))
+        {
+            if (line[i + 1] == '0')
+            {
+                new = ft_strjoin("minishell", line + i + 2);
+                line[i] = 0;
+                tmp = ft_strjoin(line, new);
+                if (line)
+                    free(line);
+                line = tmp;
+                i = 0;
+                if (new != NULL)
+                    free(new);
+            }
+        }
+        else if (line[i] == '$' && !count_back(line + (i - 1))
 			&& !ft_strchr(mini->check_env, line[i + 1]))
 		{
 			new = dollar(mini, line + i + 1);

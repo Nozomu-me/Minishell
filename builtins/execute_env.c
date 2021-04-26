@@ -6,11 +6,28 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:48:36 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/25 12:58:13 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/26 15:39:58 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	help_env(t_mini *mini)
+{
+	if (ft_strcmp(mini->cmds.cmd[1], "=") == 0
+		|| ft_strcmp(mini->cmds.cmd[1], "==") == 0)
+	{
+		printf("env: setenv %s: Invalid argument\n", mini->cmds.cmd[1]);
+		g_check.exit_status = 1;
+	}
+	else
+	{
+		ft_putstr_fd("env: ", 0);
+		ft_putstr_fd(mini->cmds.cmd[1], 0);
+		ft_putendl_fd(": No such file or directory", 1);
+		g_check.exit_status = 127;
+	}
+}
 
 void	execute_env(t_mini *mini)
 {
@@ -19,21 +36,7 @@ void	execute_env(t_mini *mini)
 	else
 		g_check.exit_status = 0;
 	if (mini->cmds.cmd[1] != NULL && ft_strcmp(mini->cmds.cmd[1], "#") != 0)
-	{
-		if (ft_strcmp(mini->cmds.cmd[1], "=") == 0
-			|| ft_strcmp(mini->cmds.cmd[1], "==") == 0)
-		{
-			printf("env: setenv %s: Invalid argument\n", mini->cmds.cmd[1]);
-			g_check.exit_status = 1;
-		}
-		else
-		{
-			ft_putstr_fd("env: ", 0);
-			ft_putstr_fd(mini->cmds.cmd[1], 0);
-			ft_putendl_fd(": No such file or directory", 1);
-			g_check.exit_status = 127;
-		}
-	}
+		help_env(mini);
 	else
 	{
 		print_list(mini->env, mini->glob.fd_red);

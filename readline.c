@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:47:20 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/25 16:16:55 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/26 14:17:37 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,16 @@ int	check_buffer(t_termcap *term, t_list **history, char **cmdline)
 	return (0);
 }
 
+void	help_readline(char **cmdline, t_termcap	*term)
+{
+	g_check.exit_status = 1;
+	term->prevlen = 0;
+	free(term->save);
+	term->save = NULL;
+	free(*cmdline);
+	*cmdline = NULL;
+}
+
 void	readline(char **cmdline, t_list **history)
 {
 	t_termcap	term;
@@ -69,14 +79,7 @@ void	readline(char **cmdline, t_list **history)
 		term.buffer[0] = '\0';
 		term.ret = read(0, term.buffer, 4);
 		if (g_check.exit_status == -1)
-		{
-			g_check.exit_status = 1;
-			term.prevlen = 0;
-			free(term.save);
-			term.save= NULL;
-			free(*cmdline);
-			*cmdline = NULL;
-		}
+			help_readline(cmdline, &term);
 		term.buffer[term.ret] = '\0';
 		if (check_buffer(&term, history, cmdline) == 1)
 			break ;

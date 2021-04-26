@@ -6,17 +6,11 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:48:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/24 12:04:14 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/26 14:24:31 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	fd_put(int c)
-{
-	write(1, &c, 1);
-	return (0);
-}
 
 void	delete(char **cmdline, t_termcap *term)
 {
@@ -72,6 +66,23 @@ int	termcap(t_termcap *term, char **cmdline)
 	return (0);
 }
 
+void	help_get_cmdline(t_termcap *term, char **cmdline, char *tmp_save)
+{
+	char	*tmp;
+
+	tmp = *cmdline;
+	*cmdline = ft_strjoin(*cmdline, term->buffer);
+	if (*cmdline != NULL)
+	{
+		term->check = 0;
+		tmp_save = term->save;
+		term->save = ft_strdup(*cmdline);
+		if (tmp_save != NULL)
+			free(tmp_save);
+	}
+	free(tmp);
+}
+
 void	get_cmdline(t_termcap *term, char **cmdline)
 {
 	char	*tmp;
@@ -90,20 +101,7 @@ void	get_cmdline(t_termcap *term, char **cmdline)
 		}
 	}
 	else
-	{
-		tmp = *cmdline;
-		*cmdline = ft_strjoin(*cmdline, term->buffer);
-		// fprintf(stderr, "cmdline=%s\n", *cmdline);
-		if (*cmdline != NULL)
-		{
-			term->check = 0;
-			tmp_save = term->save;
-			term->save = ft_strdup(*cmdline);
-			if (tmp_save != NULL)
-				free(tmp_save);
-		}
-		free(tmp);
-	}
+		help_get_cmdline(term, cmdline, tmp_save);
 	term->c += 1;
 	ft_putstr_fd(term->buffer, 1);
 }
