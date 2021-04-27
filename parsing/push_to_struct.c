@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_to_struct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:32:03 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/26 14:44:52 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/27 12:53:14 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,11 @@ void	push_to_cmd(t_mini *mini)
 			|| compare(mini->cmds.cmd[i], "$/"))
 			mini->cmds.cmd[i][0] *= -1;
 		mini->cmds.cmd[i] = reverse_cmd(mini, mini->cmds.cmd[i], 0, -1);
+		if (mini->cmds.cmd[0][0] == '\0')
+		{
+			free(mini->cmds.cmd[0]);
+			mini->cmds.cmd[0] = ft_strdup(" ");
+		}
 	}
 }
 

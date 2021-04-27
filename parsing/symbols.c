@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   symbols.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 17:02:55 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/26 14:45:57 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/27 12:30:11 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,11 @@ char	*check_s_quote(t_symbol *smbl, char *line, int i)
 {
 	if (smbl->s_quote == OFF && smbl->d_quote == OFF)
 	{
-		if (smbl->append == ON)
-			smbl->append = OFF;
-		if (smbl->read == ON)
-			smbl->read = OFF;
-		if (smbl->write == ON)
-			smbl->write = OFF;
+		if (smbl->pipe == ON)
+			smbl->pipe = OFF;
 		if (!count_back(line + (i - 1)))
 			smbl->s_quote = ON;
+		off_red(smbl);
 	}
 	else
 	{

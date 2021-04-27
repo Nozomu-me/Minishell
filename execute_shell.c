@@ -6,11 +6,27 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:46:29 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/26 13:34:30 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/27 12:26:57 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	help_execute_execve(t_mini *mini, int *check)
+{
+	char	*str;
+
+	str = ft_itoa(g_check.exit_status);
+	if (ft_strcmp(mini->cmds.cmd[0], "$?") == 0)
+		error_command(str);
+	else
+	{
+		g_check.exit_status = 127;
+		error_command(mini->cmds.cmd[0]);
+	}
+	*check = 1;
+	free(str);
+}
 
 void	execute_execve(t_mini *mini, char **env, char **split)
 {
@@ -24,11 +40,7 @@ void	execute_execve(t_mini *mini, char **env, char **split)
 	if (perm != 1 && mini->cmds.cmd[0] != NULL
 		&& check_isbuiltin(mini->cmds.cmd[0]) != 1
 		&& g_check.exit_status != -2)
-	{
-		g_check.exit_status = 127;
-		error_command(mini->cmds.cmd[0]);
-		check = 1;
-	}
+		help_execute_execve(mini, &check);
 	if (check == 0)
 		call_execve(mini, env, path);
 	if (g_check.exit_status == -2)
@@ -97,7 +109,6 @@ void	execute_shell(t_mini *mini)
 	char	**split;
 	char	**env_path;
 
-	g_check.exit_status = 0;
 	mini->glob.env_tab = list_to_tabl(mini->env);
 	env_path = ft_getenv("PATH", mini->env);
 	if (mini->cmds.cmd[0] != NULL

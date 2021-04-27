@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:30:58 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/26 16:12:31 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/27 12:18:32 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*last_word(char *line)
 	int	i;
 
 	i = ft_strlen(line) - 1;
-	while (line[i - 1] && line[i - 1] != ' ')
+	while (i != 0 && line[i] != ' ')
 		i--;
 	return (line + i);
 }
