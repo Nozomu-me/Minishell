@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 13:33:48 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/24 00:13:11 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/27 13:55:42 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ void	help_execute_exit(t_mini *mini)
 
 void	help_exec_exit(t_mini *mini)
 {
-	if (check_isnumeriq(mini->cmds.cmd[1]) == 0
+	if ((check_isnumeriq(mini->cmds.cmd[1]) == 1
+			|| check_isnumeriq(mini->cmds.cmd[1]) == 2)
 		&& mini->cmds.cmd[2] == NULL)
 		help_execute_exit(mini);
 	else
 	{
-		if (check_isnumeriq(mini->cmds.cmd[1]) == 0
+		if ((check_isnumeriq(mini->cmds.cmd[1]) == 1
+				|| check_isnumeriq(mini->cmds.cmd[1]) == 2)
 			&& mini->cmds.cmd[2] != NULL)
 		{
 			g_check.exit_status = 1;

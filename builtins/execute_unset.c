@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 11:16:31 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/22 16:35:41 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/27 13:35:26 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	help_unset(t_mini *mini, int i)
 {
 	if (ft_strncmp(mini->cmds.cmd[i], "OLDPWD", 6) == 0)
 	{
+		if (mini->glob.oldpwd != NULL)
+			free(mini->glob.oldpwd);
 		mini->glob.oldpwd = NULL;
 		mini->glob.oldpwd_env = 1;
 	}

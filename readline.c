@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:47:20 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/26 14:17:37 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/27 14:51:52 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,20 @@ int	check_buffer(t_termcap *term, t_list **history, char **cmdline)
 		{
 			term->check = 1;
 			help_check_buffer(term);
+			// free(term->save);
+			// term->save = NULL;
 		}
 		uphistory(term, history, cmdline);
 	}
 	else if (!ft_strcmp(term->buffer, DOWN))
 	{
+		if (term->save != NULL && term->check == 0)
+		{
+			term->check = 1;
+			help_check_buffer(term);
+			// free(term->save);
+			// term->save = NULL;
+		}
 		downhistory(term, history, cmdline);
 	}
 	else if (term->buffer[0] == DELETE || term->buffer[0] == CTRLD
