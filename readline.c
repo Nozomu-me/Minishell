@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:47:20 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/27 15:04:42 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/28 10:51:44 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ void	init_termcap(t_termcap *term, t_list **history, char **cmdline)
 
 void	help_check_buffer(t_termcap *term)
 {
-	tputs(tgoto(tgetstr("LE", NULL), 0, ft_strlen(term->save)), 0, fd_put);
-	tputs(tgoto(tgetstr("ce", NULL), 0, ft_strlen(term->save)), 0, fd_put);
+	if (ft_strlen(term->save) > 0)
+	{
+		tputs(tgoto(tgetstr("LE", NULL), 0, ft_strlen(term->save)), 0, fd_put);
+		tputs(tgoto(tgetstr("ce", NULL), 0, ft_strlen(term->save)), 0, fd_put);
+	}
 }
 
 int	check_buffer(t_termcap *term, t_list **history, char **cmdline)

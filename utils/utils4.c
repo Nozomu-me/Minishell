@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 12:51:25 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/26 14:20:29 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/28 00:37:02 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,20 +71,23 @@ void	print_export(t_list *export, int fd)
 	tmp = export;
 	while (tmp != NULL)
 	{
-		split = ft_split(tmp->content, '=');
-		ft_putstr_fd("declare -x ", fd);
-		ft_putstr_fd(split[0], fd);
-		if (check_valid(tmp->content) == 1)
+		if (ft_strncmp(tmp->content, "_=", 2) != 0)
 		{
-			ft_putstr_fd("=\"", fd);
-			value = get_export_value(tmp->content);
-			print_value(value, fd);
-			ft_putstr_fd("\"\n", fd);
-			free(value);
+			split = ft_split(tmp->content, '=');
+			ft_putstr_fd("declare -x ", fd);
+			ft_putstr_fd(split[0], fd);
+			if (check_valid(tmp->content) == 1)
+			{
+				ft_putstr_fd("=\"", fd);
+				value = get_export_value(tmp->content);
+				print_value(value, fd);
+				ft_putstr_fd("\"\n", fd);
+				free(value);
+			}
+			else
+				ft_putchar_fd('\n', fd);
+			free_tabl(split);
 		}
-		else
-			ft_putchar_fd('\n', fd);
 		tmp = tmp->next;
-		free_tabl(split);
 	}
 }
