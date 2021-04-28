@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:48:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/27 23:52:36 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/28 16:56:47 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ int	termcap(t_termcap *term, char **cmdline)
 	if (term->buffer[0] == DELETE)
 	{
 		if (*cmdline != NULL)
+		{
+			term->c = ft_strlen(*cmdline);
 			delete(cmdline, term);
+		}
 	}
 	else if (term->buffer[0] == CTRLD)
 		exec_ctrld(*cmdline);

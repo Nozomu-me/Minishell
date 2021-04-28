@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:46:29 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/27 12:26:57 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/28 15:44:44 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,9 @@
 
 void	help_execute_execve(t_mini *mini, int *check)
 {
-	char	*str;
-
-	str = ft_itoa(g_check.exit_status);
-	if (ft_strcmp(mini->cmds.cmd[0], "$?") == 0)
-		error_command(str);
-	else
-	{
-		g_check.exit_status = 127;
-		error_command(mini->cmds.cmd[0]);
-	}
+	g_check.exit_status = 127;
+	error_command(mini->cmds.cmd[0]);
 	*check = 1;
-	free(str);
 }
 
 void	execute_execve(t_mini *mini, char **env, char **split)

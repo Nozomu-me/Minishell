@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/27 17:58:38 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/28 15:46:36 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ typedef struct s_cmds
 {
 	char		**cmd;
 	t_type		type;
-	int				dollar;
 	t_cflist	*file;
 }				t_cmds;
 
@@ -144,7 +143,6 @@ typedef struct s_minishell
 	t_list			*export_env;
 	t_list			*unset;
 	t_global		glob;
-	// int				dollar;
 	char			*cmdline;
 	t_list			*history;
 	int				sig_status;

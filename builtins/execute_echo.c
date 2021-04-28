@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:08:18 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/28 10:47:21 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/28 15:48:19 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,9 @@ void	echo_dollar(t_mini *mini, char *cmd)
 
 void	help_echo(char **cmd, t_mini *mini, int i)
 {
-	if (ft_strncmp(cmd[i], "$?", 2) == 0)
-		echo_dollar(mini, cmd[i]);
-	else
-	{
-		ft_putstr_fd(cmd[i], mini->glob.fd_red);
-		if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
-			ft_putstr_fd(cmd[i], 1);
-	}
+	ft_putstr_fd(cmd[i], mini->glob.fd_red);
+	if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
+		ft_putstr_fd(cmd[i], 1);
 	if (cmd[i + 1] != NULL)
 	{
 		ft_putstr_fd(" ", mini->glob.fd_red);

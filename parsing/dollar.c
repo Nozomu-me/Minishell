@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:30:58 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/27 12:18:32 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/28 15:41:45 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,22 +71,21 @@ char	*dollar(t_mini *mini, char *line)
 	return (tmp);
 }
 
-char	*check_dollr(t_mini *mini, char *line)
+char    *check_dollr(t_mini *mini, char *line)
 {
-	int		i;
-
-	i = -1;
-	while (line[++i])
-	{
-		if (line[i] == '$' && !count_back(line + (i - 1)))
-		{
-			if (ft_isdigit(line[i + 1]))
-				line = dollar_digit(line, &i);
-			else if (!ft_strchr(mini->check_env, line[i + 1]))
-				line = dollar_simple(mini, line, &i);
-		}
-		else if ((line[i] == '$') && count_back(line + (i - 1)))
-			line[i] *= -1;
-	}
-	return (line);
+    int     i;
+    i = -1;
+    while (line[++i])
+    {
+        if (line[i] == '$' && !count_back(line + (i - 1)))
+        {
+            if (ft_isdigit(line[i + 1]))
+                line = dollar_digit(line, &i);
+            else if (!ft_strchr(mini->check_env, line[i + 1]) || line[i + 1] == '?')
+                line = dollar_simple(mini, line, &i);
+        }
+        else if ((line[i] == '$') && count_back(line + (i - 1)))
+            line[i] *= -1;
+    }
+    return (line);
 }

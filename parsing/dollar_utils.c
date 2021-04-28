@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel-ke <abdel-ke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 15:37:46 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/26 16:12:34 by abdel-ke         ###   ########.fr       */
+/*   Updated: 2021/04/28 16:11:22 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,57 @@ char	*dollar_digit(char *line, int *i)
 		if (line)
 			free(line);
 		line = tmp;
-		*i = 0;
+        if (line[*i] == '$')
+            *i = -1;
+        else
+            *i = 0;
 		if (new != NULL)
 			free(new);
+	}
+	else
+	{
+		new = ft_strdup(line + (*i) + 2);
+        line[*i] = 0;
+        tmp = ft_strjoin(line, new);
+        if (line)
+            free(line);
+        line = tmp;
+        if (line[*i] == '$')
+            *i = -1;
+        else
+            *i = 0;
+        if (new != NULL)
+            free(new);
 	}
 	return (line);
 }
 
-char	*dollar_simple(t_mini *mini, char *line, int *i)
+char    *dollar_simple(t_mini *mini, char *line, int *i)
 {
-	char	*new;
-	char	*tmp;
-
-	new = dollar(mini, line + *i + 1);
-	line[*i] = 0;
-	i = 0;
-	tmp = ft_strjoin(line, new);
-	if (line)
-		free(line);
-	line = tmp;
-	if (new != NULL)
-		free(new);
-	return (line);
+    char    *new;
+    char    *tmp;
+    char    *tmp2;
+    char    *itoa;
+    new = dollar(mini, line + *i + 1);
+    line[*i] = 0;
+    if (new[0] == '?')
+    {
+        itoa = ft_itoa(g_check.exit_status);
+        tmp2 = ft_strjoin(itoa, new + 1);
+        tmp = ft_strjoin(line, tmp2);
+        free(itoa);
+        free(tmp2);
+    }
+    else
+        tmp = ft_strjoin(line, new);
+    if (line[*i] == '$')
+        *i = -1;
+    else
+        *i = 0;
+    if (line)
+        free(line);
+    line = tmp;
+    if (new != NULL)
+        free(new);
+    return (line);
 }

@@ -14,7 +14,8 @@
 
 int	create_write(t_cflist *tmp, int *fd, t_cflist **w)
 {
-	if (tmp->name[0] == '$' && tmp->file_dollar && ft_strlen(tmp->name) != 1)
+	if (tmp->name[0] == '$'  && tmp->name[1] != '?' && tmp->file_dollar
+         && ft_strlen(tmp->name) != 1)
 	{
 		g_check.exit_status = -2;
 		error_file_nodir(tmp->name);
@@ -30,7 +31,8 @@ int	create_write(t_cflist *tmp, int *fd, t_cflist **w)
 
 int	create_read(t_cflist *tmp, int *fd, t_cflist **r)
 {
-	if (tmp->name[0] == '$' && tmp->file_dollar && ft_strlen(tmp->name) != 1)
+	if (tmp->name[0] == '$'  && tmp->name[1] != '?' && tmp->file_dollar
+         && ft_strlen(tmp->name) != 1)
 	{
 		g_check.exit_status = -2;
 		error_file_nodir(tmp->name);
@@ -46,7 +48,8 @@ int	create_read(t_cflist *tmp, int *fd, t_cflist **r)
 
 int	create_append(t_cflist *tmp, int *fd, t_cflist **w)
 {
-	if (tmp->name[0] == '$' && tmp->file_dollar && ft_strlen(tmp->name) != 1)
+	if (tmp->name[0] == '$'  && tmp->name[1] != '?' && tmp->file_dollar
+         && ft_strlen(tmp->name) != 1)
 	{
 		g_check.exit_status = -2;
 		error_file_nodir(tmp->name);

@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:43:14 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/26 14:05:29 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/28 15:48:47 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	error_file_nodir(char *command)
 {
 	ft_putstr("minishell: ");
 	ft_putstr(command);
-	if (command[0] == '$')
+	if (command[0] == '$' && command[0] != '?')
 		ft_putstr(": ambiguous redirect\n");
 	else if (command[0] == '/')
 		ft_putstr(": Permission denied\n");
