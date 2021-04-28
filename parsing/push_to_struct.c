@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:32:03 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/27 12:53:14 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/28 10:47:02 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	push_to_cmd(t_mini *mini)
 	i = -1;
 	while (mini->cmds.cmd[++i])
 	{
+		mini->cmds.cmd[i] = check_dollr(mini, mini->cmds.cmd[i]);
 		if (compare(mini->cmds.cmd[i], "$?")
 			|| compare(mini->cmds.cmd[i], "$/"))
 			mini->cmds.cmd[i][0] *= -1;
@@ -109,6 +110,7 @@ void	push_to_struct(t_mini *mini, char *line)
 	while (tmp)
 	{
 		tmp->file_dollar = 1;
+		tmp->name = check_dollr(mini, tmp->name);
 		if (tmp->name[0] == '\'' && tmp->name[1] == '$' * -1)
 			tmp->file_dollar = 0;
 		if (compare(tmp->name, "$?") || compare(tmp->name, "\"$?\""))

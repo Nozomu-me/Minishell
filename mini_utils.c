@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 13:49:56 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/26 13:55:58 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/28 10:48:55 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	help_main(t_mini *mini, t_cflist *tmp)
 	mini->cmds.type = tmp->type;
 	env = list_to_tabl(mini->export_env);
 	mini->env2 = create_env_list(env);
-	tmp->name = check_dollr(mini, tmp->name);
 	push_to_struct(mini, tmp->name);
 	execute_cmd(mini);
 	free(mini->under_score);

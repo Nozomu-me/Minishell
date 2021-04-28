@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 15:50:30 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/26 15:51:02 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/27 16:27:37 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,24 @@ t_list	*init_env_environ(char **environ)
 {
 	t_list	*env;
 	int		i;
+	char	cwd[PATH_MAX];
 
-	i = 1;
-	env = ft_lstnew(ft_strdup(environ[0]));
-	while (environ[i] != NULL)
+	i = 0;
+	env = NULL;
+	if (environ == NULL || environ[0] == NULL)
 	{
-		if (ft_strncmp(environ[i], "OLDPWD", 6) != 0)
-			ft_lstadd_back(&env, ft_lstnew(ft_strdup(environ[i])));
-		i++;
+		getcwd(cwd, PATH_MAX);
+		ft_lstadd_back(&env, ft_lstnew(ft_strjoin("PWD=",cwd)));
+		ft_lstadd_back(&env, ft_lstnew(ft_strjoin("SHLVL=","0")));
+	}
+	else
+	{
+		while (environ[i] != NULL)
+		{
+			if (ft_strncmp(environ[i], "OLDPWD", 6) != 0)
+				ft_lstadd_back(&env, ft_lstnew(ft_strdup(environ[i])));
+			i++;
+		}
 	}
 	return (env);
 }
@@ -32,16 +42,26 @@ t_list	*init_export_environ(char **environ)
 {
 	t_list	*env;
 	int		i;
+	char	cwd[PATH_MAX];
 
 	i = 1;
-	env = ft_lstnew(ft_strdup(environ[0]));
-	while (environ[i] != NULL)
+	env = NULL;
+	if (environ == NULL || environ[0] == NULL)
 	{
-		if (ft_strncmp(environ[i], "OLDPWD", 6) != 0)
-			ft_lstadd_back(&env, ft_lstnew(ft_strdup(environ[i])));
-		else
-			ft_lstadd_back(&env, ft_lstnew(ft_strdup("OLDPWD")));
-		i++;
+		getcwd(cwd, PATH_MAX);
+		ft_lstadd_back(&env, ft_lstnew(ft_strjoin("PWD=",cwd)));
+		ft_lstadd_back(&env, ft_lstnew(ft_strjoin("SHLVL=","0")));
+	}
+	else
+	{
+		while (environ[i] != NULL)
+		{
+			if (ft_strncmp(environ[i], "OLDPWD", 6) != 0)
+				ft_lstadd_back(&env, ft_lstnew(ft_strdup(environ[i])));
+			else
+				ft_lstadd_back(&env, ft_lstnew(ft_strdup("OLDPWD")));
+			i++;
+		}
 	}
 	return (env);
 }

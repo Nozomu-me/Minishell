@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:47:20 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/27 14:51:52 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/27 15:04:42 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ int	check_buffer(t_termcap *term, t_list **history, char **cmdline)
 		{
 			term->check = 1;
 			help_check_buffer(term);
-			// free(term->save);
-			// term->save = NULL;
 		}
 		uphistory(term, history, cmdline);
 	}
@@ -48,8 +46,6 @@ int	check_buffer(t_termcap *term, t_list **history, char **cmdline)
 		{
 			term->check = 1;
 			help_check_buffer(term);
-			// free(term->save);
-			// term->save = NULL;
 		}
 		downhistory(term, history, cmdline);
 	}
@@ -57,9 +53,7 @@ int	check_buffer(t_termcap *term, t_list **history, char **cmdline)
 		|| term->buffer[0] == LEFTRIGHT || term->buffer[0] == ENTER)
 	{
 		if (termcap(term, cmdline) == 1)
-		{
 			return (1);
-		}
 	}
 	else
 		get_cmdline(term, cmdline);
