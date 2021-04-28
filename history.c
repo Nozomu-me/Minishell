@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 12:39:58 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/25 16:19:51 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/27 23:52:23 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,11 @@ void	delete_dhist(t_termcap *term, char **cmdline)
 
 void	help_dhist(t_termcap *term, char **cmdline)
 {
-	if (term->save != NULL)
+	if (term->save != NULL && ft_strlen(term->save) != 0)
 	{
 		ft_putstr(term->save);
+		if (*cmdline != NULL)
+			free(*cmdline);
 		*cmdline = ft_strdup(term->save);
 		term->prevlen = ft_strlen(term->save);
 		term->c = ft_strlen(term->save);

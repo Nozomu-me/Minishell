@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 21:48:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/26 16:33:29 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/27 23:52:36 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	delete(char **cmdline, t_termcap *term)
 {
 	char	*tmp;
+	char	*tmp2;
 
 	if (term->c > 0)
 	{
@@ -29,12 +30,20 @@ void	delete(char **cmdline, t_termcap *term)
 	}
 	if (term->c > 0)
 		term->c -= 1;
+	if (term->save != NULL && ft_strcmp(term->save, *cmdline) == 0)
+	{
+		tmp2 = ft_strdup(term->save);
+		free(term->save);
+		term->save = ft_substr(tmp2, 0, ft_strlen(tmp2) - 1);
+		free(tmp2);
+	}
 	tmp = ft_strdup(*cmdline);
 	free(*cmdline);
 	*cmdline = ft_substr(tmp, 0, term->c);
+	free(tmp);
+	tmp = NULL;
 	if (term->prevlen > 0)
 		term->prevlen -= 1;
-	free(tmp);
 }
 
 void	exec_ctrld(char *cmdline)
