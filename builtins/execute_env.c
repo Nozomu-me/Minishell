@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:48:36 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/26 15:39:58 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/28 00:39:30 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ void	execute_env(t_mini *mini)
 	else
 	{
 		print_list(mini->env, mini->glob.fd_red);
+		ft_putendl_fd("_=/usr/bin/env", mini->glob.fd_red);
 		if (mini->glob.fd_red != 1 && mini->cmds.type == PIPE)
+		{
 			print_list(mini->env, 1);
+			ft_putendl_fd("_=/usr/bin/env", 1);
+		}
 	}
 }
