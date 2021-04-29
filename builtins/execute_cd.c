@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:41:28 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/27 13:34:22 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/29 00:08:59 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	execute_cd_old(t_mini *mini)
 void	help_execute_cd(t_mini *mini)
 {
 	char	*save_oldpwd;
+	char	cwd[PATH_MAX];
 
 	save_oldpwd = NULL;
 	if (mini->glob.oldpwd)
@@ -62,6 +63,8 @@ void	help_execute_cd(t_mini *mini)
 		reset_oldpwd(mini, save_oldpwd);
 		g_check.exit_status = 1;
 	}
+	if (getcwd(cwd, PATH_MAX) == NULL)
+		current_dir_err();
 	mod_pwd(mini);
 	if (save_oldpwd != NULL)
 		free(save_oldpwd);
