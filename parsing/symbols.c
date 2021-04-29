@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 17:02:55 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/27 12:30:11 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/29 16:32:16 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ char	*check_s_quote(t_symbol *smbl, char *line, int i)
 char	*check_space(t_symbol *smbl, char *line, int i)
 {
 	if (smbl->d_quote == ON || smbl->s_quote == ON)
+		line[i] *= -1;
+	else if (smbl->d_quote == OFF && smbl->s_quote == OFF
+		&& count_back(line + i - 1))
 		line[i] *= -1;
 	return (line);
 }

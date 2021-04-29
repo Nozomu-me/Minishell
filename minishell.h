@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/29 11:58:41 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/29 16:29:25 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,6 @@ int				minishell(t_mini *mini);
 void			sort_list(t_list *list);
 void			print_list(t_list *list, int fd);
 t_list			*init_list(void);
-void			delete_node(t_list *list, char *name);
 char			**list_to_tabl(t_list *list);
 t_cflist		*cf_lst_new(void *name, int type);
 void			cf_lstadd_back(t_cflist **alst, t_cflist *new);
@@ -254,6 +253,7 @@ t_list			*init_env_environ(char **environ);
 t_list			*init_export_environ(char **environ);
 char			**ft_getenv(char *name, t_list *env);
 void			error_dir(char *command);
+void			unset_env(char *str, t_list **env);
 /*
 ** termcap functions
 */

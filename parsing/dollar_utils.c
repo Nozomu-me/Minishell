@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 15:37:46 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/29 11:40:44 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/29 13:34:01 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,21 @@
 void	help_dollar_digit(char **line, char *new, int *i)
 {
 	char	*tmp;
+	char	*line2;
 
-	*line[*i] = 0;
-	tmp = ft_strjoin(*line, new);
-	if (*line)
-		free(*line);
-	*line = tmp;
-	if (*line[*i] == '$')
+	line2 = *line;
+	line2[*i] = 0;
+	tmp = ft_strjoin(line2, new);
+	if (line2)
+		free(line2);
+	line2 = tmp;
+	if (line2[*i] == '$')
 		*i = -1;
 	else
 		*i = 0;
 	if (new != NULL)
 		free(new);
+	*line = line2;
 }
 
 char	*dollar_digit(char *line, int *i)

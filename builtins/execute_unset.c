@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 11:16:31 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/27 13:35:26 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/29 16:26:27 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	help_unset(t_mini *mini, int i)
 		error_unset(mini->cmds.cmd[i], mini);
 	else
 	{
-		delete_node(mini->env, mini->cmds.cmd[i]);
-		delete_node(mini->export_env, mini->cmds.cmd[i]);
+		unset_env(mini->cmds.cmd[i], &mini->env);
+		unset_env(mini->cmds.cmd[i], &mini->export_env);
 	}
 }
 
