@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:31:56 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/27 17:20:08 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/29 11:41:50 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	redirection(t_symbol *smbl)
 char	*check_redirection(t_symbol *smbl, char *line, int i, int *type)
 {
 	if (!count_back(line + (i - 1)))
-    {
+	{
 		if (smbl->d_quote == ON || smbl->s_quote == ON)
 		{
 			if (line[i + 1] == '>')

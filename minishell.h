@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:29:11 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/28 15:46:36 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/29 11:58:41 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,6 @@ typedef struct s_minishell
 */
 char			*ft_strndup(char *s, size_t len);
 void			ft_putstr(char *s);
-char			*ft_strncpy(char *str, int n);
 int				ft_maxlen(char *s1, char *s2);
 int				check_isnumeriq(char *str);
 int				check_spec_char(char *str);
@@ -330,4 +329,7 @@ void			add_new_env_element(t_env *curr_node, char *env);
 char			*dollar_digit(char *line, int *i);
 char			*dollar_simple(t_mini *mini, char *line, int *i);
 void			off_red(t_symbol *smbl);
+char			*get_path_dollar(t_mini *mini, char *line, int *j);
+char			*add_dollar_path(char *path);
+char			*file_dollar(char *line, char *path);
 #endif

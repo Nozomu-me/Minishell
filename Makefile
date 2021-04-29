@@ -6,7 +6,7 @@
 #    By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:19:58 by amouassi          #+#    #+#              #
-#    Updated: 2021/04/26 16:31:31 by amouassi         ###   ########.fr        #
+#    Updated: 2021/04/29 11:51:15 by amouassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,7 @@ SRC = utils/utils.c \
 	  redirections/redir.c \
 	  readline.c \
 	  termcap.c \
+	  termcap_utils.c \
 	  history.c \
 	  parsing/parsing.c \
 	  parsing/symbols.c \
@@ -112,6 +113,7 @@ SRC = utils/utils.c \
 	  parsing/redirection.c\
 	  parsing/push_to_struct.c\
 	  parsing/dollar_utils.c\
+	  parsing/dollar_utils2.c\
 	  parsing/pipe_semi.c
 
 OBJ = $(SRC:.c=.o)

@@ -6,17 +6,11 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 12:51:25 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/28 00:37:02 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/29 11:57:52 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int	fd_put(int c)
-{
-	write(1, &c, 1);
-	return (0);
-}
 
 int	check_valid(char *str)
 {
@@ -62,11 +56,21 @@ void	print_value(char *value, int fd)
 	}	
 }
 
+void	help_print_export(t_list *tmp, int fd)
+{
+	char		*value;
+
+	ft_putstr_fd("=\"", fd);
+	value = get_export_value(tmp->content);
+	print_value(value, fd);
+	ft_putstr_fd("\"\n", fd);
+	free(value);
+}
+
 void	print_export(t_list *export, int fd)
 {
 	t_list		*tmp;
 	char		**split;
-	char		*value;
 
 	tmp = export;
 	while (tmp != NULL)
@@ -77,13 +81,7 @@ void	print_export(t_list *export, int fd)
 			ft_putstr_fd("declare -x ", fd);
 			ft_putstr_fd(split[0], fd);
 			if (check_valid(tmp->content) == 1)
-			{
-				ft_putstr_fd("=\"", fd);
-				value = get_export_value(tmp->content);
-				print_value(value, fd);
-				ft_putstr_fd("\"\n", fd);
-				free(value);
-			}
+				help_print_export(tmp, fd);
 			else
 				ft_putchar_fd('\n', fd);
 			free_tabl(split);

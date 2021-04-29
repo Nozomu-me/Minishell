@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 15:50:30 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/27 16:27:37 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/29 11:42:33 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_list	*init_env_environ(char **environ)
 	if (environ == NULL || environ[0] == NULL)
 	{
 		getcwd(cwd, PATH_MAX);
-		ft_lstadd_back(&env, ft_lstnew(ft_strjoin("PWD=",cwd)));
-		ft_lstadd_back(&env, ft_lstnew(ft_strjoin("SHLVL=","0")));
+		ft_lstadd_back(&env, ft_lstnew(ft_strjoin("PWD=", cwd)));
+		ft_lstadd_back(&env, ft_lstnew(ft_strjoin("SHLVL=", "0")));
 	}
 	else
 	{
@@ -49,8 +49,8 @@ t_list	*init_export_environ(char **environ)
 	if (environ == NULL || environ[0] == NULL)
 	{
 		getcwd(cwd, PATH_MAX);
-		ft_lstadd_back(&env, ft_lstnew(ft_strjoin("PWD=",cwd)));
-		ft_lstadd_back(&env, ft_lstnew(ft_strjoin("SHLVL=","0")));
+		ft_lstadd_back(&env, ft_lstnew(ft_strjoin("PWD=", cwd)));
+		ft_lstadd_back(&env, ft_lstnew(ft_strjoin("SHLVL=", "0")));
 	}
 	else
 	{
