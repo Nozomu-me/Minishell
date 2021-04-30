@@ -6,7 +6,11 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:46:29 by amouassi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/04/30 22:13:49 by amouassi         ###   ########.fr       */
+=======
+/*   Updated: 2021/04/30 12:10:50 by amouassi         ###   ########.fr       */
+>>>>>>> 94da22e53092ed56201a4d8ee1fbe69de60e4068
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +36,7 @@ void	execute_execve(t_mini *mini, char **env, char **split)
 		&& check_isbuiltin(mini->cmds.cmd[0]) != 1
 		&& g_check.exit_status != -2)
 		help_execute_execve(mini, &check);
-	if (check == 0)
+	if (check == 0 || mini->cmds.type == PIPE)
 		call_execve(mini, env, path);
 	if (g_check.exit_status == -2)
 		g_check.exit_status = 1;

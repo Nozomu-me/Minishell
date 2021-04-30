@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 17:02:55 by abdel-ke          #+#    #+#             */
-/*   Updated: 2021/04/29 16:32:16 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/30 12:18:03 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ char	*check_symbols(t_symbol *smbl, char *line, int i)
 			line = check_space(smbl, line, i);
 		else if (check_flags(smbl) && line[i] != ' ')
 			off_flags(smbl);
-		if (line[i] == '$' && smbl->s_quote == ON)
+		if ((line[i] == '$' && smbl->s_quote == ON)
+			|| (line[i] == '$' && line[i + 1] == ' ' && smbl->d_quote == ON))
 			line[i] *= -1;
 	}
 	return (line);
