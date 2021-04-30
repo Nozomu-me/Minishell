@@ -6,11 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 16:01:03 by amouassi          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/04/30 22:17:04 by amouassi         ###   ########.fr       */
-=======
-/*   Updated: 2021/04/30 12:18:33 by amouassi         ###   ########.fr       */
->>>>>>> 94da22e53092ed56201a4d8ee1fbe69de60e4068
+/*   Updated: 2021/04/30 22:22:44 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +56,7 @@ int	redir_builtins(t_mini *mini)
 	if (r)
 	{
 		fd = open(r->name, O_RDONLY);
-<<<<<<< HEAD
 		close(fd);
-=======
->>>>>>> 94da22e53092ed56201a4d8ee1fbe69de60e4068
 	}
 	if (w)
 	{
