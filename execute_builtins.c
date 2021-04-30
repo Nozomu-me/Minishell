@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 22:34:56 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/25 12:17:39 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/30 01:36:11 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	check_pipe_builtins(t_mini *mini)
 
 void	execute_builtins(t_mini *mini)
 {
-	mini->glob.fd_red = redir_builtins(mini);
+	// if (mini->cmds.type != PIPE)
+		mini->glob.fd_red = redir_builtins(mini);
 	if (ft_strcmp(mini->cmds.cmd[0], "pwd") == 0)
 		execute_pwd(mini);
 	else if (ft_strcmp(mini->cmds.cmd[0], "cd") == 0)
