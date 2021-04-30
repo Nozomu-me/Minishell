@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 11:33:24 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/29 11:34:00 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/30 11:23:14 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ char	*get_path_dollar(t_mini *mini, char *line, int *j)
 		if (ft_strchr(mini->check_env, line[*j])
 			|| line[*j] == ' ' * -1 || line[*j] == '\'' * -1
 			|| line[*j] == '|' * -1 || line[*j] == ';' * -1
-			|| line[*j] == '<' * -1 || line[*j] == '>' * -1)
+			|| line[*j] == '<' * -1 || line[*j] == '>' * -1
+			|| line[*j] == '$' * -1)
 			break ;
 	line = ft_substr(line, 0, *j);
 	return (line);

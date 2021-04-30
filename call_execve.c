@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 11:47:31 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/30 01:42:54 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/30 12:17:35 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ void	execute_child(t_mini *mini, int fds, char **env, char *path)
 			ft_putendl_fd(strerror(errno), 1);
 		close(mini->fd[0]);
 	}
-	// if (check_pipe_builtins(mini) == 0)
 	fds = redir(mini);
-	// printf("fds=%d\n", mini->fds);
 	if (fds == -1)
 		exit(0);
 	if (fds != 0)
@@ -38,8 +36,6 @@ void	execute_child(t_mini *mini, int fds, char **env, char *path)
 	}
 	if (check_pipe_builtins(mini) == 0)
 	{
-		// printf("cmd=%s\n", mini->cmds.cmd[1]);
-		// sleep(1);
 		if (execve(path, mini->cmds.cmd, env) != 0)
 			g_check.exit_status = 1;
 	}
@@ -47,15 +43,6 @@ void	execute_child(t_mini *mini, int fds, char **env, char *path)
 
 int	help_execve(t_mini *mini, char **env, char *path)
 {
-	// if (check_pipe_builtins(mini) == 0)
-	// {
-	// 	mini->fds = redir(mini);
-	// 	printf("min->fds=%d\n", mini->fds);
-	// }
-	// else
-	// 	mini->fds = redir_builtins(mini);
-	// if (mini->fds == -1)
-	// 	exit(0);
 	if (mini->pid == -1)
 	{
 		g_check.exit_status = 1;
