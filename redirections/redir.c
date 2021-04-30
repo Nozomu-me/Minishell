@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 16:01:03 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/30 01:29:04 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/30 22:17:04 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	redir(t_mini *mini)
 	if (r)
 	{
 		fd = open(r->name, O_RDONLY);
-		// if (check_pipe_builtins(mini) == 0)
-			dup2(fd, 0);
+		dup2(fd, 0);
 		close(fd);
 	}
 	if (w)
@@ -57,8 +56,7 @@ int	redir_builtins(t_mini *mini)
 	if (r)
 	{
 		fd = open(r->name, O_RDONLY);
-		// if (mini->cmds.type == PIPE)
-		// 	dup2(fd, 0);
+		close(fd);
 	}
 	if (w)
 	{

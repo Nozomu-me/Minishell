@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:46:29 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/28 15:44:44 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/30 22:13:49 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ void	execute_path(t_mini *mini, char **env)
 	if (permission == 1 && dir == 1)
 		call_execve(mini, env, path);
 	else if (permission == 1 && dir == 0)
+	{
 		error_dir(mini->cmds.cmd[0]);
+		g_check.exit_status = 126;
+	}
 	else
 	{
 		if (permission == 2)
