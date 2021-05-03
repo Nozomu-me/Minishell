@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 16:01:03 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/30 12:18:33 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/30 22:22:44 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	redir_builtins(t_mini *mini)
 	if (r)
 	{
 		fd = open(r->name, O_RDONLY);
+		close(fd);
 	}
 	if (w)
 	{

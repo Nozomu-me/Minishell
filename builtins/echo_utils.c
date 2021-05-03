@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 15:32:23 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/26 15:34:51 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/04/30 22:10:43 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	get_n(char **cmd, int *b)
 	int		i;
 
 	i = 1;
-	while (cmd[i] != NULL && (ft_strncmp(cmd[1], "-", 1) == 0
+	while (cmd[i] != NULL && (cmd[i][0] == '-'
 			&& check_n(cmd[i]) == 0))
 	{
 		*b = 1;
