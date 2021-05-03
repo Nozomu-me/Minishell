@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:46:29 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/30 22:22:14 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/05/03 11:48:49 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,13 @@ void	check_cur_exec(t_mini *mini, char **env)
 	else if (check_pipe_builtins(mini) != 1)
 	{
 		if (permission == 2)
+		{
+			g_check.exit_status = 126;
 			error_permission(mini->cmds.cmd[0]);
+		}
 		else if (permission == 3)
 		{
+			g_check.exit_status = 127;
 			error_nodir(mini->cmds.cmd[0]);
 		}
 	}

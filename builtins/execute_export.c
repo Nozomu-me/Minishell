@@ -6,7 +6,7 @@
 /*   By: amouassi <amouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:50:59 by amouassi          #+#    #+#             */
-/*   Updated: 2021/04/29 16:27:17 by amouassi         ###   ########.fr       */
+/*   Updated: 2021/05/03 11:57:02 by amouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void	execute_export(t_mini *mini)
 	{
 		if (check_syntax_export(mini->cmds.cmd[i]) == 1)
 		{
+			g_check.exit_status = 1;
 			error_export(mini->cmds.cmd[i], mini);
 		}
 		else
