@@ -1,5 +1,11 @@
 # minishell_
 
+Minishell project, recoding our own little bash.
+A program capable of parsing a prompt and launching executables with arguments,
+along with a few built-in functions.
+
+
+
 https://www.scosales.com/ta/kb/106065.html
 
 https://www.geeksforgeeks.org/exit-codes-in-c-c-with-examples/
